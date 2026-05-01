@@ -9,7 +9,7 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
     html,body{background:#0d0f1a;min-height:100vh;}
-    .dash{background:#0d0f1a;color:#e2e8f0;font-family:'DM Sans',sans-serif;padding:14px;max-width:1200px;margin:0 auto;}
+    .dash{background:#0d0f1a;color:#e2e8f0;font-family:'DM Sans',sans-serif;padding:14px;max-width:1300px;margin:0 auto;}
     .page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
     .page-title{font-size:14px;font-weight:800;color:#fbbf24;font-family:'Inter',sans-serif;}
     .page-sub{font-size:10px;color:#4b5563;margin-top:2px;}
@@ -29,59 +29,58 @@
     .tab:hover:not(.active){background:#1f2545;color:#f9fafb;}
     .section{display:none;}.section.active{display:block;}
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-    @media(max-width:700px){.grid2,.yorum-grid,.oneri-grid{grid-template-columns:1fr;}}
+    @media(max-width:700px){.grid2,.yorum-grid{grid-template-columns:1fr;}}
     .panel{background:#13162a;border:1px solid #252a40;border-radius:18px;padding:14px;margin-bottom:10px;}
     .panel-title{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px;border-bottom:1px solid #1f2440;padding-bottom:8px;}
     .tbl-wrap{overflow-x:auto;}
-    table{width:100%;border-collapse:collapse;font-size:11px;min-width:380px;}
+    table{width:100%;border-collapse:collapse;font-size:11px;}
     th{color:#4b5563;font-size:9px;text-transform:uppercase;padding:5px 6px;text-align:left;border-bottom:1px solid #1f2440;font-weight:700;white-space:nowrap;}
-    td{padding:7px 6px;border-bottom:1px solid #191e30;color:#cbd5e1;white-space:nowrap;}
-    td.sym{font-weight:800;color:#fbbf24;font-size:12px;font-family:'Inter',sans-serif;}
+    td{padding:7px 6px;border-bottom:1px solid #191e30;color:#cbd5e1;vertical-align:top;}
+    td.sym{font-weight:800;color:#fbbf24;font-size:12px;font-family:'Inter',sans-serif;white-space:nowrap;}
+    td.isim{color:#6b7280;font-size:9px;max-width:130px;}
+    td.analiz{font-size:9px;color:#94a3b8;max-width:180px;white-space:normal;line-height:1.4;}
     .gold{color:#fbbf24!important;}.green{color:#34d399!important;}.red{color:#f87171!important;}.blue{color:#60a5fa;}.gray{color:#9ca3af;}.yel{color:#fbbf24!important;}
     .yorum-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
     .yorum-block{background:#0f1221;border:1px solid #1f2440;border-radius:14px;padding:12px 14px;}
     .yorum-head{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #1f2440;}
     .yorum-text{font-size:11px;color:#94a3b8;line-height:1.8;}
-    .oneri-grid{display:grid;grid-template-columns:1fr;gap:10px;}
-    .oneri-block{background:#0f1221;border:1px solid #1f2440;border-radius:14px;padding:10px 12px;}
-    .oneri-head{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
-    .oneri-item{font-size:10px;color:#94a3b8;line-height:1.7;}
+    .onlem-block{background:#0f1221;border:1px solid #1f2440;border-radius:14px;padding:12px 14px;}
   </style>
 </head>
 <body>
 <div class="dash">
- 
+
   <div class="page-header">
     <div>
       <div class="page-title">📊 Portföy Dashboard</div>
       <div class="page-sub">Finance Analysis · Kişisel Yatırım Takibi</div>
     </div>
-    <div class="live-dot">01.05.2026 22:20</div>
+    <div class="live-dot">01.05.2026 22:39</div>
   </div>
- 
+
   <div class="header-cards">
     <div class="hcard">
       <div class="label">Toplam Değer</div>
-      <div class="value gold">$22,483</div>
-      <div class="sub">₺1.015.550</div>
+      <div class="value gold">$0</div>
+      <div class="sub">₺0</div>
     </div>
     <div class="hcard">
       <div class="label">Toplam Yatırılan</div>
       <div class="value blue">$18,541</div>
-      <div class="sub">Tüm para girişleri</div>
+      <div class="sub">Tüm para girişleri toplamı</div>
     </div>
     <div class="hcard">
       <div class="label">Net Kar</div>
-      <div class="value green">$3,942 · +21.26%</div>
+      <div class="value red">$18,541 · 100%</div>
       <div class="sub">Net getiri / yatırılan</div>
     </div>
     <div class="hcard">
       <div class="label">Portföy Betası</div>
-      <div class="value gray">β 0.03</div>
+      <div class="value gray">β 0.00</div>
       <div class="sub">Ağırlıklı ortalama</div>
     </div>
   </div>
- 
+
   <div class="tabs-wrap">
     <div class="tabs">
       <button class="tab active" onclick="showTab('analiz',this)">Analiz</button>
@@ -90,7 +89,7 @@
       <button class="tab" onclick="showTab('performans',this)">Performans</button>
     </div>
   </div>
- 
+
   <!-- TAB: ANALİZ -->
   <div id="tab-analiz" class="section active">
     <div class="panel">
@@ -102,37 +101,107 @@
           <th>SuperTrend</th><th>Puan</th><th>Öneri</th>
         </tr>
         
+      <tr>
+        <td class="sym">QLD</td>
+        <td class="isim">ProShares Ultra QQQ</td>
+        <td>$82.89</td>
+        <td>$71.42</td>
+        <td class="green">+16.1%</td>
+        <td class="yel">44.4%</td>
+        <td class="analiz">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+        <td class="analiz">(Yükseliş Trendi/Boğa)</td>
+        <td class="gold" style="font-weight:800;">62</td>
+        <td class="red" style="font-weight:700;">Kar Al</td>
+      </tr>
+      <tr>
+        <td class="sym">UGL</td>
+        <td class="isim">ProShares Ultra Gold</td>
+        <td>$60.19</td>
+        <td>$70.33</td>
+        <td class="red">-14.4%</td>
+        <td class="yel">5.3%</td>
+        <td class="analiz">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
+        <td class="analiz">(Düşüş Trendi/Ayı)</td>
+        <td class="gold" style="font-weight:800;">52</td>
+        <td class="yel" style="font-weight:700;">Tut</td>
+      </tr>
+      <tr>
+        <td class="sym">USD</td>
+        <td class="isim">ProShares Ultra Semiconductors</td>
+        <td>$78.44</td>
+        <td>$53.88</td>
+        <td class="green">+45.6%</td>
+        <td class="yel">12.3%</td>
+        <td class="analiz">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+        <td class="analiz">(Yükseliş Trendi/Boğa)</td>
+        <td class="gold" style="font-weight:800;">67</td>
+        <td class="yel" style="font-weight:700;">Tut</td>
+      </tr>
+      <tr>
+        <td class="sym">URSP</td>
+        <td class="isim">ProShares Ultra S&P 500 Equal Weight</td>
+        <td>$45.26</td>
+        <td>$44.99</td>
+        <td class="green">+0.6%</td>
+        <td class="yel">13.8%</td>
+        <td class="analiz">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+        <td class="analiz">(Yükseliş Trendi/Boğa)</td>
+        <td class="gold" style="font-weight:800;">62</td>
+        <td class="yel" style="font-weight:700;">Tut</td>
+      </tr>
+      <tr>
+        <td class="sym">AGQ</td>
+        <td class="isim">ProShares Ultra Silver</td>
+        <td>$121.94</td>
+        <td>$129.40</td>
+        <td class="red">-5.8%</td>
+        <td class="yel">8.4%</td>
+        <td class="analiz">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
+        <td class="analiz">(Düşüş Trendi/Ayı)</td>
+        <td class="gold" style="font-weight:800;">42</td>
+        <td class="red" style="font-weight:700;">Azalt</td>
+      </tr>
+      <tr>
+        <td class="sym">MSTR</td>
+        <td class="isim">Strategy Inc Class A</td>
+        <td>$176.55</td>
+        <td>$171.78</td>
+        <td class="green">+2.8%</td>
+        <td class="yel">8.4%</td>
+        <td class="analiz">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+        <td class="analiz">(Yükseliş Trendi/Boğa)</td>
+        <td class="gold" style="font-weight:800;">64</td>
+        <td class="yel" style="font-weight:700;">Tut</td>
+      </tr>
       </table></div>
     </div>
     <div class="panel">
-      <div class="panel-title">Portföy Genel Yorumu — Son Güncelleme: 01.05.2026 18:00 (UTC+3)</div>
+      <div class="panel-title">Portföy Genel Yorumu</div>
       <div class="yorum-grid">
         <div class="yorum-block">
           <div class="yorum-head" style="color:#60a5fa;">📊 Durum</div>
-          <div class="yorum-text"></div>
+          <div class="yorum-text">—</div>
         </div>
         <div class="yorum-block">
           <div class="yorum-head" style="color:#34d399;">💼 Performans</div>
-          <div class="yorum-text"></div>
+          <div class="yorum-text">—</div>
         </div>
         <div class="yorum-block">
           <div class="yorum-head" style="color:#f87171;">⚠️ Risk</div>
-          <div class="yorum-text"></div>
+          <div class="yorum-text">—</div>
         </div>
         <div class="yorum-block">
           <div class="yorum-head" style="color:#fbbf24;">✅ Fırsat</div>
-          <div class="yorum-text"></div>
+          <div class="yorum-text">—</div>
         </div>
       </div>
-      <div class="oneri-grid">
-        <div class="oneri-block">
-          <div class="oneri-head" style="color:#f87171;">🎯 Önlem</div>
-          <div class="oneri-item"></div>
-        </div>
+      <div class="onlem-block">
+        <div class="yorum-head" style="color:#f87171;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🎯 Önlem</div>
+        <div class="yorum-text">—</div>
       </div>
     </div>
   </div>
- 
+
   <!-- TAB: DAĞILIM -->
   <div id="tab-dagılım" class="section">
     <div class="grid2">
@@ -150,77 +219,61 @@
       <div class="tbl-wrap"><table>
         <tr><th>Varlık</th><th>Cinsi</th><th>Değer $</th><th>Kar %</th><th>Oran</th><th>Beta</th></tr>
         
-      <tr>
-        <td class="sym">QLD</td>
-        <td style="color:#6b7280;font-size:9px;">Etf</td>
-        <td>$10,734</td>
-        <td class="green">+0.2%</td>
-        <td class="yel">0.4%</td>
-        <td>2.48</td>
-      </tr>
-      <tr>
-        <td class="sym">UGL</td>
-        <td style="color:#6b7280;font-size:9px;">Etf</td>
-        <td>$1,301</td>
-        <td class="red">-0.1%</td>
-        <td class="yel">0.1%</td>
-        <td>1.68</td>
-      </tr>
-      <tr>
-        <td class="sym">USD</td>
-        <td style="color:#6b7280;font-size:9px;">Etf</td>
-        <td>$2,989</td>
-        <td class="green">+0.5%</td>
-        <td class="yel">0.1%</td>
-        <td>3.76</td>
-      </tr>
-      <tr>
-        <td class="sym">URSP</td>
-        <td style="color:#6b7280;font-size:9px;">Etf</td>
-        <td>$3,323</td>
-        <td class="green">+0.0%</td>
-        <td class="yel">0.1%</td>
-        <td>1.47</td>
-      </tr>
-      <tr>
-        <td class="sym">AGQ</td>
-        <td style="color:#6b7280;font-size:9px;">Etf</td>
-        <td>$2,080</td>
-        <td class="red">-0.1%</td>
-        <td class="yel">0.1%</td>
-        <td>4.72</td>
-      </tr>
-      <tr>
-        <td class="sym">MSTR</td>
-        <td style="color:#6b7280;font-size:9px;">Etf</td>
-        <td>$2,055</td>
-        <td class="green">+0.0%</td>
-        <td class="yel">0.1%</td>
-        <td>3.94</td>
-      </tr>
       </table></div>
     </div>
   </div>
- 
-  <!-- TAB: İZLEME LİSTESİ -->
+
+  <!-- TAB: İZLEME -->
   <div id="tab-izleme" class="section">
     <div class="panel">
       <div class="panel-title">İlgilendiğim Varlıklar</div>
       <div class="tbl-wrap"><table>
         <tr><th>Varlık</th><th>İsim</th><th>Fiyat</th><th>SuperTrend</th><th>Puan</th><th>Öneri</th></tr>
         
+      <tr>
+        <td class="sym">UWM</td>
+        <td class="isim">ProShares Ultra Russell2000</td>
+        <td>$58.71</td>
+        <td class="green analiz">(Yükseliş Trendi/Boğa)</td>
+        <td class="gold" style="font-weight:800;">58</td>
+        <td class="green" style="font-weight:700;">Al</td>
+      </tr>
+      <tr>
+        <td class="sym">XBI</td>
+        <td class="isim">State Street SPDR S&P Biotech ETF</td>
+        <td>$130.60</td>
+        <td class="green analiz">(Yükseliş Trendi/Boğa, Kırılımın Eşiğinde)</td>
+        <td class="gold" style="font-weight:800;">47</td>
+        <td class="yel" style="font-weight:700;">Bekle</td>
+      </tr>
+      <tr>
+        <td class="sym">EEM</td>
+        <td class="isim">iShares MSCI Emerging Markets ETF</td>
+        <td>$64.61</td>
+        <td class="green analiz">(Yükseliş Trendi/Boğa)</td>
+        <td class="gold" style="font-weight:800;">61</td>
+        <td class="green" style="font-weight:700;">Al</td>
+      </tr>
+      <tr>
+        <td class="sym">SOFI</td>
+        <td class="isim">SoFi Technologies Inc</td>
+        <td>$16.15</td>
+        <td class="red analiz">(Düşüş Trendi/Ayı)</td>
+        <td class="gold" style="font-weight:800;">40</td>
+        <td class="red" style="font-weight:700;">Uzak Dur</td>
+      </tr>
       </table></div>
     </div>
   </div>
- 
+
   <!-- TAB: PERFORMANS -->
   <div id="tab-performans" class="section">
     <div class="panel">
-      <div class="panel-title">Son 30 Günlük Portföy Değeri (USD)</div>
-      <div style="height:260px;"><canvas id="sparkChart"></canvas></div>
+      <div class="panel-title">Portföy Değeri — Tüm Geçmiş (USD)</div>
+      <div style="height:320px;"><canvas id="sparkChart"></canvas></div>
     </div>
   </div>
- 
+
 </div>
 <script>
 function showTab(name,el){
@@ -230,22 +283,40 @@ function showTab(name,el){
   el.classList.add('active');
 }
 const colors=['#fbbf24','#60a5fa','#34d399','#fb923c','#a78bfa','#f87171','#38bdf8','#4ade80'];
-const grid={color:'rgba(255,255,255,0.03)'};
+const grid={color:'rgba(255,255,255,0.04)'};
 const tick={color:'#4b5563',font:{size:10,family:"'DM Sans',sans-serif"}};
+
 new Chart(document.getElementById('donutChart'),{
   type:'doughnut',
-  data:{labels:["QLD","UGL","USD","URSP","AGQ","MSTR"],datasets:[{data:[0.4430948521316276,0.0536912984112298,0.12339607054871693,0.13716829050632723,0.0858716907459304,0.08482922486136993],backgroundColor:colors,borderWidth:3,borderColor:'#13162a',hoverOffset:8}]},
+  data:{labels:[],datasets:[{data:[],backgroundColor:colors,borderWidth:3,borderColor:'#13162a',hoverOffset:8}]},
   options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:true,position:'bottom',labels:{color:'#6b7280',font:{size:10},boxWidth:10}}}}
 });
 new Chart(document.getElementById('barChart'),{
   type:'bar',
-  data:{labels:["QLD","UGL","USD","URSP","AGQ","MSTR"],datasets:[{data:[10734.255,1300.7059,2989.3484,3322.9892,2080.2963999999997,2055.0420000000004],backgroundColor:colors,borderRadius:10,borderSkipped:false}]},
+  data:{labels:[],datasets:[{data:[],backgroundColor:colors,borderRadius:10,borderSkipped:false}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:tick,grid},y:{ticks:{...tick,callback:v=>'$'+Math.round(v/1000)+'k'},grid}}}
 });
 new Chart(document.getElementById('sparkChart'),{
   type:'line',
-  data:{labels:["3/20/","3/23/","3/24/","3/25/","3/26/","3/27/","3/30/","3/31/","04/01","04/02","04/03","04/06","04/07","04/08","04/09","04/10","4/13/","4/14/","4/15/","4/16/","4/17/","4/20/","4/21/","4/22/","4/23/","4/24/","4/27/","4/28/","29/04","30/04"],datasets:[{data:[18255,17513,17815,17637,17971,17971,1643,16061,17197,17608,17552,17552,17815,1789,18901,1922,20404,20794,21595,22095,22267,22994,22845,22444,23359,23044,23934,24011,23408,23538],borderColor:'#fbbf24',backgroundColor:'rgba(251,191,36,0.08)',fill:true,tension:0.4,pointRadius:2,borderWidth:2}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...tick,maxTicksLimit:10},grid},y:{ticks:{...tick,callback:v=>'$'+Math.round(v/1000)+'k'},grid}}}
+  data:{
+    labels:["10/11/25","10/12/25","10/13/20","10/14/20","10/15/20","10/16/20","10/17/20","10/20/20","10/21/20","10/22/20","10/23/20","10/24/20","10/27/20","10/28/20","10/30/20","10/31/20","11/03/25","11/04/25","11/05/25","11/06/25","11/07/25","11/10/25","11/11/25","11/12/25","11/13/20","11/14/20","11/17/20","11/18/20","11/19/20","11/20/20","11/21/20","11/24/20","11/25/20","11/26/20","11/27/20","11/28/20","12/02/25","12/03/25","12/04/25","12/05/25","12/08/25","12/09/25","12/10/25","12/11/25","12/12/25","12/15/20","12/16/20","12/17/20","12/18/20","12/19/20","12/22/20","12/23/20","12/24/20","12/25/20","12/26/20","12/29/20","12/30/20","12/31/20","01/02/26","01/05/26","01/06/26","01/07/26","01/08/26","01/09/26","01/12/26","1/13/202","1/14/202","1/15/202","1/16/202","1/19/202","1/20/202","1/21/202","1/22/202","1/23/202","1/26/202","1/27/202","1/28/202","1/29/202","1/30/202","02/02/26","02/03/26","02/04/26","02/05/26","02/06/26","02/09/26","02/10/26","02/11/26","02/12/26","2/13/202","2/16/202","2/17/202","2/18/202","2/19/202","05/01/26","2/23/202","2/24/202","2/25/202","2/26/202","2/27/202","03/02/26","03/03/26","03/04/26","03/05/26","03/06/26","03/09/26","03/10/26","03/11/26","3/16/202","3/17/202","3/18/202","3/19/202","3/20/202","3/23/202","3/24/202","3/25/202","3/26/202","3/27/202","3/30/202","3/31/202","04/01/26","04/02/26","04/03/26","04/06/26","04/07/26","04/08/26","04/09/26","04/10/26","4/13/202","4/14/202","4/15/202","4/16/202","4/17/202","4/20/202","4/21/202","4/22/202","4/23/202","4/24/202","4/27/202","4/28/202","29/04/26","30/04/26"],
+    datasets:[{
+      data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      borderColor:'#fbbf24',
+      backgroundColor:'rgba(251,191,36,0.07)',
+      fill:true,tension:0.3,
+      pointRadius:0,pointHoverRadius:4,
+      borderWidth:2
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'$'+ctx.parsed.y.toLocaleString()}}},
+    scales:{
+      x:{ticks:{...tick,maxTicksLimit:12,maxRotation:45},grid},
+      y:{ticks:{...tick,callback:v=>'$'+Math.round(v/1000)+'k'},grid}
+    }
+  }
 });
 </script>
 </body>

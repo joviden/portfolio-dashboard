@@ -2,69 +2,50 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
   <title>Portföy Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: #0d0f1a; min-height: 100vh; }
-    .dash { background: #0d0f1a; color: #e2e8f0; font-family: 'DM Sans', sans-serif; padding: 14px; max-width: 1200px; margin: 0 auto; }
-    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-    .page-title { font-size: 14px; font-weight: 800; color: #fbbf24; font-family: 'Inter', sans-serif; }
-    .page-sub { font-size: 10px; color: #4b5563; margin-top: 2px; }
-    .live-dot { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #34d399; font-weight: 600; }
-    .live-dot::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #34d399; display: block; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-    .header-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 10px; }
-    @media(max-width:600px){ .header-cards { grid-template-columns: repeat(2,1fr); } }
-    .hcard { background: linear-gradient(135deg,#161929,#1c2038); border: 1px solid #252a40; border-radius: 18px; padding: 14px 16px; }
-    .hcard .label { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 6px; font-weight: 600; }
-    .hcard .value { font-size: 18px; font-weight: 800; font-family: 'Inter', sans-serif; }
-    .hcard .sub { font-size: 10px; color: #4b5563; margin-top: 4px; }
-    .perf-strip { background: #13162a; border: 1px solid #252a40; border-radius: 18px; padding: 10px 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 5px; overflow-x: auto; }
-    .perf-strip::-webkit-scrollbar { display: none; }
-    .strip-title { font-size: 9px; color: #4b5563; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700; white-space: nowrap; padding-right: 10px; border-right: 1px solid #252a40; margin-right: 6px; flex-shrink: 0; }
-    .perf-item { display: flex; flex-direction: column; align-items: center; gap: 2px; flex-shrink: 0; min-width: 78px; padding: 7px 12px; border-radius: 14px; border: 1px solid transparent; }
-    .perf-item.pos { background: rgba(52,211,153,0.08); border-color: rgba(52,211,153,0.18); }
-    .perf-item.neg { background: rgba(248,113,113,0.08); border-color: rgba(248,113,113,0.18); }
-    .p-period { font-size: 9px; font-weight: 700; color: #6b7280; text-transform: uppercase; }
-    .p-val { font-size: 15px; font-weight: 800; font-family: 'Inter', sans-serif; }
-    .perf-item.pos .p-val { color: #34d399; }
-    .perf-item.neg .p-val { color: #f87171; }
-    .p-abs { font-size: 9px; font-weight: 600; }
-    .perf-item.pos .p-abs { color: #059669; }
-    .perf-item.neg .p-abs { color: #dc2626; }
-    .tabs-wrap { margin-bottom: 12px; }
-    .tabs { display: flex; gap: 5px; background: #13162a; border-radius: 16px; padding: 5px; border: 1px solid #252a40; overflow-x: auto; }
-    .tab { flex: 1; min-width: 90px; padding: 9px 10px; font-size: 12px; font-weight: 700; cursor: pointer; border-radius: 12px; color: #cbd5e1; background: transparent; border: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; text-align: center; white-space: nowrap; }
-    .tab.active { background: #fbbf24; color: #0d0f1a; }
-    .tab:hover:not(.active) { background: #1f2545; color: #f9fafb; }
-    .section { display: none; } .section.active { display: block; }
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-    @media(max-width:700px){ .grid2,.grid3,.yorum-grid,.oneri-grid { grid-template-columns: 1fr; } }
-    .panel { background: #13162a; border: 1px solid #252a40; border-radius: 18px; padding: 14px; margin-bottom: 10px; }
-    .panel-title { font-size: 10px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 10px; border-bottom: 1px solid #1f2440; padding-bottom: 8px; }
-    .tbl-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 11px; min-width: 380px; }
-    th { color: #4b5563; font-size: 9px; text-transform: uppercase; padding: 5px 6px; text-align: left; border-bottom: 1px solid #1f2440; font-weight: 700; white-space: nowrap; }
-    td { padding: 7px 6px; border-bottom: 1px solid #191e30; color: #cbd5e1; white-space: nowrap; }
-    td.sym { font-weight: 800; color: #fbbf24; font-size: 12px; font-family: 'Inter', sans-serif; }
-    .gold{color:#fbbf24;} .green{color:#34d399!important;} .red{color:#f87171!important;} .blue{color:#60a5fa;} .gray{color:#9ca3af;} .yel{color:#fbbf24!important;}
-    .stat-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid #191e30; font-size:11px; }
-    .stat-row .sk{color:#6b7280;} .stat-row .sv{color:#e2e8f0;font-weight:700;font-family:'Inter',sans-serif;}
-    .yorum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-    .yorum-block { background: #0f1221; border: 1px solid #1f2440; border-radius: 14px; padding: 12px 14px; }
-    .yorum-head { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #1f2440; }
-    .yorum-text { font-size: 11px; color: #94a3b8; line-height: 1.8; }
-    .yorum-text b { color: #cbd5e1; font-weight: 700; }
-    .oneri-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-    .oneri-block { background: #0f1221; border: 1px solid #1f2440; border-radius: 14px; padding: 10px 12px; }
-    .oneri-head { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-    .oneri-item { font-size: 10px; color: #94a3b8; line-height: 1.7; padding: 3px 0; border-bottom: 1px solid #191e30; }
-    .oneri-item:last-child { border-bottom: none; }
-    .oneri-item::before { content: '• '; color: #fbbf24; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{background:#0d0f1a;min-height:100vh;}
+    .dash{background:#0d0f1a;color:#e2e8f0;font-family:'DM Sans',sans-serif;padding:14px;max-width:1200px;margin:0 auto;}
+    .page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+    .page-title{font-size:14px;font-weight:800;color:#fbbf24;font-family:'Inter',sans-serif;}
+    .page-sub{font-size:10px;color:#4b5563;margin-top:2px;}
+    .live-dot{display:flex;align-items:center;gap:6px;font-size:10px;color:#34d399;font-weight:600;}
+    .live-dot::before{content:'';width:7px;height:7px;border-radius:50%;background:#34d399;display:block;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+    .header-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px;}
+    @media(max-width:600px){.header-cards{grid-template-columns:repeat(2,1fr);}}
+    .hcard{background:linear-gradient(135deg,#161929,#1c2038);border:1px solid #252a40;border-radius:18px;padding:14px 16px;}
+    .hcard .label{font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;font-weight:600;}
+    .hcard .value{font-size:18px;font-weight:800;font-family:'Inter',sans-serif;}
+    .hcard .sub{font-size:10px;color:#4b5563;margin-top:4px;}
+    .tabs-wrap{margin-bottom:12px;}
+    .tabs{display:flex;gap:5px;background:#13162a;border-radius:16px;padding:5px;border:1px solid #252a40;overflow-x:auto;}
+    .tab{flex:1;min-width:100px;padding:9px 10px;font-size:12px;font-weight:700;cursor:pointer;border-radius:12px;color:#cbd5e1;background:transparent;border:none;transition:all 0.2s;font-family:'DM Sans',sans-serif;text-align:center;white-space:nowrap;}
+    .tab.active{background:#fbbf24;color:#0d0f1a;}
+    .tab:hover:not(.active){background:#1f2545;color:#f9fafb;}
+    .section{display:none;}.section.active{display:block;}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    @media(max-width:700px){.grid2,.yorum-grid,.oneri-grid{grid-template-columns:1fr;}}
+    .panel{background:#13162a;border:1px solid #252a40;border-radius:18px;padding:14px;margin-bottom:10px;}
+    .panel-title{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px;border-bottom:1px solid #1f2440;padding-bottom:8px;}
+    .tbl-wrap{overflow-x:auto;}
+    table{width:100%;border-collapse:collapse;font-size:11px;min-width:380px;}
+    th{color:#4b5563;font-size:9px;text-transform:uppercase;padding:5px 6px;text-align:left;border-bottom:1px solid #1f2440;font-weight:700;white-space:nowrap;}
+    td{padding:7px 6px;border-bottom:1px solid #191e30;color:#cbd5e1;white-space:nowrap;}
+    td.sym{font-weight:800;color:#fbbf24;font-size:12px;font-family:'Inter',sans-serif;}
+    .gold{color:#fbbf24!important;}.green{color:#34d399!important;}.red{color:#f87171!important;}.blue{color:#60a5fa;}.gray{color:#9ca3af;}.yel{color:#fbbf24!important;}
+    .yorum-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+    .yorum-block{background:#0f1221;border:1px solid #1f2440;border-radius:14px;padding:12px 14px;}
+    .yorum-head{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #1f2440;}
+    .yorum-text{font-size:11px;color:#94a3b8;line-height:1.8;}
+    .oneri-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+    .oneri-block{background:#0f1221;border:1px solid #1f2440;border-radius:14px;padding:10px 12px;}
+    .oneri-head{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+    .oneri-item{font-size:10px;color:#94a3b8;line-height:1.7;}
   </style>
 </head>
 <body>
@@ -75,147 +56,168 @@
       <div class="page-title">📊 Portföy Dashboard</div>
       <div class="page-sub">Finance Analysis · Kişisel Yatırım Takibi</div>
     </div>
-    <div class="live-dot">01.05.2026 22:00</div>
+    <div class="live-dot">01.05.2026 22:20</div>
   </div>
  
   <div class="header-cards">
     <div class="hcard">
       <div class="label">Toplam Değer</div>
-      <div class="value gold">$24,226</div>
-      <div class="sub">₺1.094.289</div>
+      <div class="value gold">$22,483</div>
+      <div class="sub">₺1.015.550</div>
     </div>
     <div class="hcard">
       <div class="label">Toplam Yatırılan</div>
-      <div class="value blue">$NaN</div>
-      <div class="sub">9 ayrı para girişi</div>
+      <div class="value blue">$18,541</div>
+      <div class="sub">Tüm para girişleri</div>
     </div>
     <div class="hcard">
-      <div class="label">Toplam Kar</div>
-      <div class="value red">$NaN · %NaN</div>
-      <div class="sub" style="color:#34d399;">Net getiri / yatırılan</div>
+      <div class="label">Net Kar</div>
+      <div class="value green">$3,942 · +21.26%</div>
+      <div class="sub">Net getiri / yatırılan</div>
     </div>
     <div class="hcard">
       <div class="label">Portföy Betası</div>
-      <div class="value gray">β 1.69</div>
-      <div class="sub">Yüksek volatilite</div>
+      <div class="value gray">β 0.03</div>
+      <div class="sub">Ağırlıklı ortalama</div>
     </div>
   </div>
  
   <div class="tabs-wrap">
     <div class="tabs">
-      <button class="tab active" onclick="showTab('analysis',this)">Özet & Analiz</button>
-      <button class="tab" onclick="showTab('allocation',this)">Dağılım</button>
-      <button class="tab" onclick="showTab('watchlist',this)">İzleme</button>
+      <button class="tab active" onclick="showTab('analiz',this)">Analiz</button>
+      <button class="tab" onclick="showTab('dagılım',this)">Dağılım</button>
+      <button class="tab" onclick="showTab('izleme',this)">İzleme Listesi</button>
+      <button class="tab" onclick="showTab('performans',this)">Performans</button>
     </div>
   </div>
  
-  <div id="tab-analysis" class="section active">
-    <div class="grid2">
-      <div class="panel">
-        <div class="panel-title">Varlık Analiz Tablosu</div>
-        <div class="tbl-wrap"><table>
-          <tr><th>Varlık</th><th>Fiyat</th><th>Maliyet</th><th>Kar %</th><th>Oran</th></tr>
-          
-      <tr>
-        <td class="sym">Mevcut Porföyüm</td>
-        <td>$NaN</td>
-        <td>$NaN</td>
-        <td class="red">NaN%</td>
-        <td class="yel">83%</td>
-      </tr>
-      <tr>
-        <td class="sym">İlgilendiğim Varlıklar</td>
-        <td>$NaN</td>
-        <td>$NaN</td>
-        <td class="red">NaN%</td>
-        <td class="yel">59%</td>
-      </tr>
-        </table></div>
-      </div>
-      <div class="panel">
-        <div class="panel-title">Pozisyon Değerleri</div>
-        <div class="tbl-wrap"><table>
-          <tr><th>Varlık</th><th>Değer $</th><th>Getiri</th><th>Oran</th><th>Beta</th></tr>
-          
-      <tr>
-        <td class="sym">Mevcut Porföyüm</td>
-        <td>$71</td>
-        <td class="red">NaN%</td>
-        <td class="yel">83%</td>
-        <td>0.1605992719126295</td>
-      </tr>
-      <tr>
-        <td class="sym">İlgilendiğim Varlıklar</td>
-        <td>$NaN</td>
-        <td class="red">NaN%</td>
-        <td class="yel">59%</td>
-        <td>-</td>
-      </tr>
-        </table></div>
-      </div>
+  <!-- TAB: ANALİZ -->
+  <div id="tab-analiz" class="section active">
+    <div class="panel">
+      <div class="panel-title">Mevcut Portföy — Varlık Analizi</div>
+      <div class="tbl-wrap"><table>
+        <tr>
+          <th>Varlık</th><th>İsim</th><th>Fiyat</th><th>Maliyet</th>
+          <th>Kar %</th><th>Oran</th><th>RSI Analizi</th>
+          <th>SuperTrend</th><th>Puan</th><th>Öneri</th>
+        </tr>
+        
+      </table></div>
     </div>
     <div class="panel">
-      <div class="panel-title">Portföy Genel Yorumu — 01.05.2026 22:00</div>
-      <div style="font-size:11px;color:#94a3b8;line-height:1.85;margin-bottom:14px;">📊 DURUM: Toplam 24,237 | Günlük +413 | USD kâr %9.8 | TL kâr %13.4</div>
+      <div class="panel-title">Portföy Genel Yorumu — Son Güncelleme: 01.05.2026 18:00 (UTC+3)</div>
       <div class="yorum-grid">
         <div class="yorum-block">
-          <div class="yorum-head" style="color:#60a5fa;">GENEL DEĞERLENDİRME</div>
-          <div class="yorum-text">📊 DURUM: Toplam 24,237 | Günlük +413 | USD kâr %9.8 | TL kâr %13.4</div>
+          <div class="yorum-head" style="color:#60a5fa;">📊 Durum</div>
+          <div class="yorum-text"></div>
         </div>
         <div class="yorum-block">
-          <div class="yorum-head" style="color:#34d399;">PERFORMANS ÖZETİ</div>
-          <div class="yorum-text">💼 PERFORMANS: En iyi → USD +%45.6 | En kötü → UGL -%14.4</div>
+          <div class="yorum-head" style="color:#34d399;">💼 Performans</div>
+          <div class="yorum-text"></div>
         </div>
         <div class="yorum-block">
-          <div class="yorum-head" style="color:#f87171;">RİSKLER</div>
-          <div class="yorum-text">⚠️ RİSK: QLD %44 portföy ağırlığı ile RSI aşırı alım bölgesinde (74.91), kısmi kâr alımı değerlendirilmeli. AGQ düşüş trendinde ve SuperTrend'in %9 altında, kayıplar derinleşebilir.</div>
+          <div class="yorum-head" style="color:#f87171;">⚠️ Risk</div>
+          <div class="yorum-text"></div>
         </div>
         <div class="yorum-block">
-          <div class="yorum-head" style="color:#fbbf24;">FIRSATLAR</div>
-          <div class="yorum-text">
-✅ FIRSAT: UWM ve EEM SuperTrend yükselişte ve RSI momentumu güçlü; nakit ile pozisyon başlanabilir. MSTR yükseliş trendini koruyor.</div>
+          <div class="yorum-head" style="color:#fbbf24;">✅ Fırsat</div>
+          <div class="yorum-text"></div>
         </div>
       </div>
       <div class="oneri-grid">
         <div class="oneri-block">
-          <div class="oneri-head" style="color:#60a5fa;">⚡ KISA VADE</div>
-          <div class="oneri-item">Etf</div>
-        </div>
-        <div class="oneri-block">
-          <div class="oneri-head" style="color:#fbbf24;">📈 ORTA VADE</div>
-          <div class="oneri-item">Etf</div>
-        </div>
-        <div class="oneri-block">
-          <div class="oneri-head" style="color:#34d399;">🌐 UZUN VADE</div>
-          <div class="oneri-item">Etf</div>
+          <div class="oneri-head" style="color:#f87171;">🎯 Önlem</div>
+          <div class="oneri-item"></div>
         </div>
       </div>
     </div>
   </div>
  
-  <div id="tab-allocation" class="section">
+  <!-- TAB: DAĞILIM -->
+  <div id="tab-dagılım" class="section">
     <div class="grid2">
       <div class="panel">
-        <div class="panel-title">Portföy Dağılımı</div>
-        <div style="height:250px;"><canvas id="donutChart"></canvas></div>
+        <div class="panel-title">Portföy Dağılımı (%)</div>
+        <div style="height:260px;"><canvas id="donutChart"></canvas></div>
       </div>
       <div class="panel">
-        <div class="panel-title">Değer Dağılımı ($)</div>
-        <div style="height:250px;"><canvas id="barChart"></canvas></div>
+        <div class="panel-title">Pozisyon Değerleri (USD)</div>
+        <div style="height:260px;"><canvas id="barChart"></canvas></div>
       </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Pozisyon Detayları</div>
+      <div class="tbl-wrap"><table>
+        <tr><th>Varlık</th><th>Cinsi</th><th>Değer $</th><th>Kar %</th><th>Oran</th><th>Beta</th></tr>
+        
+      <tr>
+        <td class="sym">QLD</td>
+        <td style="color:#6b7280;font-size:9px;">Etf</td>
+        <td>$10,734</td>
+        <td class="green">+0.2%</td>
+        <td class="yel">0.4%</td>
+        <td>2.48</td>
+      </tr>
+      <tr>
+        <td class="sym">UGL</td>
+        <td style="color:#6b7280;font-size:9px;">Etf</td>
+        <td>$1,301</td>
+        <td class="red">-0.1%</td>
+        <td class="yel">0.1%</td>
+        <td>1.68</td>
+      </tr>
+      <tr>
+        <td class="sym">USD</td>
+        <td style="color:#6b7280;font-size:9px;">Etf</td>
+        <td>$2,989</td>
+        <td class="green">+0.5%</td>
+        <td class="yel">0.1%</td>
+        <td>3.76</td>
+      </tr>
+      <tr>
+        <td class="sym">URSP</td>
+        <td style="color:#6b7280;font-size:9px;">Etf</td>
+        <td>$3,323</td>
+        <td class="green">+0.0%</td>
+        <td class="yel">0.1%</td>
+        <td>1.47</td>
+      </tr>
+      <tr>
+        <td class="sym">AGQ</td>
+        <td style="color:#6b7280;font-size:9px;">Etf</td>
+        <td>$2,080</td>
+        <td class="red">-0.1%</td>
+        <td class="yel">0.1%</td>
+        <td>4.72</td>
+      </tr>
+      <tr>
+        <td class="sym">MSTR</td>
+        <td style="color:#6b7280;font-size:9px;">Etf</td>
+        <td>$2,055</td>
+        <td class="green">+0.0%</td>
+        <td class="yel">0.1%</td>
+        <td>3.94</td>
+      </tr>
+      </table></div>
     </div>
   </div>
  
-  <div id="tab-watchlist" class="section">
+  <!-- TAB: İZLEME LİSTESİ -->
+  <div id="tab-izleme" class="section">
     <div class="panel">
-      <div class="panel-title">İzleme Listesi</div>
+      <div class="panel-title">İlgilendiğim Varlıklar</div>
       <div class="tbl-wrap"><table>
-        <tr><th>Varlık</th><th>İsim</th><th>Fiyat</th><th>Trend</th><th>Öneri</th></tr>
-        <tr><td class="sym">EEM</td><td style="color:#6b7280;font-size:9px;">MSCI Em.Markets</td><td>$62.91</td><td style="color:#fbbf24;">→ Yatay</td><td style="color:#c084fc;">Bekle</td></tr>
-        <tr><td class="sym">SOFI</td><td style="color:#6b7280;font-size:9px;">SoFi Technologies</td><td>$15.71</td><td style="color:#f87171;">↓ Aşağı</td><td style="color:#c084fc;">Bekle</td></tr>
-        <tr><td class="sym">MSTR</td><td style="color:#6b7280;font-size:9px;">Strategy Inc</td><td>$158.58</td><td style="color:#f87171;">↓ Aşağı</td><td style="color:#c084fc;">Bekle</td></tr>
-        <tr><td class="sym">BABA</td><td style="color:#6b7280;font-size:9px;">Alibaba ADR</td><td>$129.25</td><td style="color:#f87171;">↓ Aşağı</td><td style="color:#f87171;">Uzak Dur</td></tr>
+        <tr><th>Varlık</th><th>İsim</th><th>Fiyat</th><th>SuperTrend</th><th>Puan</th><th>Öneri</th></tr>
+        
       </table></div>
+    </div>
+  </div>
+ 
+  <!-- TAB: PERFORMANS -->
+  <div id="tab-performans" class="section">
+    <div class="panel">
+      <div class="panel-title">Son 30 Günlük Portföy Değeri (USD)</div>
+      <div style="height:260px;"><canvas id="sparkChart"></canvas></div>
     </div>
   </div>
  
@@ -227,21 +229,23 @@ function showTab(name,el){
   document.getElementById('tab-'+name).classList.add('active');
   el.classList.add('active');
 }
-const labels = ["Mevcut Porföyüm","İlgilendiğim Varlıklar"];
-const values = [71.42,"-"];
-const oranlar = [82.89,58.71];
-const colors = ['#fbbf24','#60a5fa','#34d399','#fb923c','#a78bfa','#f87171','#38bdf8','#4ade80'];
-const grid = {color:'rgba(255,255,255,0.03)'};
-const tick = {color:'#4b5563',font:{size:10,family:"'DM Sans',sans-serif"}};
+const colors=['#fbbf24','#60a5fa','#34d399','#fb923c','#a78bfa','#f87171','#38bdf8','#4ade80'];
+const grid={color:'rgba(255,255,255,0.03)'};
+const tick={color:'#4b5563',font:{size:10,family:"'DM Sans',sans-serif"}};
 new Chart(document.getElementById('donutChart'),{
   type:'doughnut',
-  data:{labels,datasets:[{data:oranlar,backgroundColor:colors,borderWidth:3,borderColor:'#13162a',hoverOffset:8}]},
+  data:{labels:["QLD","UGL","USD","URSP","AGQ","MSTR"],datasets:[{data:[0.4430948521316276,0.0536912984112298,0.12339607054871693,0.13716829050632723,0.0858716907459304,0.08482922486136993],backgroundColor:colors,borderWidth:3,borderColor:'#13162a',hoverOffset:8}]},
   options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:true,position:'bottom',labels:{color:'#6b7280',font:{size:10},boxWidth:10}}}}
 });
 new Chart(document.getElementById('barChart'),{
   type:'bar',
-  data:{labels,datasets:[{data:values,backgroundColor:colors,borderRadius:10,borderSkipped:false}]},
+  data:{labels:["QLD","UGL","USD","URSP","AGQ","MSTR"],datasets:[{data:[10734.255,1300.7059,2989.3484,3322.9892,2080.2963999999997,2055.0420000000004],backgroundColor:colors,borderRadius:10,borderSkipped:false}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:tick,grid},y:{ticks:{...tick,callback:v=>'$'+Math.round(v/1000)+'k'},grid}}}
+});
+new Chart(document.getElementById('sparkChart'),{
+  type:'line',
+  data:{labels:["3/20/","3/23/","3/24/","3/25/","3/26/","3/27/","3/30/","3/31/","04/01","04/02","04/03","04/06","04/07","04/08","04/09","04/10","4/13/","4/14/","4/15/","4/16/","4/17/","4/20/","4/21/","4/22/","4/23/","4/24/","4/27/","4/28/","29/04","30/04"],datasets:[{data:[18255,17513,17815,17637,17971,17971,1643,16061,17197,17608,17552,17552,17815,1789,18901,1922,20404,20794,21595,22095,22267,22994,22845,22444,23359,23044,23934,24011,23408,23538],borderColor:'#fbbf24',backgroundColor:'rgba(251,191,36,0.08)',fill:true,tension:0.4,pointRadius:2,borderWidth:2}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...tick,maxTicksLimit:10},grid},y:{ticks:{...tick,callback:v=>'$'+Math.round(v/1000)+'k'},grid}}}
 });
 </script>
 </body>

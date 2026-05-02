@@ -8,36 +8,41 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d0f1a;color:#e2e8f0;font-family:'DM Sans',sans-serif;padding:14px}
+body{background:#0d0f1a;color:#ffffff;font-family:'DM Sans',sans-serif;padding:14px}
 .dash{max-width:1300px;margin:0 auto}
 .ph{display:flex;justify-content:space-between;margin-bottom:14px}
 .pt{font-size:14px;font-weight:800;color:#fbbf24;font-family:'Inter',sans-serif}
 .ld{font-size:10px;color:#34d399;font-weight:600}
 .hcards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
 .hc{background:linear-gradient(135deg,#161929,#1c2038);border:1px solid #252a40;border-radius:18px;padding:14px 16px}
-.hc .lb{font-size:10px;color:#6b7280;text-transform:uppercase;margin-bottom:6px}
+/* Kart Başlıkları (Okunabilirlik İçin Beyaz Yapıldı) */
+.hc .lb{font-size:10px;color:#ffffff;text-transform:uppercase;margin-bottom:6px;opacity:0.9} 
 .hc .vl{font-size:18px;font-weight:800;font-family:'Inter',sans-serif}
-.hc .sb{font-size:10px;color:#4b5563;margin-top:4px}
+/* Kart Alt Yazıları (Okunabilirlik İçin Açık Gri/Beyaz Yapıldı) */
+.hc .sb{font-size:10px;color:#e2e8f0;margin-top:4px} 
 .tabs{display:flex;gap:5px;background:#13162a;border-radius:16px;padding:5px;border:1px solid #252a40;margin-bottom:12px}
 .tab{flex:1;padding:9px;font-size:12px;font-weight:700;cursor:pointer;border-radius:12px;color:#cbd5e1;background:transparent;border:none;transition:0.2s}
 .tab.active{background:#fbbf24;color:#0d0f1a}
 .sec{display:none}.sec.active{display:block}
 .pn{background:#13162a;border:1px solid #252a40;border-radius:18px;padding:14px;margin-bottom:10px}
-.pnt{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;margin-bottom:10px;border-bottom:1px solid #1f2440;padding-bottom:8px}
+.pnt{font-size:10px;font-weight:700;color:#ffffff;text-transform:uppercase;margin-bottom:10px;border-bottom:1px solid #1f2440;padding-bottom:8px}
 .tw2{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:11px}
-th{color:#4b5563;font-size:9px;text-transform:uppercase;padding:5px 6px;text-align:left;border-bottom:1px solid #1f2440}
-td{padding:7px 6px;border-bottom:1px solid #191e30;color:#cbd5e1}
+/* Tablo Başlıkları (Gri yerine Beyaz yapıldı) */
+th{color:#ffffff;font-size:9px;text-transform:uppercase;padding:5px 6px;text-align:left;border-bottom:1px solid #1f2440;opacity:0.8}
+td{padding:7px 6px;border-bottom:1px solid #191e30;color:#ffffff}
 td.sym{font-weight:800;color:#fbbf24;font-size:12px}
-.lightText{color:#cbd5e1!important; font-size:10px;}
+/* Tablo İçindeki İsim ve Analiz Yazıları */
+.lightText{color:#f1f5f9!important; font-size:10px;}
 .green{color:#34d399!important}.red{color:#f87171!important}.yel{color:#fbbf24!important}.gold{color:#fbbf24!important}.bld{font-weight:700}
 .yg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .yb{background:#0f1221;border:1px solid #1f2440;border-radius:14px;padding:12px 14px}
 .full-width{grid-column: 1 / span 2;}
 .yh{font-size:10px;font-weight:800;text-transform:uppercase;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #1f2440}
-.yt{font-size:11px;color:#94a3b8;line-height:1.6}
+/* Genel Yorum Metinleri (Gri yerine Beyaz yapıldı) */
+.yt{font-size:11px;color:#ffffff;line-height:1.6} 
 .filter-bar{display:flex; justify-content:flex-end; gap:5px; margin-bottom:15px;}
-.f-btn{padding:5px 12px; font-size:10px; border-radius:8px; background:#1c2038; border:1px solid #252a40; color:#94a3b8; cursor:pointer;}
+.f-btn{padding:5px 12px; font-size:10px; border-radius:8px; background:#1c2038; border:1px solid #252a40; color:#cbd5e1; cursor:pointer;}
 .f-btn.active{background:#fbbf24; color:#0d0f1a; border-color:#fbbf24;}
 </style>
 </head>
@@ -45,13 +50,13 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 18:55:16</div>
+  <div class="ld">02.05.2026 19:00:03</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$24,226</div><div class="sb">₺1.093.606</div></div>
   <div class="hc"><div class="lb">Toplam Yatırılan</div><div class="vl" style="color:#60a5fa">$18,541</div><div class="sb">Ana Para Girişi</div></div>
   <div class="hc"><div class="lb">Net Kar</div><div class="vl green">$5,685 (%30.66)</div><div class="sb">Net Getiri</div></div>
-  <div class="hc"><div class="lb">Beta</div><div class="vl" style="color:#9ca3af">β 2.59</div><div class="sb">Ağırlıklı Ortalama</div></div>
+  <div class="hc"><div class="lb">Beta</div><div class="vl" style="color:#ffffff">β 2.59</div><div class="sb">Ağırlıklı Ortalama</div></div>
 </div>
 <div class="tabs">
   <button class="tab active" onclick="showTab('analiz',this)">Analiz</button>
@@ -67,7 +72,9 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
       <td>$71.42</td>
       <td class="green">+16.1%</td>
       <td class="yel">44.4%</td>
-      <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td> <td class="sm lightText">(Yükseliş Trendi/Boğa)</td> <td class="gold bld">62</td>
+      <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">62</td>
       <td class="red bld">Kar Al</td>
     </tr><tr>
       <td class="sym">UGL</td>
@@ -76,7 +83,9 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
       <td>$70.33</td>
       <td class="red">-14.4%</td>
       <td class="yel">5.3%</td>
-      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td> <td class="sm lightText">(Düşüş Trendi/Ayı)</td> <td class="gold bld">52</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
+      <td class="gold bld">52</td>
       <td class="yel bld">Tut</td>
     </tr><tr>
       <td class="sym">USD</td>
@@ -85,7 +94,9 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
       <td>$53.88</td>
       <td class="green">+45.6%</td>
       <td class="yel">12.3%</td>
-      <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td> <td class="sm lightText">(Yükseliş Trendi/Boğa)</td> <td class="gold bld">67</td>
+      <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">67</td>
       <td class="yel bld">Tut</td>
     </tr><tr>
       <td class="sym">URSP</td>
@@ -94,7 +105,9 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
       <td>$44.99</td>
       <td class="green">+0.6%</td>
       <td class="yel">13.8%</td>
-      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td> <td class="sm lightText">(Yükseliş Trendi/Boğa)</td> <td class="gold bld">62</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">62</td>
       <td class="yel bld">Tut</td>
     </tr><tr>
       <td class="sym">AGQ</td>
@@ -103,7 +116,9 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
       <td>$129.40</td>
       <td class="red">-5.8%</td>
       <td class="yel">8.4%</td>
-      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td> <td class="sm lightText">(Düşüş Trendi/Ayı)</td> <td class="gold bld">42</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
+      <td class="gold bld">42</td>
       <td class="red bld">Azalt</td>
     </tr><tr>
       <td class="sym">MSTR</td>
@@ -112,7 +127,9 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
       <td>$171.78</td>
       <td class="green">+2.8%</td>
       <td class="yel">8.4%</td>
-      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td> <td class="sm lightText">(Yükseliş Trendi/Boğa)</td> <td class="gold bld">64</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">64</td>
       <td class="yel bld">Tut</td>
     </tr></table></div></div>
   <div class="pn">
@@ -122,7 +139,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
       <div class="yb"><div class="yh" style="color:#34d399">💼 Performans</div><div class="yt">💼 PERFORMANS: En iyi → USD +%45.6 | En kötü → UGL -%14.4</div></div>
       <div class="yb"><div class="yh" style="color:#f87171">⚠️ Risk</div><div class="yt">⚠️ RİSK: QLD %44 portföy ağırlığı ile RSI aşırı alım bölgesinde (74.91), kısmi kâr alımı değerlendirilmeli. AGQ düşüş trendinde ve SuperTrend'in %9 altında, kayıplar derinleşebilir.</div></div>
       <div class="yb"><div class="yh" style="color:#34d399">✅ Fırsat</div><div class="yt">✅ FIRSAT: UWM ve EEM SuperTrend yükselişte ve RSI momentumu güçlü; nakit ile pozisyon başlanabilir. MSTR yükseliş trendini koruyor.</div></div>
-      <div class="yb full-width"><div class="yh" style="color:#fbbf24">🎯 Eylem</div><div class="yt">🎯 EYLEM: QLD'den kısmi kâr al ve AGQ'yu küçülterek nakiti artır; UWM veya EEM'e giriş değerlendir.</div></div>
+      <div class="yb full-width"><div class="yh" style="color:#fbbf24">🎯 Önlem</div><div class="yt">—</div></div>
     </div>
   </div>
 </div>
@@ -183,25 +200,33 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
       <td class="sym">UWM</td>
       <td class="nm lightText">ProShares Ultra Russell2000</td>
       <td>$58.71</td>
-      <td class="sm lightText">—</td> <td class="sm lightText">—</td> <td class="gold bld">58</td>
+      <td class="sm lightText">—</td>
+      <td class="sm lightText">—</td>
+      <td class="gold bld">58</td>
       <td class="green bld">Al</td>
     </tr><tr>
       <td class="sym">XBI</td>
       <td class="nm lightText">State Street SPDR S&P Biotech ETF</td>
       <td>$130.60</td>
-      <td class="sm lightText">—</td> <td class="sm lightText">—</td> <td class="gold bld">47</td>
+      <td class="sm lightText">—</td>
+      <td class="sm lightText">—</td>
+      <td class="gold bld">47</td>
       <td class="yel bld">Bekle</td>
     </tr><tr>
       <td class="sym">EEM</td>
       <td class="nm lightText">iShares MSCI Emerging Markets ETF</td>
       <td>$64.61</td>
-      <td class="sm lightText">—</td> <td class="sm lightText">—</td> <td class="gold bld">61</td>
+      <td class="sm lightText">—</td>
+      <td class="sm lightText">—</td>
+      <td class="gold bld">61</td>
       <td class="green bld">Al</td>
     </tr><tr>
       <td class="sym">SOFI</td>
       <td class="nm lightText">SoFi Technologies Inc</td>
       <td>$16.15</td>
-      <td class="sm lightText">—</td> <td class="sm lightText">—</td> <td class="gold bld">40</td>
+      <td class="sm lightText">—</td>
+      <td class="sm lightText">—</td>
+      <td class="gold bld">40</td>
       <td class="red bld">Uzak Dur</td>
     </tr></table></div></div>
 </div>
@@ -220,7 +245,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <script>
 const raw = [{"tarih":"11/10/25","usd":8365,"kar":0,"para":8365},{"tarih":"12/10/25","usd":8365,"kar":0,"para":0},{"tarih":"13/10/25","usd":8365,"kar":0,"para":0},{"tarih":"14/10/25","usd":8365,"kar":-46,"para":0},{"tarih":"15/10/25","usd":8365,"kar":42,"para":0},{"tarih":"16/10/25","usd":8365,"kar":-87,"para":0},{"tarih":"17/10/25","usd":8371,"kar":106,"para":0},{"tarih":"20/10/25","usd":8475,"kar":212,"para":0},{"tarih":"21/10/25","usd":8686,"kar":-5,"para":0},{"tarih":"22/10/25","usd":8682,"kar":-163,"para":0},{"tarih":"23/10/25","usd":9226,"kar":159,"para":0},{"tarih":"24/10/25","usd":9384,"kar":192,"para":0},{"tarih":"27/10/25","usd":9576,"kar":335,"para":682},{"tarih":"28/10/25","usd":10575,"kar":46,"para":0},{"tarih":"29/10/25","usd":10491,"kar":-150,"para":0},{"tarih":"30/10/25","usd":10685,"kar":135,"para":0},{"tarih":"03/11/25","usd":10626,"kar":29,"para":0},{"tarih":"04/11/25","usd":10554,"kar":-186,"para":0},{"tarih":"05/11/25","usd":10294,"kar":-260,"para":3526},{"tarih":"06/11/25","usd":14829,"kar":130,"para":0},{"tarih":"07/11/25","usd":14552,"kar":-277,"para":985},{"tarih":"10/11/25","usd":14925,"kar":373,"para":0},{"tarih":"11/11/25","usd":15448,"kar":523,"para":0},{"tarih":"12/11/25","usd":15369,"kar":-79,"para":0},{"tarih":"13/11/25","usd":15598,"kar":229,"para":0},{"tarih":"14/11/25","usd":14956,"kar":-642,"para":0},{"tarih":"17/11/25","usd":14738,"kar":-218,"para":0},{"tarih":"18/11/25","usd":14329,"kar":-409,"para":0},{"tarih":"19/11/25","usd":14266,"kar":-63,"para":0},{"tarih":"20/11/25","usd":14360,"kar":94,"para":0},{"tarih":"21/11/25","usd":13474,"kar":-886,"para":0},{"tarih":"24/11/25","usd":13770,"kar":296,"para":0},{"tarih":"25/11/25","usd":14292,"kar":522,"para":0},{"tarih":"26/11/25","usd":14409,"kar":117,"para":0},{"tarih":"27/11/25","usd":14761,"kar":352,"para":0},{"tarih":"28/11/25","usd":14762,"kar":1,"para":0},{"tarih":"02/12/25","usd":14980,"kar":218,"para":0},{"tarih":"03/12/25","usd":15080,"kar":100,"para":0},{"tarih":"04/12/25","usd":15255,"kar":175,"para":0},{"tarih":"05/12/25","usd":15184,"kar":-71,"para":0},{"tarih":"08/12/25","usd":15945,"kar":-7,"para":768},{"tarih":"09/12/25","usd":15860,"kar":-85,"para":0},{"tarih":"10/12/25","usd":16151,"kar":291,"para":0},{"tarih":"11/12/25","usd":17880,"kar":-11,"para":1740},{"tarih":"12/12/25","usd":18096,"kar":216,"para":0},{"tarih":"15/12/25","usd":17952,"kar":-144,"para":465},{"tarih":"16/12/25","usd":17943,"kar":-9,"para":0},{"tarih":"17/12/25","usd":17854,"kar":-89,"para":0},{"tarih":"18/12/25","usd":17598,"kar":-256,"para":0},{"tarih":"19/12/25","usd":17958,"kar":360,"para":0},{"tarih":"22/12/25","usd":18194,"kar":236,"para":0},{"tarih":"23/12/25","usd":19091,"kar":897,"para":0},{"tarih":"24/12/25","usd":19438,"kar":347,"para":0},{"tarih":"25/12/25","usd":19430,"kar":-8,"para":0},{"tarih":"26/12/25","usd":19505,"kar":75,"para":0},{"tarih":"29/12/25","usd":19963,"kar":458,"para":0},{"tarih":"30/12/25","usd":19737,"kar":-226,"para":0},{"tarih":"31/12/25","usd":19759,"kar":22,"para":0},{"tarih":"02/01/26","usd":19764,"kar":5,"para":0},{"tarih":"05/01/26","usd":19850,"kar":86,"para":0},{"tarih":"06/01/26","usd":20316,"kar":466,"para":0},{"tarih":"07/01/26","usd":20656,"kar":340,"para":0},{"tarih":"08/01/26","usd":20341,"kar":-315,"para":0},{"tarih":"09/01/26","usd":20300,"kar":-41,"para":0},{"tarih":"12/01/26","usd":20606,"kar":306,"para":0},{"tarih":"13/01/26","usd":20817,"kar":211,"para":0},{"tarih":"14/01/26","usd":21133,"kar":316,"para":0},{"tarih":"15/01/26","usd":20949,"kar":-184,"para":0},{"tarih":"16/01/26","usd":21003,"kar":54,"para":0},{"tarih":"19/01/26","usd":20754,"kar":-249,"para":0},{"tarih":"20/01/26","usd":20566,"kar":-188,"para":0},{"tarih":"21/01/26","usd":19799,"kar":-767,"para":0},{"tarih":"22/01/26","usd":20189,"kar":390,"para":0},{"tarih":"23/01/26","usd":20318,"kar":129,"para":0},{"tarih":"26/01/26","usd":20227,"kar":-91,"para":0},{"tarih":"27/01/26","usd":20366,"kar":139,"para":0},{"tarih":"28/01/26","usd":20716,"kar":350,"para":0},{"tarih":"29/01/26","usd":20742,"kar":26,"para":0},{"tarih":"30/01/26","usd":20067,"kar":-675,"para":0},{"tarih":"02/02/26","usd":18894,"kar":-1173,"para":0},{"tarih":"03/02/26","usd":19091,"kar":197,"para":0},{"tarih":"04/02/26","usd":18869,"kar":-222,"para":0},{"tarih":"05/02/26","usd":18870,"kar":1,"para":0},{"tarih":"06/02/26","usd":17909,"kar":-961,"para":0},{"tarih":"09/02/26","usd":18556,"kar":647,"para":0},{"tarih":"10/02/26","usd":18826,"kar":270,"para":0},{"tarih":"11/02/26","usd":18609,"kar":-217,"para":0},{"tarih":"12/02/26","usd":18788,"kar":179,"para":0},{"tarih":"13/02/26","usd":17909,"kar":-879,"para":0},{"tarih":"16/02/26","usd":18231,"kar":322,"para":0},{"tarih":"17/02/26","usd":18231,"kar":0,"para":0},{"tarih":"18/02/26","usd":17824,"kar":-407,"para":0},{"tarih":"19/02/26","usd":18256,"kar":432,"para":0},{"tarih":"20/02/26","usd":18200,"kar":-56,"para":0},{"tarih":"23/02/26","usd":18650,"kar":450,"para":0},{"tarih":"24/02/26","usd":18682,"kar":32,"para":0},{"tarih":"25/02/26","usd":18757,"kar":75,"para":0},{"tarih":"26/02/26","usd":19074,"kar":317,"para":0},{"tarih":"27/02/26","usd":18884,"kar":-190,"para":0},{"tarih":"02/03/26","usd":18973,"kar":89,"para":0},{"tarih":"03/03/26","usd":19157,"kar":184,"para":0},{"tarih":"04/03/26","usd":18295,"kar":-862,"para":0},{"tarih":"05/03/26","usd":18703,"kar":408,"para":0},{"tarih":"06/03/26","usd":18579,"kar":-124,"para":0},{"tarih":"09/03/26","usd":19112,"kar":-477,"para":1010},{"tarih":"10/03/26","usd":19633,"kar":521,"para":0},{"tarih":"11/03/26","usd":19774,"kar":141,"para":0},{"tarih":"16/03/26","usd":18726,"kar":-1048,"para":0},{"tarih":"17/03/26","usd":19071,"kar":345,"para":0},{"tarih":"18/03/26","usd":19166,"kar":95,"para":0},{"tarih":"19/03/26","usd":18520,"kar":-646,"para":0},{"tarih":"20/03/26","usd":18255,"kar":-265,"para":0},{"tarih":"23/03/26","usd":17513,"kar":-742,"para":0},{"tarih":"24/03/26","usd":17815,"kar":302,"para":0},{"tarih":"25/03/26","usd":17637,"kar":-178,"para":0},{"tarih":"26/03/26","usd":17971,"kar":334,"para":0},{"tarih":"27/03/26","usd":17971,"kar":0,"para":0},{"tarih":"30/03/26","usd":16430,"kar":-1541,"para":0},{"tarih":"31/03/26","usd":16061,"kar":-369,"para":0},{"tarih":"01/04/26","usd":17197,"kar":1136,"para":0},{"tarih":"02/04/26","usd":17608,"kar":411,"para":0},{"tarih":"03/04/26","usd":17552,"kar":-56,"para":0},{"tarih":"06/04/26","usd":17552,"kar":0,"para":0},{"tarih":"07/04/26","usd":17815,"kar":263,"para":0},{"tarih":"08/04/26","usd":17890,"kar":75,"para":0},{"tarih":"09/04/26","usd":18901,"kar":1011,"para":0},{"tarih":"10/04/26","usd":19220,"kar":319,"para":1000},{"tarih":"13/04/26","usd":20404,"kar":184,"para":0},{"tarih":"14/04/26","usd":20794,"kar":390,"para":0},{"tarih":"15/04/26","usd":21595,"kar":801,"para":0},{"tarih":"16/04/26","usd":22095,"kar":500,"para":0},{"tarih":"17/04/26","usd":22267,"kar":172,"para":0},{"tarih":"20/04/26","usd":22994,"kar":727,"para":0},{"tarih":"21/04/26","usd":22845,"kar":-149,"para":0},{"tarih":"22/04/26","usd":22444,"kar":-401,"para":0},{"tarih":"23/04/26","usd":23359,"kar":915,"para":0},{"tarih":"24/04/26","usd":23044,"kar":-315,"para":0},{"tarih":"27/04/26","usd":23934,"kar":890,"para":0},{"tarih":"28/04/26","usd":24011,"kar":77,"para":0},{"tarih":"29/04/26","usd":23408,"kar":-603,"para":0},{"tarih":"30/04/26","usd":23518,"kar":110,"para":0},{"tarih":"01/05/26","usd":23758,"kar":240,"para":0}];
 let charts = {};
-const G={color:'rgba(255,255,255,0.05)'}, T={color:'#6b7280',font:{size:9}};
+const G={color:'rgba(255,255,255,0.05)'}, T={color:'#ffffff',font:{size:9}};
 
 function showTab(n,el){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
@@ -242,11 +267,9 @@ function updateRange(range, el) {
     document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
     el.classList.add('active');
   }
-
   var dataToProcess = typeof raw !== 'undefined' ? raw : [];
   if (dataToProcess.length === 0) return;
   const groups = {};
-  
   dataToProcess.forEach(item => {
     if (!item.tarih) return;
     var p = String(item.tarih).split(/[./]/);
@@ -257,24 +280,11 @@ function updateRange(range, el) {
     var key, label;
     var mPad = (m < 10 ? '0' + m : m);
     var dPad = (d < 10 ? '0' + d : d);
-
-    if (range === 'D') {
-      key = y + "" + mPad + "" + dPad;
-      label = item.tarih;
-    } else if (range === 'M') {
-      key = y + "" + mPad;
-      label = mPad + '/' + y;
-    } else if (range === 'Q') {
-      var q = Math.ceil(m / 3);
-      key = y + "Q" + q;
-      label = 'Q' + q + ' ' + y;
-    } else {
-      key = y;
-      label = y;
-    }
-    if (!groups[key]) {
-      groups[key] = { label: label, usd: 0, kar: 0, para: 0 };
-    }
+    if (range === 'D') { key = y + "" + mPad + "" + dPad; label = item.tarih; } 
+    else if (range === 'M') { key = y + "" + mPad; label = mPad + '/' + y; } 
+    else if (range === 'Q') { var q = Math.ceil(m / 3); key = y + "Q" + q; label = 'Q' + q + ' ' + y; } 
+    else { key = y; label = y; }
+    if (!groups[key]) { groups[key] = { label: label, usd: 0, kar: 0, para: 0 }; }
     groups[key].usd = item.usd;
     groups[key].kar += (Number(item.kar) || 0);
     groups[key].para += (Number(item.para) || 0);

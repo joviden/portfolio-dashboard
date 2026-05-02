@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 09:46:16</div>
+  <div class="ld">02.05.2026 09:48:43</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -249,64 +249,75 @@ function updateRange(range, el){
     el.classList.add('active');
   }
   
-  let filtered = [];
+  let processedData = [];
+  
   if(range === 'D') {
-    filtered = raw;
+    // Günlük filtrede veriyi olduğu gibi alıyoruz
+    processedData = raw.map(i => ({
+      label: i.tarih,
+      usd: i.usd,
+      kar: i.kar,
+      para: i.para
+    }));
   } else {
+    // Gruplama için nesne oluşturuyoruz
     const groups = {};
+    
     raw.forEach(i => {
-      // Tarih formatı: DD/MM/YY veya DD/MM/YYYY
       const parts = i.tarih.split('/');
       if (parts.length < 3) return;
       
-      const day = parts[0];
-      const month = parseInt(parts[1]); // Ay bilgisini sayıya çeviriyoruz
-      let year = parts[2];
-      const fullYear = year.length === 2 ? '20' + year : year;
+      const month = parseInt(parts[1]);
+      const year = parts[2].length === 2 ? '20' + parts[2] : parts[2];
       
-      let key = "";
-      let sortKey = ""; // Kronolojik sıralama için yardımcı anahtar
+      let label = "";
+      let sortKey = "";
 
       if(range === 'M') {
-        // AY/YIL Formatı (Örn: 05/2026)
-        key = (month < 10 ? '0' + month : month) + '/' + fullYear;
-        sortKey = fullYear + (month < 10 ? '0' + month : month);
+        label = (month < 10 ? '0' + month : month) + '/' + year;
+        sortKey = year + (month < 10 ? '0' + month : month);
       } 
       else if(range === 'Q') {
-        // ÇEYREK/YIL Formatı (1 yılda max 4 çeyrek)
-        const quarter = Math.ceil(month / 3);
-        key = 'Q' + quarter + ' ' + fullYear;
-        sortKey = fullYear + 'Q' + quarter;
+        const q = Math.ceil(month / 3);
+        label = 'Q' + q + ' ' + year;
+        sortKey = year + 'Q' + q;
       } 
       else if(range === 'Y') {
-        // YIL Formatı
-        key = fullYear;
-        sortKey = fullYear;
+        label = year;
+        sortKey = year;
       }
 
+      // Eğer bu grup (ay/çeyrek/yıl) daha önce eklenmediyse oluştur
       if(!groups[sortKey]) {
-        groups[sortKey] = { label: key, usd: 0, kar: 0, para: 0 };
+        groups[sortKey] = { label: label, usd: 0, kar: 0, para: 0 };
       }
       
-      // Portföy Değeri: İlgili dönemin en son kaydını tutar
+      // Portföy Değeri: Dönemin SON verisini alır (Kümülatif toplam değil!)
       groups[sortKey].usd = i.usd; 
-      // Kar ve Para: Dönem içindeki tüm değerleri toplar
+      
+      // Kar ve Para: Dönem içindeki tüm hareketleri TOPLAR
       groups[sortKey].kar += i.kar;
       groups[sortKey].para += i.para;
     });
 
-    // sortKey üzerinden kronolojik sıralama yapıp değerleri diziye çeviriyoruz
-    filtered = Object.keys(groups).sort().map(k => groups[k]);
+    // Gruplanmış veriyi kronolojik sıraya dizip diziye çeviriyoruz
+    processedData = Object.keys(groups).sort().map(k => groups[k]);
   }
 
-  const labs = filtered.map(d => range === 'D' ? d.tarih : d.label);
-  const usdData = filtered.map(d => d.usd);
-  const karData = filtered.map(d => d.kar);
-  const paraData = filtered.map(d => d.para);
+  // Grafik verilerini güncelle
+  const labs = processedData.map(d => d.label);
+  
+  charts.spark.data.labels = labs;
+  charts.spark.data.datasets[0].data = processedData.map(d => d.usd);
+  charts.spark.update();
 
-  charts.spark.data.labels = labs; charts.spark.data.datasets[0].data = usdData; charts.spark.update();
-  charts.kar.data.labels = labs; charts.kar.data.datasets[0].data = karData; charts.kar.update();
-  charts.para.data.labels = labs; charts.para.data.datasets[0].data = paraData; charts.para.update();
+  charts.kar.data.labels = labs;
+  charts.kar.data.datasets[0].data = processedData.map(d => d.kar);
+  charts.kar.update();
+
+  charts.para.data.labels = labs;
+  charts.para.data.datasets[0].data = processedData.map(d => d.para);
+  charts.para.update();
 }
 window.onload = init;
 </script>

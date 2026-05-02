@@ -31,13 +31,10 @@ td{padding:7px 6px;border-bottom:1px solid #191e30;color:#ffffff}
 td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 .lightText{color:#f1f5f9!important; font-size:10px;}
 .green{color:#34d399!important}.red{color:#f87171!important}.yel{color:#fbbf24!important}.gold{color:#fbbf24!important}.bld{font-weight:700}
-
-/* GENEL YORUM - DİKEY DÜZEN */
 .yg{display:flex; flex-direction:column; gap:10px}
 .yb{background:#0f1221; border:1px solid #1f2440; border-radius:14px; padding:12px 14px; width:100%}
 .yh{font-size:10px; font-weight:800; text-transform:uppercase; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #1f2440}
 .yt{font-size:11px; color:#ffffff; line-height:1.6} 
-
 .filter-bar{display:flex; justify-content:flex-end; gap:5px; margin-bottom:15px;}
 .f-btn{padding:5px 12px; font-size:10px; border-radius:8px; background:#1c2038; border:1px solid #252a40; color:#cbd5e1; cursor:pointer;}
 .f-btn.active{background:#fbbf24; color:#0d0f1a; border-color:#fbbf24;}
@@ -47,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
  <div><div class="pt">📊 Portföy Dashboard</div></div>
- <div class="ld">02.05.2026 19:55:40</div>
+ <div class="ld">02.05.2026 20:02:06</div>
 </div>
 <div class="hcards">
  <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$24,226</div><div class="sb">₺1.093.606</div></div>
@@ -57,7 +54,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 </div>
 <div class="tabs">
  <button class="tab active" onclick="showTab('analiz',this)">Analiz</button>
- <button class="tab" onclick="showTab('dagılım',this)">Dağılım</button>
+ <button class="tab" onclick="showTab('yorum',this)">Yorum</button>
  <button class="tab" onclick="showTab('izleme',this)">İzleme</button>
  <button class="tab" onclick="showTab('performans',this)">Performans</button>
 </div>
@@ -129,18 +126,6 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
  <td class="gold bld">64</td>
  <td class="yel bld">Tut</td>
  </tr></table></div></div>
- <div class="pn">
- <div class="pnt">Genel Yorum</div>
- <div class="yg">
- <div class="yb"><div class="yh" style="color:#60a5fa">📊 Durum</div><div class="yt">Toplam 24,237$ | Günlük +413$ | USD kâr %9.8 | TL kâr %13.3</div></div>
- <div class="yb"><div class="yh" style="color:#34d399">💼 Performans</div><div class="yt">En iyi → USD +%45.6 | En kötü → UGL -%14.4</div></div>
- <div class="yb"><div class="yh" style="color:#f87171">⚠️ Risk</div><div class="yt">QLD %44 portföy ağırlığı ile RSI aşırı alım bölgesinde (74.91), kısmi kâr alımı değerlendirilmeli. AGQ düşüş trendinde ve SuperTrend'in %9 altında, kayıplar derinleşebilir.</div></div>
- <div class="yb"><div class="yh" style="color:#34d399">✅ Fırsat</div><div class="yt">UWM ve EEM SuperTrend yükselişte ve RSI momentumu güçlü; nakit ile pozisyon başlanabilir. MSTR yükseliş trendini koruyor.</div></div>
- <div class="yb"><div class="yh" style="color:#fbbf24">🎯 Eylem</div><div class="yt">QLD'den kısmi kâr al ve AGQ'yu küçülterek nakiti artır; UWM veya EEM'e giriş değerlendir.</div></div>
- </div>
- </div>
-</div>
-<div id="tab-dagılım" class="sec">
  <div class="pn"><div class="pnt">Pozisyon Detayları</div><div class="tw2"><table><tr><th>Varlık</th><th>Cinsi</th><th>Değer $</th><th>Kar %</th><th>Oran</th><th>Beta</th></tr><tr>
  <td class="sym">QLD</td>
  <td class="nm lightText">Etf</td>
@@ -191,6 +176,18 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
  <td class="yel">7.2%</td>
  <td>-</td>
  </tr></table></div></div>
+</div>
+<div id="tab-yorum" class="sec">
+ <div class="pn">
+ <div class="pnt">Genel Yorum</div>
+ <div class="yg">
+ <div class="yb"><div class="yh" style="color:#60a5fa">📊 Durum</div><div class="yt">Toplam 24,237$ | Günlük +413$ | USD kâr %9.8 | TL kâr %13.3</div></div>
+ <div class="yb"><div class="yh" style="color:#34d399">💼 Performans</div><div class="yt">En iyi → USD +%45.6 | En kötü → UGL -%14.4</div></div>
+ <div class="yb"><div class="yh" style="color:#f87171">⚠️ Risk</div><div class="yt">QLD %44 portföy ağırlığı ile RSI aşırı alım bölgesinde (74.91), kısmi kâr alımı değerlendirilmeli. AGQ düşüş trendinde ve SuperTrend'in %9 altında, kayıplar derinleşebilir.</div></div>
+ <div class="yb"><div class="yh" style="color:#34d399">✅ Fırsat</div><div class="yt">UWM ve EEM SuperTrend yükselişte ve RSI momentumu güçlü; nakit ile pozisyon başlanabilir. MSTR yükseliş trendini koruyor.</div></div>
+ <div class="yb"><div class="yh" style="color:#fbbf24">🎯 Eylem</div><div class="yt">QLD'den kısmi kâr al ve AGQ'yu küçülterek nakiti artır; UWM veya EEM'e giriş değerlendir.</div></div>
+ </div>
+ </div>
 </div>
 <div id="tab-izleme" class="sec">
  <div class="pn"><div class="pnt">İlgilendiğim Varlıklar</div><div class="tw2"><table><tr><th>Varlık</th><th>İsim</th><th>Fiyat</th><th>Temel Analiz</th><th>Teknik Analiz</th><th>Puan</th><th>Öneri</th></tr><tr>

@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 09:48:43</div>
+  <div class="ld">02.05.2026 09:51:06</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -252,7 +252,7 @@ function updateRange(range, el){
   let processedData = [];
   
   if(range === 'D') {
-    // Günlük filtrede veriyi olduğu gibi alıyoruz
+    // Günlük modda veriyi olduğu gibi yansıt
     processedData = raw.map(i => ({
       label: i.tarih,
       usd: i.usd,
@@ -260,39 +260,42 @@ function updateRange(range, el){
       para: i.para
     }));
   } else {
-    // Gruplama için nesne oluşturuyoruz
     const groups = {};
     
     raw.forEach(i => {
+      // "DD/MM/YY" formatını parçala
       const parts = i.tarih.split('/');
       if (parts.length < 3) return;
       
-      const month = parseInt(parts[1]);
-      const year = parts[2].length === 2 ? '20' + parts[2] : parts[2];
+      const d = parseInt(parts[0]);
+      const m = parseInt(parts[1]); // Ay
+      const y = parts[2].length === 2 ? '20' + parts[2] : parts[2]; // Yıl
       
       let label = "";
       let sortKey = "";
 
       if(range === 'M') {
-        label = (month < 10 ? '0' + month : month) + '/' + year;
-        sortKey = year + (month < 10 ? '0' + month : month);
+        // Ay ve Yıl (Örn: 05/2026)
+        label = (m < 10 ? '0' + m : m) + '/' + y;
+        sortKey = y + (m < 10 ? '0' + m : m);
       } 
       else if(range === 'Q') {
-        const q = Math.ceil(month / 3);
-        label = 'Q' + q + ' ' + year;
-        sortKey = year + 'Q' + q;
+        // Çeyrek ve Yıl (Örn: Q1 2026)
+        const q = Math.ceil(m / 3);
+        label = 'Q' + q + ' ' + y;
+        sortKey = y + 'Q' + q;
       } 
       else if(range === 'Y') {
-        label = year;
-        sortKey = year;
+        label = y;
+        sortKey = y;
       }
 
-      // Eğer bu grup (ay/çeyrek/yıl) daha önce eklenmediyse oluştur
+      // Eğer bu grup (ay/çeyrek/yıl) daha önce yoksa oluştur
       if(!groups[sortKey]) {
         groups[sortKey] = { label: label, usd: 0, kar: 0, para: 0 };
       }
       
-      // Portföy Değeri: Dönemin SON verisini alır (Kümülatif toplam değil!)
+      // Portföy Değeri: İlgili dönemin SON değerini alır
       groups[sortKey].usd = i.usd; 
       
       // Kar ve Para: Dönem içindeki tüm hareketleri TOPLAR
@@ -300,7 +303,7 @@ function updateRange(range, el){
       groups[sortKey].para += i.para;
     });
 
-    // Gruplanmış veriyi kronolojik sıraya dizip diziye çeviriyoruz
+    // Gruplanmış verileri kronolojik sıraya diz (2025 -> 2026)
     processedData = Object.keys(groups).sort().map(k => groups[k]);
   }
 

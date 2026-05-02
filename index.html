@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 09:40:56</div>
+  <div class="ld">02.05.2026 09:46:16</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -250,48 +250,63 @@ function updateRange(range, el){
   }
   
   let filtered = [];
-  if(range==='D') {
+  if(range === 'D') {
     filtered = raw;
   } else {
     const groups = {};
     raw.forEach(i => {
+      // Tarih formatı: DD/MM/YY veya DD/MM/YYYY
       const parts = i.tarih.split('/');
       if (parts.length < 3) return;
-      const d = parts[0], m = parts[1], y = parts[2];
-      const fullYear = y.length === 2 ? '20' + y : y;
+      
+      const day = parts[0];
+      const month = parseInt(parts[1]); // Ay bilgisini sayıya çeviriyoruz
+      let year = parts[2];
+      const fullYear = year.length === 2 ? '20' + year : year;
       
       let key = "";
-      if(range === 'M') key = m + '/' + fullYear;
-      else if(range === 'Q') key = 'Q' + Math.ceil(parseInt(m)/3) + ' ' + fullYear;
-      else if(range === 'Y') key = fullYear;
+      let sortKey = ""; // Kronolojik sıralama için yardımcı anahtar
 
-      if(!groups[key]) {
-        groups[key] = { label: key, usd: 0, kar: 0, para: 0 };
+      if(range === 'M') {
+        // AY/YIL Formatı (Örn: 05/2026)
+        key = (month < 10 ? '0' + month : month) + '/' + fullYear;
+        sortKey = fullYear + (month < 10 ? '0' + month : month);
+      } 
+      else if(range === 'Q') {
+        // ÇEYREK/YIL Formatı (1 yılda max 4 çeyrek)
+        const quarter = Math.ceil(month / 3);
+        key = 'Q' + quarter + ' ' + fullYear;
+        sortKey = fullYear + 'Q' + quarter;
+      } 
+      else if(range === 'Y') {
+        // YIL Formatı
+        key = fullYear;
+        sortKey = fullYear;
+      }
+
+      if(!groups[sortKey]) {
+        groups[sortKey] = { label: key, usd: 0, kar: 0, para: 0 };
       }
       
-      // Portföy Değeri için o dönemin en son kaydını alıyoruz
-      groups[key].usd = i.usd; 
-      // Kar ve Para ekleme verilerini topluyoruz
-      groups[key].kar += i.kar;
-      groups[key].para += i.para;
+      // Portföy Değeri: İlgili dönemin en son kaydını tutar
+      groups[sortKey].usd = i.usd; 
+      // Kar ve Para: Dönem içindeki tüm değerleri toplar
+      groups[sortKey].kar += i.kar;
+      groups[sortKey].para += i.para;
     });
-    filtered = Object.values(groups);
+
+    // sortKey üzerinden kronolojik sıralama yapıp değerleri diziye çeviriyoruz
+    filtered = Object.keys(groups).sort().map(k => groups[k]);
   }
 
-  // Etiketlerin ve verilerin senkronize basılması
   const labs = filtered.map(d => range === 'D' ? d.tarih : d.label);
-  
-  charts.spark.data.labels = labs; 
-  charts.spark.data.datasets[0].data = filtered.map(d => d.usd); 
-  charts.spark.update();
+  const usdData = filtered.map(d => d.usd);
+  const karData = filtered.map(d => d.kar);
+  const paraData = filtered.map(d => d.para);
 
-  charts.kar.data.labels = labs; 
-  charts.kar.data.datasets[0].data = filtered.map(d => d.kar); 
-  charts.kar.update();
-
-  charts.para.data.labels = labs; 
-  charts.para.data.datasets[0].data = filtered.map(d => d.para); 
-  charts.para.update();
+  charts.spark.data.labels = labs; charts.spark.data.datasets[0].data = usdData; charts.spark.update();
+  charts.kar.data.labels = labs; charts.kar.data.datasets[0].data = karData; charts.kar.update();
+  charts.para.data.labels = labs; charts.para.data.datasets[0].data = paraData; charts.para.update();
 }
 window.onload = init;
 </script>

@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 10:51:40</div>
+  <div class="ld">02.05.2026 10:54:45</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -259,7 +259,7 @@ function updateRange(range, el) {
     if (!item.tarih) return;
 
     // Tarih formatını (DD/MM/YY) güvenli parçala
-    var p = String(item.tarih).split('/');
+    var p = String(item.tarih).split(/[./]/);
     if (p.length < 3) return;
 
     var d = parseInt(p[0], 10);

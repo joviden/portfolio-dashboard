@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 10:44:49</div>
+  <div class="ld">02.05.2026 10:49:41</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -249,7 +249,6 @@ function updateRange(range, el) {
     el.classList.add('active');
   }
 
-  // Veri kontrolü
   var dataToProcess = (typeof raw !== 'undefined') ? raw : [];
   if (dataToProcess.length === 0) return;
 
@@ -258,59 +257,50 @@ function updateRange(range, el) {
   dataToProcess.forEach(item => {
     if (!item.tarih) return;
 
-    // Tarihi parçala ve temizle
-    var tStr = String(item.tarih).trim();
-    var p = tStr.split('/');
+    // YENİ: Nokta (.) ayracına göre parçalıyoruz (23.10.2025)
+    var p = String(item.tarih).trim().split('.');
     if (p.length < 3) return;
 
-    // Format: DD/MM/YYYY -> p[0]=Gün, p[1]=Ay, p[2]=Yıl
-    var gun = parseInt(p[0], 10);
-    var ay  = parseInt(p[1], 10);
-    var yil = p[2].trim();
-    if (yil.length === 2) yil = '20' + yil;
-
-    // HATA ÖNLEME: Eğer ay 12'den büyükse, muhtemelen gün ve ay yer değiştirmiştir
-    if (ay > 12 && gun <= 12) {
-       var temp = ay;
-       ay = gun;
-       gun = temp;
-    }
+    var d = parseInt(p[0], 10); // Gün
+    var m = parseInt(p[1], 10); // Ay
+    var y = p[2].trim();        // Yıl
+    if (y.length === 2) y = '20' + y;
 
     var key, label;
-    var ayPad = (ay < 10 ? '0' + ay : ay);
-    var gunPad = (gun < 10 ? '0' + gun : gun);
+    var mPad = (m < 10 ? '0' + m : m);
+    var dPad = (d < 10 ? '0' + d : d);
 
     if (range === 'D') {
-      key = yil + "" + ayPad + "" + gunPad;
-      label = tStr;
+      key = y + "" + mPad + "" + dPad;
+      label = item.tarih;
     } else if (range === 'M') {
-      key = yil + "" + ayPad;
-      label = ayPad + '/' + yil;
+      key = y + "" + mPad;
+      label = mPad + '/' + y;
     } else if (range === 'Q') {
-      // Çeyrek hesaplama: Ay üzerinden (1-3: Q1, 4-6: Q2, vb.)
-      var q = Math.ceil(ay / 3);
-      key = yil + "Q" + q;
-      label = 'Q' + q + ' ' + yil;
+      // Çeyrek hesaplama (Ay / 3)
+      var q = Math.ceil(m / 3);
+      key = y + "Q" + q;
+      label = 'Q' + q + ' ' + y;
     } else {
-      key = yil;
-      label = yil;
+      key = y;
+      label = y;
     }
 
-    // Verileri birleştir (Aggregation)
     if (!groups[key]) {
       groups[key] = { label: label, usd: 0, kar: 0, para: 0 };
     }
 
-    groups[key].usd = item.usd; // Dönemin son bakiyesi
+    // Veri Birleştirme (Aynı aydaki/çeyrekteki verileri teke düşürür)
+    groups[key].usd = item.usd; // O dönemin son portföy değerini alır
     groups[key].kar += (Number(item.kar) || 0);
     groups[key].para += (Number(item.para) || 0);
   });
 
-  // Sıralama ve Grafik Güncelleme
   var sortedKeys = Object.keys(groups).sort();
   var filtered = sortedKeys.map(function(k) { return groups[k]; });
   var labs = filtered.map(function(d) { return d.label; });
   
+  // Grafiklerin fiziksel güncellenmesi
   charts.spark.data.labels = labs;
   charts.spark.data.datasets[0].data = filtered.map(function(d) { return d.usd; });
   charts.spark.update();

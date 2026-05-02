@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 09:57:50</div>
+  <div class="ld">02.05.2026 09:58:56</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -243,83 +243,67 @@ function init(){
   updateRange('D');
 }
 
-function updateRange(range, el){
-  if(el){
-    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+function updateRange(range, el) {
+  if (el) {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
     el.classList.add('active');
   }
+
+  const groups = {};
   
-  let processedData = [];
-  
-  if(range === 'D') {
-    // Günlük modda veriyi olduğu gibi yansıt
-    processedData = raw.map(i => ({
-      label: i.tarih,
-      usd: i.usd,
-      kar: i.kar,
-      para: i.para
-    }));
-  } else {
-    const groups = {};
+  raw.forEach(item => {
+    const parts = item.tarih.split('/');
+    if (parts.length < 3) return;
+
+    const d = parseInt(parts[0], 10);
+    const m = parseInt(parts[1], 10);
+    const yStr = parts[2].length === 2 ? '20' + parts[2] : parts[2];
+
+    let key, label;
     
-    raw.forEach(i => {
-      // "DD/MM/YY" formatını parçala
-      const parts = i.tarih.split('/');
-      if (parts.length < 3) return;
-      
-      const d = parseInt(parts[0]);
-      const m = parseInt(parts[1]); // Ay
-      const y = parts[2].length === 2 ? '20' + parts[2] : parts[2]; // Yıl
-      
-      let label = "";
-      let sortKey = "";
+    const mPad = (m < 10 ? '0' + m : m);
+    const dPad = (d < 10 ? '0' + d : d);
 
-      if(range === 'M') {
-        // Ay ve Yıl (Örn: 05/2026)
-        label = (m < 10 ? '0' + m : m) + '/' + y;
-        sortKey = y + (m < 10 ? '0' + m : m);
-      } 
-      else if(range === 'Q') {
-        // Çeyrek ve Yıl (Örn: Q1 2026)
-        const q = Math.ceil(m / 3);
-        label = 'Q' + q + ' ' + y;
-        sortKey = y + 'Q' + q;
-      } 
-      else if(range === 'Y') {
-        label = y;
-        sortKey = y;
-      }
+    if (range === 'D') {
+      key = yStr + "" + mPad + "" + dPad;
+      label = item.tarih;
+    } else if (range === 'M') {
+      key = yStr + "" + mPad;
+      label = mPad + '/' + yStr;
+    } else if (range === 'Q') {
+      const q = Math.ceil(m / 3);
+      key = yStr + "Q" + q;
+      label = 'Q' + q + ' ' + yStr;
+    } else {
+      key = yStr;
+      label = yStr;
+    }
 
-      // Eğer bu grup (ay/çeyrek/yıl) daha önce yoksa oluştur
-      if(!groups[sortKey]) {
-        groups[sortKey] = { label: label, usd: 0, kar: 0, para: 0 };
-      }
-      
-      // Portföy Değeri: İlgili dönemin SON değerini alır
-      groups[sortKey].usd = i.usd; 
-      
-      // Kar ve Para: Dönem içindeki tüm hareketleri TOPLAR
-      groups[sortKey].kar += i.kar;
-      groups[sortKey].para += i.para;
-    });
+    if (!groups[key]) {
+      groups[key] = { label: label, usd: 0, kar: 0, para: 0 };
+    }
 
-    // Gruplanmış verileri kronolojik sıraya diz (2025 -> 2026)
-    processedData = Object.keys(groups).sort().map(k => groups[k]);
-  }
+    groups[key].usd = item.usd; 
+    groups[key].kar += item.kar;
+    groups[key].para += item.para;
+  });
 
-  // Grafik verilerini güncelle
-  const labs = processedData.map(d => d.label);
+  const sortedKeys = Object.keys(groups).sort();
+  const filtered = sortedKeys.map(k => groups[k]);
+
+  const labs = filtered.map(d => d.label);
   
+  // Grafik güncellemeleri
   charts.spark.data.labels = labs;
-  charts.spark.data.datasets[0].data = processedData.map(d => d.usd);
+  charts.spark.data.datasets[0].data = filtered.map(d => d.usd);
   charts.spark.update();
 
   charts.kar.data.labels = labs;
-  charts.kar.data.datasets[0].data = processedData.map(d => d.kar);
+  charts.kar.data.datasets[0].data = filtered.map(d => d.kar);
   charts.kar.update();
 
   charts.para.data.labels = labs;
-  charts.para.data.datasets[0].data = processedData.map(d => d.para);
+  charts.para.data.datasets[0].data = filtered.map(d => d.para);
   charts.para.update();
 }
 window.onload = init;

@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 09:34:20</div>
+  <div class="ld">02.05.2026 09:40:56</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -248,24 +248,50 @@ function updateRange(range, el){
     document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
     el.classList.add('active');
   }
+  
   let filtered = [];
-  if(range==='D') filtered = raw;
-  else {
+  if(range==='D') {
+    filtered = raw;
+  } else {
     const groups = {};
-    raw.forEach(i=>{
-      const [d,m,y] = i.tarih.split('/');
-      let key = (range==='M')?(m+'/'+y):(range==='Q')?('Q'+Math.ceil(parseInt(m)/3)+'/'+y):('20'+y);
-      if(!groups[key]) groups[key] = {usd:0, kar:0, para:0, label:key};
-      groups[key].usd = i.usd;
+    raw.forEach(i => {
+      const parts = i.tarih.split('/');
+      if (parts.length < 3) return;
+      const d = parts[0], m = parts[1], y = parts[2];
+      const fullYear = y.length === 2 ? '20' + y : y;
+      
+      let key = "";
+      if(range === 'M') key = m + '/' + fullYear;
+      else if(range === 'Q') key = 'Q' + Math.ceil(parseInt(m)/3) + ' ' + fullYear;
+      else if(range === 'Y') key = fullYear;
+
+      if(!groups[key]) {
+        groups[key] = { label: key, usd: 0, kar: 0, para: 0 };
+      }
+      
+      // Portföy Değeri için o dönemin en son kaydını alıyoruz
+      groups[key].usd = i.usd; 
+      // Kar ve Para ekleme verilerini topluyoruz
       groups[key].kar += i.kar;
       groups[key].para += i.para;
     });
     filtered = Object.values(groups);
   }
-  const labs = filtered.map(d=>d.tarih||d.label);
-  charts.spark.data.labels = labs; charts.spark.data.datasets[0].data = filtered.map(d=>d.usd); charts.spark.update();
-  charts.kar.data.labels = labs; charts.kar.data.datasets[0].data = filtered.map(d=>d.kar); charts.kar.update();
-  charts.para.data.labels = labs; charts.para.data.datasets[0].data = filtered.map(d=>d.para); charts.para.update();
+
+  // Etiketlerin ve verilerin senkronize basılması
+  const labs = filtered.map(d => range === 'D' ? d.tarih : d.label);
+  
+  charts.spark.data.labels = labs; 
+  charts.spark.data.datasets[0].data = filtered.map(d => d.usd); 
+  charts.spark.update();
+
+  charts.kar.data.labels = labs; 
+  charts.kar.data.datasets[0].data = filtered.map(d => d.kar); 
+  charts.kar.update();
+
+  charts.para.data.labels = labs; 
+  charts.para.data.datasets[0].data = filtered.map(d => d.para); 
+  charts.para.update();
 }
 window.onload = init;
 </script>

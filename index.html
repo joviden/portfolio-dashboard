@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 10:50:45</div>
+  <div class="ld">02.05.2026 10:51:40</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -249,7 +249,8 @@ function updateRange(range, el) {
     el.classList.add('active');
   }
 
-  var dataToProcess = (typeof raw !== 'undefined') ? raw : [];
+  // Veri kontrolü: window.raw yerine direkt raw kullanalım
+  var dataToProcess = typeof raw !== 'undefined' ? raw : [];
   if (dataToProcess.length === 0) return;
 
   const groups = {};
@@ -257,14 +258,13 @@ function updateRange(range, el) {
   dataToProcess.forEach(item => {
     if (!item.tarih) return;
 
-    // YENİ: Nokta (.) ayracına göre parçalıyoruz (23.10.2025)
-    var p = String(item.tarih).trim().split('.');
+    // Tarih formatını (DD/MM/YY) güvenli parçala
+    var p = String(item.tarih).split('/');
     if (p.length < 3) return;
 
-    var d = parseInt(p[0], 10); // Gün
-    var m = parseInt(p[1], 10); // Ay
-    var y = p[2].trim();        // Yıl
-    if (y.length === 2) y = '20' + y;
+    var d = parseInt(p[0], 10);
+    var m = parseInt(p[1], 10);
+    var y = p[2].length === 2 ? '20' + p[2] : p[2];
 
     var key, label;
     var mPad = (m < 10 ? '0' + m : m);
@@ -277,7 +277,7 @@ function updateRange(range, el) {
       key = y + "" + mPad;
       label = mPad + '/' + y;
     } else if (range === 'Q') {
-      // Çeyrek hesaplama (Ay / 3)
+      // AY verisini 3'e bölerek çeyreği bul (Q1, Q2, Q3, Q4 kesinleşir)
       var q = Math.ceil(m / 3);
       key = y + "Q" + q;
       label = 'Q' + q + ' ' + y;
@@ -290,17 +290,19 @@ function updateRange(range, el) {
       groups[key] = { label: label, usd: 0, kar: 0, para: 0 };
     }
 
-    // Veri Birleştirme (Aynı aydaki/çeyrekteki verileri teke düşürür)
-    groups[key].usd = item.usd; // O dönemin son portföy değerini alır
+    // Veri toplama mantığı
+    groups[key].usd = item.usd; // Son güncel bakiye
     groups[key].kar += (Number(item.kar) || 0);
     groups[key].para += (Number(item.para) || 0);
   });
 
+  // Sırala ve diziye çevir
   var sortedKeys = Object.keys(groups).sort();
   var filtered = sortedKeys.map(function(k) { return groups[k]; });
+
   var labs = filtered.map(function(d) { return d.label; });
   
-  // Grafiklerin fiziksel güncellenmesi
+  // Grafikleri güncelle
   charts.spark.data.labels = labs;
   charts.spark.data.datasets[0].data = filtered.map(function(d) { return d.usd; });
   charts.spark.update();

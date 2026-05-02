@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 09:58:56</div>
+  <div class="ld">02.05.2026 10:01:45</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -252,30 +252,36 @@ function updateRange(range, el) {
   const groups = {};
   
   raw.forEach(item => {
-    const parts = item.tarih.split('/');
+    if (!item.tarih) return;
+
+    // Tarihi temizle ve parçala (Metin içindeki boşlukları temizler)
+    const dateStr = String(item.tarih).trim();
+    const parts = dateStr.split('/');
     if (parts.length < 3) return;
 
     const d = parseInt(parts[0], 10);
     const m = parseInt(parts[1], 10);
-    const yStr = parts[2].length === 2 ? '20' + parts[2] : parts[2];
+    let yStr = parts[2].trim();
+    if (yStr.length === 2) yStr = '20' + yStr;
+
+    // Ay ve Gün hanelerini 2 basamağa tamamla (Sıralama ve etiket için kritik)
+    const mPad = m < 10 ? '0' + m : String(m);
+    const dPad = d < 10 ? '0' + d : String(d);
 
     let key, label;
-    
-    const mPad = (m < 10 ? '0' + m : m);
-    const dPad = (d < 10 ? '0' + d : d);
 
     if (range === 'D') {
-      key = yStr + "" + mPad + "" + dPad;
-      label = item.tarih;
+      key = yStr + mPad + dPad; // Örn: 20260502
+      label = dateStr;
     } else if (range === 'M') {
-      key = yStr + "" + mPad;
+      key = yStr + mPad; // Örn: 202605
       label = mPad + '/' + yStr;
     } else if (range === 'Q') {
       const q = Math.ceil(m / 3);
-      key = yStr + "Q" + q;
+      key = yStr + 'Q' + q; // Örn: 2026Q2
       label = 'Q' + q + ' ' + yStr;
     } else {
-      key = yStr;
+      key = yStr; // Örn: 2026
       label = yStr;
     }
 
@@ -283,17 +289,21 @@ function updateRange(range, el) {
       groups[key] = { label: label, usd: 0, kar: 0, para: 0 };
     }
 
-    groups[key].usd = item.usd; 
-    groups[key].kar += item.kar;
-    groups[key].para += item.para;
+    // VERİ İŞLEME:
+    groups[key].usd = item.usd;      // Dönemin son bakiyesi (Override)
+    groups[key].kar += (item.kar || 0);   // Dönem toplam karı
+    groups[key].para += (item.para || 0); // Dönem toplam para girişi
   });
 
+  // Anahtarları alfabetik/sayısal sırala (Takvim sırasını garanti eder)
   const sortedKeys = Object.keys(groups).sort();
   const filtered = sortedKeys.map(k => groups[k]);
 
+  if (filtered.length === 0) return;
+
   const labs = filtered.map(d => d.label);
   
-  // Grafik güncellemeleri
+  // Grafikleri güncelle
   charts.spark.data.labels = labs;
   charts.spark.data.datasets[0].data = filtered.map(d => d.usd);
   charts.spark.update();

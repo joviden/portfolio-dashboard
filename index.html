@@ -14,64 +14,24 @@ body{background:#0d0f1a;color:#ffffff;font-family:'DM Sans',sans-serif;padding:1
 .pt{font-size:14px;font-weight:800;color:#fbbf24;font-family:'Inter',sans-serif}
 .ld{font-size:10px;color:#34d399;font-weight:600}
 
-/* KART DÜZENİ GÜNCELLEMESİ: 2x2 Yapı ve Tam Ortalama */
-.hcards {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Yan yana 2 kart */
-  gap: 10px;
-  margin-bottom: 12px;
-}
+.hcards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.hc { background: linear-gradient(135deg, #161929, #1c2038); border: 1px solid #252a40; border-radius: 18px; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.hc .lb { font-size: 12px; font-weight: 800; color: #ffffff; text-transform: uppercase; margin-bottom: 8px; opacity: 0.9; letter-spacing: 0.5px; } 
+.hc .vl { font-size: 16px; font-weight: 800; font-family: 'Inter', sans-serif; }
+.hc .sb { font-size: 10px; font-weight: 800; color: #ffffff; margin-top: 6px; opacity: 0.8; }
 
-.hc {
-  background: linear-gradient(135deg, #161929, #1c2038);
-  border: 1px solid #252a40;
-  border-radius: 18px;
-  padding: 20px 16px; /* Dikey boşluk biraz artırıldı */
-  
-  /* Ortalama Ayarları */
-  display: flex;
-  flex-direction: column;
-  align-items: center;     /* Yatayda ortalar */
-  justify-content: center; /* Düşeyde ortalar */
-  text-align: center;      /* Metinleri kendi içinde ortalar */
-}
+.tabs, .filter-bar { display: flex; gap: 5px; background: #13162a; border-radius: 16px; padding: 5px; border: 1px solid #252a40; margin-bottom: 12px; }
+.tab, .f-btn { flex: 1; padding: 9px; font-size: 12px; font-weight: 700; cursor: pointer; border-radius: 12px; color: #cbd5e1; background: transparent; border: none; transition: 0.2s; text-align: center; }
+.tab.active, .f-btn.active { background: #fbbf24; color: #0d0f1a; }
 
-.hc .lb {
-  font-size: 12px;
-  font-weight: 800;
-  color: #ffffff;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  opacity: 0.9;
-  letter-spacing: 0.5px;
-} 
-
-.hc .vl {
-  font-size: 16px; /* Okunabilirlik için hafif büyütüldü */
-  font-weight: 800;
-  font-family: 'Inter', sans-serif;
-}
-
-.hc .sb {
-  font-size: 10px;
-  font-weight: 800;
-  color: #ffffff;
-  margin-top: 6px;
-  opacity: 0.8;
-}
-
-/* GENİŞLİK AYARI: Kartlar bölümü ile sekme barı artık aynı hizada */
-.tabs{display:flex;gap:5px;background:#13162a;border-radius:16px;padding:5px;border:1px solid #252a40;margin-bottom:12px}
-.tab{flex:1;padding:9px;font-size:12px;font-weight:700;cursor:pointer;border-radius:12px;color:#cbd5e1;background:transparent;border:none;transition:0.2s}
-.tab.active{background:#fbbf24;color:#0d0f1a}
 .sec{display:none}.sec.active{display:block}
-.pn{background:#13162a;border:1px solid #252a40;border-radius:18px;padding:14px;margin-bottom:10px}
-.pnt{font-size:10px;font-weight:700;color:#ffffff;text-transform:uppercase;margin-bottom:10px;border-bottom:1px solid #1f2440;padding-bottom:8px}
+.pn{background:#13162a; border:1px solid #252a40; border-radius:18px; padding:14px; margin-bottom:10px}
+.pnt{font-size:10px; font-weight:700; color:#ffffff; text-transform:uppercase; margin-bottom:10px; border-bottom:1px solid #1f2440; padding-bottom:8px}
 .tw2{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:11px}
-th{color:#ffffff;font-size:9px;text-transform:uppercase;padding:5px 6px;text-align:left;border-bottom:1px solid #1f2440;opacity:0.8}
-td{padding:7px 6px;border-bottom:1px solid #191e30;color:#ffffff}
-td.sym{font-weight:800;color:#fbbf24;font-size:12px}
+table{width:100%; border-collapse:collapse; font-size:11px}
+th{color:#ffffff; font-size:9px; text-transform:uppercase; padding:5px 6px; text-align:left; border-bottom:1px solid #1f2440; opacity:0.8}
+td{padding:7px 6px; border-bottom:1px solid #191e30; color:#ffffff}
+td.sym{font-weight:800; color:#fbbf24; font-size:12px}
 .lightText{color:#f1f5f9!important; font-size:10px;}
 .green{color:#34d399!important}.red{color:#f87171!important}.yel{color:#fbbf24!important}.gold{color:#fbbf24!important}.bld{font-weight:700}
 .yg{display:flex; flex-direction:column; gap:10px}
@@ -84,20 +44,15 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
  <div><div class="pt">Yatırım Günlüğü</div></div>
- <div class="ld">02.05.2026 23:27:40</div>
+ <div class="ld">02.05.2026 23:35:03</div>
 </div>
 
-<!-- KARTLARIN YENİ SIRALAMASI -->
 <div class="hcards">
- <!-- Üst Sıra -->
  <div class="hc"><div class="lb">Portföy</div><div class="vl gold">$24,226 ₺1.093.606</div><div class="sb"></div></div>
  <div class="hc"><div class="lb">Anapara</div><div class="vl" style="color:#60a5fa">$18,541</div><div class="sb">Yatırılan Tutar</div></div>
- 
- <!-- Alt Sıra -->
- <div class="hc"><div class="lb">Kar</div><div class="vl green">$5,685  %30.66</div><div class="sb">Tüm Zamanlar</div></div>
+ <div class="hc"><div class="lb">Kar</div><div class="vl green">$5,685 %30.66</div><div class="sb">Tüm Zamanlar</div></div>
  <div class="hc"><div class="lb">Beta</div><div class="vl" style="color:#ffffff">2.59</div><div class="sb">Ağırlıklı Ortalama</div></div>
 </div>
-
 
 <div class="tabs">
  <button class="tab active" onclick="showTab('analiz',this)">Analiz</button>
@@ -105,6 +60,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
  <button class="tab" onclick="showTab('izleme',this)">İzleme</button>
  <button class="tab" onclick="showTab('performans',this)">Performans</button>
 </div>
+
 <div id="tab-analiz" class="sec active">
  <div class="pn"><div class="pnt">Portföy</div><div class="tw2"><table><tr><th>Varlık</th><th>Cinsi</th><th>Değer $</th><th>Kar %</th><th>Oran</th><th>Beta</th></tr><tr>
  <td class="sym">QLD</td>
@@ -194,6 +150,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
  <td class="yel bld">Tut</td>
  </tr></table></div></div>
 </div>
+
 <div id="tab-yorum" class="sec">
  <div class="pn">
  <div class="pnt">Genel Yorum</div>
@@ -206,6 +163,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
  </div>
  </div>
 </div>
+
 <div id="tab-izleme" class="sec">
  <div class="pn"><div class="pnt">İlgilendiğim Varlıklar</div><div class="tw2"><table><tr><th>Varlık</th><th>İsim</th><th>Fiyat</th><th>Temel Analiz</th><th>Teknik Analiz</th><th>Puan</th><th>Öneri</th></tr><tr>
  <td class="sym">UWM</td>
@@ -241,6 +199,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
  <td class="red bld">Uzak Dur</td>
  </tr></table></div></div>
 </div>
+
 <div id="tab-performans" class="sec">
  <div class="filter-bar">
  <button class="f-btn active" onclick="updateRange('D',this)">Günlük</button>
@@ -253,6 +212,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
  <div class="pn"><div class="pnt">Para Ekleme Geçmişi (USD)</div><div style="height:180px"><canvas id="paraChart"></canvas></div></div>
 </div>
 </div>
+
 <script>
 const raw = [{"tarih":"11/10/25","usd":8365,"kar":0,"para":8365},{"tarih":"12/10/25","usd":8365,"kar":0,"para":0},{"tarih":"13/10/25","usd":8365,"kar":0,"para":0},{"tarih":"14/10/25","usd":8365,"kar":-46,"para":0},{"tarih":"15/10/25","usd":8365,"kar":42,"para":0},{"tarih":"16/10/25","usd":8365,"kar":-87,"para":0},{"tarih":"17/10/25","usd":8371,"kar":106,"para":0},{"tarih":"20/10/25","usd":8475,"kar":212,"para":0},{"tarih":"21/10/25","usd":8686,"kar":-5,"para":0},{"tarih":"22/10/25","usd":8682,"kar":-163,"para":0},{"tarih":"23/10/25","usd":9226,"kar":159,"para":0},{"tarih":"24/10/25","usd":9384,"kar":192,"para":0},{"tarih":"27/10/25","usd":9576,"kar":335,"para":682},{"tarih":"28/10/25","usd":10575,"kar":46,"para":0},{"tarih":"29/10/25","usd":10491,"kar":-150,"para":0},{"tarih":"30/10/25","usd":10685,"kar":135,"para":0},{"tarih":"03/11/25","usd":10626,"kar":29,"para":0},{"tarih":"04/11/25","usd":10554,"kar":-186,"para":0},{"tarih":"05/11/25","usd":10294,"kar":-260,"para":3526},{"tarih":"06/11/25","usd":14829,"kar":130,"para":0},{"tarih":"07/11/25","usd":14552,"kar":-277,"para":985},{"tarih":"10/11/25","usd":14925,"kar":373,"para":0},{"tarih":"11/11/25","usd":15448,"kar":523,"para":0},{"tarih":"12/11/25","usd":15369,"kar":-79,"para":0},{"tarih":"13/11/25","usd":15598,"kar":229,"para":0},{"tarih":"14/11/25","usd":14956,"kar":-642,"para":0},{"tarih":"17/11/25","usd":14738,"kar":-218,"para":0},{"tarih":"18/11/25","usd":14329,"kar":-409,"para":0},{"tarih":"19/11/25","usd":14266,"kar":-63,"para":0},{"tarih":"20/11/25","usd":14360,"kar":94,"para":0},{"tarih":"21/11/25","usd":13474,"kar":-886,"para":0},{"tarih":"24/11/25","usd":13770,"kar":296,"para":0},{"tarih":"25/11/25","usd":14292,"kar":522,"para":0},{"tarih":"26/11/25","usd":14409,"kar":117,"para":0},{"tarih":"27/11/25","usd":14761,"kar":352,"para":0},{"tarih":"28/11/25","usd":14762,"kar":1,"para":0},{"tarih":"02/12/25","usd":14980,"kar":218,"para":0},{"tarih":"03/12/25","usd":15080,"kar":100,"para":0},{"tarih":"04/12/25","usd":15255,"kar":175,"para":0},{"tarih":"05/12/25","usd":15184,"kar":-71,"para":0},{"tarih":"08/12/25","usd":15945,"kar":-7,"para":768},{"tarih":"09/12/25","usd":15860,"kar":-85,"para":0},{"tarih":"10/12/25","usd":16151,"kar":291,"para":0},{"tarih":"11/12/25","usd":17880,"kar":-11,"para":1740},{"tarih":"12/12/25","usd":18096,"kar":216,"para":0},{"tarih":"15/12/25","usd":17952,"kar":-144,"para":465},{"tarih":"16/12/25","usd":17943,"kar":-9,"para":0},{"tarih":"17/12/25","usd":17854,"kar":-89,"para":0},{"tarih":"18/12/25","usd":17598,"kar":-256,"para":0},{"tarih":"19/12/25","usd":17958,"kar":360,"para":0},{"tarih":"22/12/25","usd":18194,"kar":236,"para":0},{"tarih":"23/12/25","usd":19091,"kar":897,"para":0},{"tarih":"24/12/25","usd":19438,"kar":347,"para":0},{"tarih":"25/12/25","usd":19430,"kar":-8,"para":0},{"tarih":"26/12/25","usd":19505,"kar":75,"para":0},{"tarih":"29/12/25","usd":19963,"kar":458,"para":0},{"tarih":"30/12/25","usd":19737,"kar":-226,"para":0},{"tarih":"31/12/25","usd":19759,"kar":22,"para":0},{"tarih":"02/01/26","usd":19764,"kar":5,"para":0},{"tarih":"05/01/26","usd":19850,"kar":86,"para":0},{"tarih":"06/01/26","usd":20316,"kar":466,"para":0},{"tarih":"07/01/26","usd":20656,"kar":340,"para":0},{"tarih":"08/01/26","usd":20341,"kar":-315,"para":0},{"tarih":"09/01/26","usd":20300,"kar":-41,"para":0},{"tarih":"12/01/26","usd":20606,"kar":306,"para":0},{"tarih":"13/01/26","usd":20817,"kar":211,"para":0},{"tarih":"14/01/26","usd":21133,"kar":316,"para":0},{"tarih":"15/01/26","usd":20949,"kar":-184,"para":0},{"tarih":"16/01/26","usd":21003,"kar":54,"para":0},{"tarih":"19/01/26","usd":20754,"kar":-249,"para":0},{"tarih":"20/01/26","usd":20566,"kar":-188,"para":0},{"tarih":"21/01/26","usd":19799,"kar":-767,"para":0},{"tarih":"22/01/26","usd":20189,"kar":390,"para":0},{"tarih":"23/01/26","usd":20318,"kar":129,"para":0},{"tarih":"26/01/26","usd":20227,"kar":-91,"para":0},{"tarih":"27/01/26","usd":20366,"kar":139,"para":0},{"tarih":"28/01/26","usd":20716,"kar":350,"para":0},{"tarih":"29/01/26","usd":20742,"kar":26,"para":0},{"tarih":"30/01/26","usd":20067,"kar":-675,"para":0},{"tarih":"02/02/26","usd":18894,"kar":-1173,"para":0},{"tarih":"03/02/26","usd":19091,"kar":197,"para":0},{"tarih":"04/02/26","usd":18869,"kar":-222,"para":0},{"tarih":"05/02/26","usd":18870,"kar":1,"para":0},{"tarih":"06/02/26","usd":17909,"kar":-961,"para":0},{"tarih":"09/02/26","usd":18556,"kar":647,"para":0},{"tarih":"10/02/26","usd":18826,"kar":270,"para":0},{"tarih":"11/02/26","usd":18609,"kar":-217,"para":0},{"tarih":"12/02/26","usd":18788,"kar":179,"para":0},{"tarih":"13/02/26","usd":17909,"kar":-879,"para":0},{"tarih":"16/02/26","usd":18231,"kar":322,"para":0},{"tarih":"17/02/26","usd":18231,"kar":0,"para":0},{"tarih":"18/02/26","usd":17824,"kar":-407,"para":0},{"tarih":"19/02/26","usd":18256,"kar":432,"para":0},{"tarih":"20/02/26","usd":18200,"kar":-56,"para":0},{"tarih":"23/02/26","usd":18650,"kar":450,"para":0},{"tarih":"24/02/26","usd":18682,"kar":32,"para":0},{"tarih":"25/02/26","usd":18757,"kar":75,"para":0},{"tarih":"26/02/26","usd":19074,"kar":317,"para":0},{"tarih":"27/02/26","usd":18884,"kar":-190,"para":0},{"tarih":"02/03/26","usd":18973,"kar":89,"para":0},{"tarih":"03/03/26","usd":19157,"kar":184,"para":0},{"tarih":"04/03/26","usd":18295,"kar":-862,"para":0},{"tarih":"05/03/26","usd":18703,"kar":408,"para":0},{"tarih":"06/03/26","usd":18579,"kar":-124,"para":0},{"tarih":"09/03/26","usd":19112,"kar":-477,"para":1010},{"tarih":"10/03/26","usd":19633,"kar":521,"para":0},{"tarih":"11/03/26","usd":19774,"kar":141,"para":0},{"tarih":"16/03/26","usd":18726,"kar":-1048,"para":0},{"tarih":"17/03/26","usd":19071,"kar":345,"para":0},{"tarih":"18/03/26","usd":19166,"kar":95,"para":0},{"tarih":"19/03/26","usd":18520,"kar":-646,"para":0},{"tarih":"20/03/26","usd":18255,"kar":-265,"para":0},{"tarih":"23/03/26","usd":17513,"kar":-742,"para":0},{"tarih":"24/03/26","usd":17815,"kar":302,"para":0},{"tarih":"25/03/26","usd":17637,"kar":-178,"para":0},{"tarih":"26/03/26","usd":17971,"kar":334,"para":0},{"tarih":"27/03/26","usd":17971,"kar":0,"para":0},{"tarih":"30/03/26","usd":16430,"kar":-1541,"para":0},{"tarih":"31/03/26","usd":16061,"kar":-369,"para":0},{"tarih":"01/04/26","usd":17197,"kar":1136,"para":0},{"tarih":"02/04/26","usd":17608,"kar":411,"para":0},{"tarih":"03/04/26","usd":17552,"kar":-56,"para":0},{"tarih":"06/04/26","usd":17552,"kar":0,"para":0},{"tarih":"07/04/26","usd":17815,"kar":263,"para":0},{"tarih":"08/04/26","usd":17890,"kar":75,"para":0},{"tarih":"09/04/26","usd":18901,"kar":1011,"para":0},{"tarih":"10/04/26","usd":19220,"kar":319,"para":1000},{"tarih":"13/04/26","usd":20404,"kar":184,"para":0},{"tarih":"14/04/26","usd":20794,"kar":390,"para":0},{"tarih":"15/04/26","usd":21595,"kar":801,"para":0},{"tarih":"16/04/26","usd":22095,"kar":500,"para":0},{"tarih":"17/04/26","usd":22267,"kar":172,"para":0},{"tarih":"20/04/26","usd":22994,"kar":727,"para":0},{"tarih":"21/04/26","usd":22845,"kar":-149,"para":0},{"tarih":"22/04/26","usd":22444,"kar":-401,"para":0},{"tarih":"23/04/26","usd":23359,"kar":915,"para":0},{"tarih":"24/04/26","usd":23044,"kar":-315,"para":0},{"tarih":"27/04/26","usd":23934,"kar":890,"para":0},{"tarih":"28/04/26","usd":24011,"kar":77,"para":0},{"tarih":"29/04/26","usd":23408,"kar":-603,"para":0},{"tarih":"30/04/26","usd":23518,"kar":110,"para":0},{"tarih":"01/05/26","usd":23758,"kar":240,"para":0}];
 let charts = {};

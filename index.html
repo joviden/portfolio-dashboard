@@ -44,7 +44,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 10:01:45</div>
+  <div class="ld">02.05.2026 10:04:10</div>
 </div>
 <div class="hcards">
   <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,538</div><div class="sb">₺1.014.922</div></div>
@@ -249,53 +249,52 @@ function updateRange(range, el) {
     el.classList.add('active');
   }
 
+  // 1. Gruplama Nesnesi Oluştur
   const groups = {};
   
   raw.forEach(item => {
     if (!item.tarih) return;
 
-    // Tarihi temizle ve parçala (Metin içindeki boşlukları temizler)
-    const dateStr = String(item.tarih).trim();
-    const parts = dateStr.split('/');
-    if (parts.length < 3) return;
+    // Tarihi parçala (DD/MM/YY)
+    const p = item.tarih.split('/');
+    if (p.length < 3) return;
 
-    const d = parseInt(parts[0], 10);
-    const m = parseInt(parts[1], 10);
-    let yStr = parts[2].trim();
-    if (yStr.length === 2) yStr = '20' + yStr;
-
-    // Ay ve Gün hanelerini 2 basamağa tamamla (Sıralama ve etiket için kritik)
-    const mPad = m < 10 ? '0' + m : String(m);
-    const dPad = d < 10 ? '0' + d : String(d);
+    const d = parseInt(p[0], 10);
+    const m = parseInt(p[1], 10);
+    let y = p[2].trim();
+    if (y.length === 2) y = '20' + y;
 
     let key, label;
+    const mPad = m < 10 ? '0' + m : m;
 
     if (range === 'D') {
-      key = yStr + mPad + dPad; // Örn: 20260502
-      label = dateStr;
+      key = y + mPad + (d < 10 ? '0' + d : d);
+      label = item.tarih;
     } else if (range === 'M') {
-      key = yStr + mPad; // Örn: 202605
-      label = mPad + '/' + yStr;
+      key = y + mPad;
+      label = mPad + '/' + y;
     } else if (range === 'Q') {
       const q = Math.ceil(m / 3);
-      key = yStr + 'Q' + q; // Örn: 2026Q2
-      label = 'Q' + q + ' ' + yStr;
+      key = y + 'Q' + q;
+      label = 'Q' + q + ' ' + y;
     } else {
-      key = yStr; // Örn: 2026
-      label = yStr;
+      key = y;
+      label = y;
     }
 
+    // 2. Verileri Mantıksal Olarak Birleştir
     if (!groups[key]) {
       groups[key] = { label: label, usd: 0, kar: 0, para: 0 };
     }
 
-    // VERİ İŞLEME:
-    groups[key].usd = item.usd;      // Dönemin son bakiyesi (Override)
-    groups[key].kar += (item.kar || 0);   // Dönem toplam karı
-    groups[key].para += (item.para || 0); // Dönem toplam para girişi
+    // Portföy Değeri: İlgili dönemin SON girilen verisini alır
+    groups[key].usd = item.usd; 
+    // Kar ve Para: Dönem içindeki tüm değerleri TOPLAR
+    groups[key].kar += (item.kar || 0);
+    groups[key].para += (item.para || 0);
   });
 
-  // Anahtarları alfabetik/sayısal sırala (Takvim sırasını garanti eder)
+  // 3. Sıralama ve Grafiklere Aktarma
   const sortedKeys = Object.keys(groups).sort();
   const filtered = sortedKeys.map(k => groups[k]);
 
@@ -303,11 +302,12 @@ function updateRange(range, el) {
 
   const labs = filtered.map(d => d.label);
   
-  // Grafikleri güncelle
+  // Çizgi Grafik: Portföy Değeri
   charts.spark.data.labels = labs;
   charts.spark.data.datasets[0].data = filtered.map(d => d.usd);
   charts.spark.update();
 
+  // Bar Grafikler: Kar ve Para Girişi
   charts.kar.data.labels = labs;
   charts.kar.data.datasets[0].data = filtered.map(d => d.kar);
   charts.kar.update();

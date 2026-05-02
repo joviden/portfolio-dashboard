@@ -14,17 +14,49 @@ body{background:#0d0f1a;color:#ffffff;font-family:'DM Sans',sans-serif;padding:1
 .pt{font-size:14px;font-weight:800;color:#fbbf24;font-family:'Inter',sans-serif}
 .ld{font-size:10px;color:#34d399;font-weight:600}
 
-/* KART DÜZENİ GÜNCELLEMESİ: 2x2 Yapı */
-.hcards{
-  display:grid;
+/* KART DÜZENİ GÜNCELLEMESİ: 2x2 Yapı ve Tam Ortalama */
+.hcards {
+  display: grid;
   grid-template-columns: 1fr 1fr; /* Yan yana 2 kart */
-  gap:10px;
-  margin-bottom:12px; /* Sekme barı ile mesafe */
+  gap: 10px;
+  margin-bottom: 12px;
 }
-.hc{background:linear-gradient(135deg,#161929,#1c2038);border:1px solid #252a40;border-radius:18px;padding:14px 16px}
-.hc .lb{font-size:10px;color:#ffffff;text-transform:uppercase;margin-bottom:6px;opacity:0.9} 
-.hc .vl{font-size:18px;font-weight:800;font-family:'Inter',sans-serif}
-.hc .sb{font-size:10px;color:#e2e8f0;margin-top:4px} 
+
+.hc {
+  background: linear-gradient(135deg, #161929, #1c2038);
+  border: 1px solid #252a40;
+  border-radius: 18px;
+  padding: 20px 16px; /* Dikey boşluk biraz artırıldı */
+  
+  /* Ortalama Ayarları */
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* Yatayda ortalar */
+  justify-content: center; /* Düşeyde ortalar */
+  text-align: center;      /* Metinleri kendi içinde ortalar */
+}
+
+.hc .lb {
+  font-size: 10px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+} 
+
+.hc .vl {
+  font-size: 20px; /* Okunabilirlik için hafif büyütüldü */
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+}
+
+.hc .sb {
+  font-size: 10px;
+  color: #e2e8f0;
+  margin-top: 6px;
+  opacity: 0.8;
+}
 
 /* GENİŞLİK AYARI: Kartlar bölümü ile sekme barı artık aynı hizada */
 .tabs{display:flex;gap:5px;background:#13162a;border-radius:16px;padding:5px;border:1px solid #252a40;margin-bottom:12px}
@@ -50,7 +82,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
  <div><div class="pt">📊 Portföy Dashboard</div></div>
- <div class="ld">02.05.2026 23:08:15</div>
+ <div class="ld">02.05.2026 23:11:27</div>
 </div>
 
 <!-- KARTLARIN YENİ SIRALAMASI -->
@@ -60,7 +92,7 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
  <div class="hc"><div class="lb">Anapara</div><div class="vl" style="color:#60a5fa">$18,541</div><div class="sb">Yatırılan Tutar</div></div>
  
  <!-- Alt Sıra -->
- <div class="hc"><div class="lb">Kar</div><div class="vl green">$5,685 / %30.66</div><div class="sb">Tüm Zamanlar</div></div>
+ <div class="hc"><div class="lb">Kar</div><div class="vl green">$5,685  %30.66</div><div class="sb">Tüm Zamanlar</div></div>
  <div class="hc"><div class="lb">Beta</div><div class="vl" style="color:#ffffff">2.59</div><div class="sb">Ortalama</div></div>
 </div>
 

@@ -45,12 +45,12 @@ td.sym{font-weight:800;color:#fbbf24;font-size:12px}
 <div class="dash">
 <div class="ph">
   <div><div class="pt">📊 Portföy Dashboard</div></div>
-  <div class="ld">02.05.2026 11:53:29</div>
+  <div class="ld">02.05.2026 12:02:37</div>
 </div>
 <div class="hcards">
-  <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$23,758</div><div class="sb">₺1.014.922</div></div>
+  <div class="hc"><div class="lb">Toplam Değer</div><div class="vl gold">$22,483</div><div class="sb">₺1.014.922</div></div>
   <div class="hc"><div class="lb">Toplam Yatırılan</div><div class="vl" style="color:#60a5fa">$18,541</div><div class="sb">Ana Para Girişi</div></div>
-  <div class="hc"><div class="lb">Net Kar</div><div class="vl green">$5,217 (%28.14)</div><div class="sb">Net Getiri</div></div>
+  <div class="hc"><div class="lb">Net Kar</div><div class="vl green">$3,942 (%21.26)</div><div class="sb">Net Getiri</div></div>
   <div class="hc"><div class="lb">Beta</div><div class="vl" style="color:#9ca3af">β 2.59</div><div class="sb">Ağırlıklı Ortalama</div></div>
 </div>
 <div class="tabs">
@@ -264,7 +264,6 @@ function updateRange(range, el) {
   dataToProcess.forEach(item => {
     if (!item.tarih) return;
 
-    // Tarih ayırıcı hem nokta hem eğik çizgi destekli
     var p = String(item.tarih).split(/[./]/);
     if (p.length < 3) return;
 

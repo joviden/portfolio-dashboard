@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Portföy Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -12,63 +11,37 @@
   .dash{max-width:1300px;margin:0 auto}
   .ph{display:flex;justify-content:space-between;margin-bottom:14px}
   .pt{font-size:14px;font-weight:800;color:#fbbf24;font-family:'Inter',sans-serif}
-  .ld{font-size:10px;color:#34d399;font-weight:600}
-
-  .hcards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-  .hc { background: linear-gradient(135deg, #161929, #1c2038); border: 1px solid #252a40; border-radius: 18px; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-  .hc .lb { font-size: 12px; font-weight: 800; color: #ffffff; text-transform: uppercase; margin-bottom: 8px; opacity: 0.9; letter-spacing: 0.5px; } 
-  .hc .vl { font-size: 16px; font-weight: 800; font-family: 'Inter', sans-serif; }
-  .hc .sb { font-size: 10px; font-weight: 800; color: #ffffff; margin-top: 6px; opacity: 0.8; }
-
-  /* PERFORMANS ŞERİDİ - MOBİL UYUMLU SCROLL */
-  .perf-strip-wrapper { overflow-x: auto; margin-bottom: 15px; -webkit-overflow-scrolling: touch; }
-  .perf-strip { display: flex; gap: 8px; width: max-content; padding-bottom: 5px; }
-  .perf-item { background: #13162a; border: 1px solid #252a40; border-radius: 10px; padding: 8px 14px; display: flex; flex-direction: column; min-width: 85px; align-items: center; }
-  .perf-label { font-size: 9px; font-weight: 700; opacity: 0.6; margin-bottom: 2px; }
-  .perf-value { font-size: 13px; font-weight: 800; font-family: 'Inter'; }
-
-  .tabs { display: flex; gap: 5px; background: #13162a; border-radius: 16px; padding: 5px; border: 1px solid #252a40; margin-bottom: 12px; }
-  .tab { flex: 1; padding: 9px; font-size: 12px; font-weight: 700; cursor: pointer; border-radius: 12px; color: #cbd5e1; background: transparent; border: none; transition: 0.2s; text-align: center; }
-  .tab.active { background: #fbbf24; color: #0d0f1a; }
-
-  .filter-bar { display: flex; gap: 4px; background: #13162a; border-radius: 10px; padding: 3px; border: 1px solid #252a40; margin-bottom: 10px; width: fit-content; margin-left: auto; }
-  .f-btn { padding: 5px 12px; font-size: 10px; font-weight: 700; cursor: pointer; border-radius: 8px; color: #94a3b8; background: transparent; border: none; transition: 0.2s; }
-  .f-btn.active { background: #60a5fa; color: #0d0f1a; }
-
+  .hcards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+  .hc{background:linear-gradient(135deg,#161929,#1c2038);border:1px solid #252a40;border-radius:18px;padding:20px 16px;text-align:center}
+  .hc .lb{font-size:11px;font-weight:800;text-transform:uppercase;margin-bottom:8px;opacity:0.8}
+  .hc .vl{font-size:16px;font-weight:800;font-family:'Inter'}
+  .tabs{display:flex;gap:5px;background:#13162a;border-radius:16px;padding:5px;border:1px solid #252a40;margin-bottom:12px}
+  .tab{flex:1;padding:10px;font-size:12px;font-weight:700;cursor:pointer;border-radius:12px;color:#cbd5e1;background:transparent;border:none;text-align:center}
+  .tab.active{background:#fbbf24;color:#0d0f1a}
+  .perf-strip-wrapper{overflow-x:auto;margin-bottom:15px;padding-bottom:5px}
+  .perf-strip{display:flex;gap:8px;width:max-content}
+  .perf-item{background:#13162a;border:1px solid #252a40;border-radius:10px;padding:8px 14px;display:flex;flex-direction:column;min-width:85px;align-items:center}
+  .perf-label{font-size:9px;font-weight:700;opacity:0.6}
+  .perf-value{font-size:13px;font-weight:800;font-family:'Inter'}
   .sec{display:none}.sec.active{display:block}
-  .pn{background:#13162a; border:1px solid #252a40; border-radius:18px; padding:14px; margin-bottom:10px}
-  .pnt{font-size:10px; font-weight:700; color:#ffffff; text-transform:uppercase; margin-bottom:10px; border-bottom:1px solid #1f2440; padding-bottom:8px}
+  .pn{background:#13162a;border:1px solid #252a40;border-radius:18px;padding:14px;margin-bottom:10px}
+  .pnt{font-size:10px;font-weight:700;text-transform:uppercase;margin-bottom:10px;border-bottom:1px solid #1f2440;padding-bottom:8px}
   .tw2{overflow-x:auto}
-  table{width:100%; border-collapse:collapse; font-size:11px}
-  th{color:#ffffff; font-size:9px; text-transform:uppercase; padding:5px 6px; text-align:left; border-bottom:1px solid #1f2440; opacity:0.8}
-  td{padding:7px 6px; border-bottom:1px solid #191e30; color:#ffffff}
-  td.sym{font-weight:800; color:#fbbf24; font-size:12px}
-  .lightText{color:#f1f5f9!important; font-size:10px;}
-  .green{color:#34d399!important}.red{color:#f87171!important}.yel{color:#fbbf24!important}.gold{color:#fbbf24!important}.bld{font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  th{font-size:9px;text-transform:uppercase;padding:6px;text-align:left;border-bottom:1px solid #1f2440;opacity:0.7}
+  td{padding:8px 6px;border-bottom:1px solid #191e30}
+  .sym{font-weight:800;color:#fbbf24}.green{color:#34d399}.red{color:#f87171}.yel{color:#fbbf24}.gold{color:#fbbf24}.bld{font-weight:700}.lightText{color:#f1f5f9;font-size:10px}
+  .yg{display:flex;flex-direction:column;gap:10px}
+  .yb{background:#0f1221;border:1px solid #1f2440;border-radius:12px;padding:12px}
+  .yh{font-size:10px;font-weight:800;text-transform:uppercase;margin-bottom:5px;border-bottom:1px solid #1f2440;padding-bottom:5px}
 </style>
 </head>
 <body>
 <div class="dash">
-  <div class="ph">
-    <div><div class="pt">Yatırım Günlüğü</div></div>
-    <div class="ld">03.05.2026 09:17:27</div>
-  </div>
-
+  <div class="ph"><div class="pt">Yatırım Günlüğü</div><div style="font-size:10px;color:#34d399">03.05.2026 09:36:42</div></div>
   <div class="hcards">
-    <div class="hc">
-      <div class="lb">Portföy</div>
-      <div class="vl gold">
-        <div>$24,226</div>
-        <div style="margin-top: 4px;">₺1.093.606</div>
-      </div>
-    </div>
-    <div class="hc">
-      <div class="lb">Tüm Zamanlar Kâr</div>
-      <div class="vl green">
-        <div>$5,685</div>
-        <div style="margin-top: 4px;">%30.66</div>
-      </div>
-    </div>
+    <div class="hc"><div class="lb">Portföy</div><div class="vl gold">$24,225.637</div></div>
+    <div class="hc"><div class="lb">Net Kâr</div><div class="vl green">%30.66</div></div>
   </div>
 
   <div class="tabs">
@@ -79,159 +52,47 @@
   </div>
 
   <div id="tab-analiz" class="sec active">
-    <div class="pn"><div class="pnt">Portföy</div><div class="tw2"><table><tr><th>Varlık</th><th>Cinsi</th><th>Değer $</th><th>Kar %</th><th>Oran</th><th>Beta</th></tr><tr>
-      <td class="sym">QLD</td>
-      <td class="nm lightText">Etf</td>
-      <td>$10,734</td>
-      <td class="green">+24.7%</td>
-      <td class="yel">44.3%</td>
-      <td>2.48</td>
-    </tr><tr>
-      <td class="sym">UGL</td>
-      <td class="nm lightText">Etf</td>
-      <td>$1,301</td>
-      <td class="red">-12.1%</td>
-      <td class="yel">5.4%</td>
-      <td>1.68</td>
-    </tr><tr>
-      <td class="sym">USD</td>
-      <td class="nm lightText">Etf</td>
-      <td>$2,989</td>
-      <td class="green">+49.4%</td>
-      <td class="yel">12.3%</td>
-      <td>3.76</td>
-    </tr><tr>
-      <td class="sym">URSP</td>
-      <td class="nm lightText">Etf</td>
-      <td>$3,323</td>
-      <td class="green">+0.9%</td>
-      <td class="yel">13.7%</td>
-      <td>1.47</td>
-    </tr><tr>
-      <td class="sym">AGQ</td>
-      <td class="nm lightText">Etf</td>
-      <td>$2,080</td>
-      <td class="red">-5.5%</td>
-      <td class="yel">8.6%</td>
-      <td>4.72</td>
-    </tr><tr>
-      <td class="sym">MSTR</td>
-      <td class="nm lightText">Etf</td>
-      <td>$2,055</td>
-      <td class="green">+3.1%</td>
-      <td class="yel">8.5%</td>
-      <td>3.94</td>
-    </tr><tr>
-      <td class="sym">Cash</td>
-      <td class="nm lightText"></td>
-      <td>$1,743</td>
-      <td class="green">+0.0%</td>
-      <td class="yel">7.2%</td>
-      <td>-</td>
-    </tr></table></div></div>
-    <div class="pn"><div class="pnt">Analiz</div><div class="tw2"><table><tr><th>Varlık</th><th>Temel Analiz</th><th>Teknik Analiz</th><th>Puan</th><th>Öneri</th></tr><tr>
-      <td class="sym">QLD</td>
-      <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
-      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
-      <td class="gold bld">62</td>
-      <td class="red bld">Kar Al</td>
-    </tr><tr>
-      <td class="sym">UGL</td>
-      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
-      <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
-      <td class="gold bld">52</td>
-      <td class="yel bld">Tut</td>
-    </tr><tr>
-      <td class="sym">USD</td>
-      <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
-      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
-      <td class="gold bld">67</td>
-      <td class="yel bld">Tut</td>
-    </tr><tr>
-      <td class="sym">URSP</td>
-      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
-      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
-      <td class="gold bld">62</td>
-      <td class="yel bld">Tut</td>
-    </tr><tr>
-      <td class="sym">AGQ</td>
-      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
-      <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
-      <td class="gold bld">42</td>
-      <td class="red bld">Azalt</td>
-    </tr><tr>
-      <td class="sym">MSTR</td>
-      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
-      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
-      <td class="gold bld">64</td>
-      <td class="yel bld">Tut</td>
-    </tr></table></div></div>
+    <div class="pn"><div class="pnt">Portföy</div><div class="tw2"><table><tr><th>Varlık</th><th>Cinsi</th><th>Değer $</th><th>Kar %</th><th>Oran</th><th>Beta</th></tr><tr><td class="sym">QLD</td><td class="nm lightText">Etf</td><td>$10,734.255</td><td class="green">+24.7%</td><td class="yel">44.3%</td><td>2.48</td></tr><tr><td class="sym">UGL</td><td class="nm lightText">Etf</td><td>$1,300.706</td><td class="red">-12.1%</td><td class="yel">5.4%</td><td>1.68</td></tr><tr><td class="sym">USD</td><td class="nm lightText">Etf</td><td>$2,989.348</td><td class="green">+49.4%</td><td class="yel">12.3%</td><td>3.76</td></tr><tr><td class="sym">URSP</td><td class="nm lightText">Etf</td><td>$3,322.989</td><td class="green">+0.9%</td><td class="yel">13.7%</td><td>1.47</td></tr><tr><td class="sym">AGQ</td><td class="nm lightText">Etf</td><td>$2,080.296</td><td class="red">-5.5%</td><td class="yel">8.6%</td><td>4.72</td></tr><tr><td class="sym">MSTR</td><td class="nm lightText">Etf</td><td>$2,055.042</td><td class="green">+3.1%</td><td class="yel">8.5%</td><td>3.94</td></tr><tr><td class="sym">Cash</td><td class="nm lightText"></td><td>$1,743</td><td class="green">+0.0%</td><td class="yel">7.2%</td><td>-</td></tr></table></div></div>
+    <div class="pn"><div class="pnt">Analiz</div><div class="tw2"><table><tr><th>Varlık</th><th>Temel</th><th>Teknik</th><th>Puan</th><th>Öneri</th></tr><tr><td class="sym">QLD</td><td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">62</td><td class="red bld">Kar Al</td></tr><tr><td class="sym">UGL</td><td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Düşüş Trendi/Ayı)</td><td class="gold bld">52</td><td class="yel bld">Tut</td></tr><tr><td class="sym">USD</td><td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">67</td><td class="yel bld">Tut</td></tr><tr><td class="sym">URSP</td><td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">62</td><td class="yel bld">Tut</td></tr><tr><td class="sym">AGQ</td><td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Düşüş Trendi/Ayı)</td><td class="gold bld">42</td><td class="red bld">Azalt</td></tr><tr><td class="sym">MSTR</td><td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">64</td><td class="yel bld">Tut</td></tr></table></div></div>
+  </div>
+
+  <div id="tab-yorum" class="sec">
+    <div class="pn"><div class="pnt">Günlük Analiz & Yorumlar</div><div class="yg">
+      <div class="yb"><div class="yh" style="color:#60a5fa">📊 Durum</div><div class="yt">Toplam 24,237$ | Günlük +413$ | USD kâr %9.8 | TL kâr %13.3</div></div>
+      <div class="yb"><div class="yh" style="color:#34d399">💼 Performans</div><div class="yt">En iyi → USD +%45.6 | En kötü → UGL -%14.4</div></div>
+      <div class="yb"><div class="yh" style="color:#f87171">⚠️ Risk</div><div class="yt">QLD %44 portföy ağırlığı ile RSI aşırı alım bölgesinde (74.91), kısmi kâr alımı değerlendirilmeli. AGQ düşüş trendinde ve SuperTrend'in %9 altında, kayıplar derinleşebilir.</div></div>
+      <div class="yb"><div class="yh" style="color:#fbbf24">🎯 Eylem</div><div class="yt">QLD'den kısmi kâr al ve AGQ'yu küçülterek nakiti artır; UWM veya EEM'e giriş değerlendir.</div></div>
+    </div></div>
+  </div>
+
+  <div id="tab-izleme" class="sec">
+    <div class="pn"><div class="pnt">İlgilendiğim Varlıklar</div><div class="tw2"><table><tr><th>Varlık</th><th>İsim</th><th>Fiyat</th><th>Temel</th><th>Teknik</th><th>Puan</th><th>Öneri</th></tr><tr><td class="sym">UWM</td><td class="nm lightText">ProShares Ultra Russell2000</td><td>$58.71</td><td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">58</td><td class="green bld">Al</td></tr><tr><td class="sym">XBI</td><td class="nm lightText">State Street SPDR S&P Biotech ETF</td><td>$130.60</td><td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa, Kırılımın Eşiğinde)</td><td class="gold bld">47</td><td class="yel bld">Bekle</td></tr><tr><td class="sym">EEM</td><td class="nm lightText">iShares MSCI Emerging Markets ETF</td><td>$64.61</td><td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">61</td><td class="green bld">Al</td></tr><tr><td class="sym">SOFI</td><td class="nm lightText">SoFi Technologies Inc</td><td>$16.15</td><td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Düşüş Trendi/Ayı)</td><td class="gold bld">40</td><td class="red bld">Uzak Dur</td></tr></table></div></div>
   </div>
 
   <div id="tab-performans" class="sec">
-    <div class="perf-strip-wrapper">
-      <div class="perf-strip">
-        <div class="perf-item"><span class="perf-label">HAFTALIK</span><span class="perf-value green">+3.1%</span></div>
-        <div class="perf-item"><span class="perf-label">AYLIK</span><span class="perf-value green">+35.4%</span></div>
-        <div class="perf-item"><span class="perf-label">6 AYLIK</span><span class="perf-value green">+125.1%</span></div>
-        <div class="perf-item"><span class="perf-label">YILLIK</span><span class="perf-value green">+184.0%</span></div>
-        <div class="perf-item"><span class="perf-label">YTD</span><span class="perf-value green">+20.2%</span></div>
-      </div>
-    </div>
-
-    <div class="filter-bar">
-      <button class="f-btn active" onclick="updateRange('D',this)">Günlük</button>
-      <button class="f-btn" onclick="updateRange('M',this)">Aylık</button>
-      <button class="f-btn" onclick="updateRange('Q',this)">Çeyrek</button>
-      <button class="f-btn" onclick="updateRange('Y',this)">Yıllık</button>
-    </div>
-    <div class="pn"><div class="pnt">Portföy Değeri (USD)</div><div style="height:220px"><canvas id="sparkChart"></canvas></div></div>
-    <div class="pn"><div class="pnt">Tarihsel Kar/Zarar (USD)</div><div style="height:180px"><canvas id="karChart"></canvas></div></div>
+    <div class="perf-strip-wrapper"><div class="perf-strip">
+      <div class="perf-item"><span class="perf-label">HAFTALIK</span><span class="perf-value green">+3.1%</span></div>
+      <div class="perf-item"><span class="perf-label">AYLIK</span><span class="perf-value green">+35.4%</span></div>
+      <div class="perf-item"><span class="perf-label">6 AYLIK</span><span class="perf-value green">+125.1%</span></div>
+      <div class="perf-item"><span class="perf-label">YILLIK</span><span class="perf-value green">+184.0%</span></div>
+      <div class="perf-item"><span class="perf-label">YTD</span><span class="perf-value green">+20.2%</span></div>
+    </div></div>
+    <div class="pn"><div class="pnt">Portföy Değeri</div><div style="height:200px"><canvas id="sparkChart"></canvas></div></div>
   </div>
 </div>
 
 <script>
   const raw = [{"tarih":"11/10/25","dateObj":"2025-10-10T21:00:00.000Z","usd":8365,"kar":0,"para":8365},{"tarih":"12/10/25","dateObj":"2025-10-11T21:00:00.000Z","usd":8365,"kar":0,"para":0},{"tarih":"13/10/25","dateObj":"2025-10-12T21:00:00.000Z","usd":8365,"kar":0,"para":0},{"tarih":"14/10/25","dateObj":"2025-10-13T21:00:00.000Z","usd":8365,"kar":-46,"para":0},{"tarih":"15/10/25","dateObj":"2025-10-14T21:00:00.000Z","usd":8365,"kar":42,"para":0},{"tarih":"16/10/25","dateObj":"2025-10-15T21:00:00.000Z","usd":8365,"kar":-87,"para":0},{"tarih":"17/10/25","dateObj":"2025-10-16T21:00:00.000Z","usd":8371,"kar":106,"para":0},{"tarih":"20/10/25","dateObj":"2025-10-19T21:00:00.000Z","usd":8475,"kar":212,"para":0},{"tarih":"21/10/25","dateObj":"2025-10-20T21:00:00.000Z","usd":8686,"kar":-5,"para":0},{"tarih":"22/10/25","dateObj":"2025-10-21T21:00:00.000Z","usd":8682,"kar":-163,"para":0},{"tarih":"23/10/25","dateObj":"2025-10-22T21:00:00.000Z","usd":9226,"kar":159,"para":0},{"tarih":"24/10/25","dateObj":"2025-10-23T21:00:00.000Z","usd":9384,"kar":192,"para":0},{"tarih":"27/10/25","dateObj":"2025-10-26T21:00:00.000Z","usd":9576,"kar":335,"para":682},{"tarih":"28/10/25","dateObj":"2025-10-27T21:00:00.000Z","usd":10575,"kar":46,"para":0},{"tarih":"29/10/25","dateObj":"2025-10-28T21:00:00.000Z","usd":10491,"kar":-150,"para":0},{"tarih":"30/10/25","dateObj":"2025-10-29T21:00:00.000Z","usd":10685,"kar":135,"para":0},{"tarih":"03/11/25","dateObj":"2025-11-02T21:00:00.000Z","usd":10626,"kar":29,"para":0},{"tarih":"04/11/25","dateObj":"2025-11-03T21:00:00.000Z","usd":10554,"kar":-186,"para":0},{"tarih":"05/11/25","dateObj":"2025-11-04T21:00:00.000Z","usd":10294,"kar":-260,"para":3526},{"tarih":"06/11/25","dateObj":"2025-11-05T21:00:00.000Z","usd":14829,"kar":130,"para":0},{"tarih":"07/11/25","dateObj":"2025-11-06T21:00:00.000Z","usd":14552,"kar":-277,"para":985},{"tarih":"10/11/25","dateObj":"2025-11-09T21:00:00.000Z","usd":14925,"kar":373,"para":0},{"tarih":"11/11/25","dateObj":"2025-11-10T21:00:00.000Z","usd":15448,"kar":523,"para":0},{"tarih":"12/11/25","dateObj":"2025-11-11T21:00:00.000Z","usd":15369,"kar":-79,"para":0},{"tarih":"13/11/25","dateObj":"2025-11-12T21:00:00.000Z","usd":15598,"kar":229,"para":0},{"tarih":"14/11/25","dateObj":"2025-11-13T21:00:00.000Z","usd":14956,"kar":-642,"para":0},{"tarih":"17/11/25","dateObj":"2025-11-16T21:00:00.000Z","usd":14738,"kar":-218,"para":0},{"tarih":"18/11/25","dateObj":"2025-11-17T21:00:00.000Z","usd":14329,"kar":-409,"para":0},{"tarih":"19/11/25","dateObj":"2025-11-18T21:00:00.000Z","usd":14266,"kar":-63,"para":0},{"tarih":"20/11/25","dateObj":"2025-11-19T21:00:00.000Z","usd":14360,"kar":94,"para":0},{"tarih":"21/11/25","dateObj":"2025-11-20T21:00:00.000Z","usd":13474,"kar":-886,"para":0},{"tarih":"24/11/25","dateObj":"2025-11-23T21:00:00.000Z","usd":13770,"kar":296,"para":0},{"tarih":"25/11/25","dateObj":"2025-11-24T21:00:00.000Z","usd":14292,"kar":522,"para":0},{"tarih":"26/11/25","dateObj":"2025-11-25T21:00:00.000Z","usd":14409,"kar":117,"para":0},{"tarih":"27/11/25","dateObj":"2025-11-26T21:00:00.000Z","usd":14761,"kar":352,"para":0},{"tarih":"28/11/25","dateObj":"2025-11-27T21:00:00.000Z","usd":14762,"kar":1,"para":0},{"tarih":"02/12/25","dateObj":"2025-12-01T21:00:00.000Z","usd":14980,"kar":218,"para":0},{"tarih":"03/12/25","dateObj":"2025-12-02T21:00:00.000Z","usd":15080,"kar":100,"para":0},{"tarih":"04/12/25","dateObj":"2025-12-03T21:00:00.000Z","usd":15255,"kar":175,"para":0},{"tarih":"05/12/25","dateObj":"2025-12-04T21:00:00.000Z","usd":15184,"kar":-71,"para":0},{"tarih":"08/12/25","dateObj":"2025-12-07T21:00:00.000Z","usd":15945,"kar":-7,"para":768},{"tarih":"09/12/25","dateObj":"2025-12-08T21:00:00.000Z","usd":15860,"kar":-85,"para":0},{"tarih":"10/12/25","dateObj":"2025-12-09T21:00:00.000Z","usd":16151,"kar":291,"para":0},{"tarih":"11/12/25","dateObj":"2025-12-10T21:00:00.000Z","usd":17880,"kar":-11,"para":1740},{"tarih":"12/12/25","dateObj":"2025-12-11T21:00:00.000Z","usd":18096,"kar":216,"para":0},{"tarih":"15/12/25","dateObj":"2025-12-14T21:00:00.000Z","usd":17952,"kar":-144,"para":465},{"tarih":"16/12/25","dateObj":"2025-12-15T21:00:00.000Z","usd":17943,"kar":-9,"para":0},{"tarih":"17/12/25","dateObj":"2025-12-16T21:00:00.000Z","usd":17854,"kar":-89,"para":0},{"tarih":"18/12/25","dateObj":"2025-12-17T21:00:00.000Z","usd":17598,"kar":-256,"para":0},{"tarih":"19/12/25","dateObj":"2025-12-18T21:00:00.000Z","usd":17958,"kar":360,"para":0},{"tarih":"22/12/25","dateObj":"2025-12-21T21:00:00.000Z","usd":18194,"kar":236,"para":0},{"tarih":"23/12/25","dateObj":"2025-12-22T21:00:00.000Z","usd":19091,"kar":897,"para":0},{"tarih":"24/12/25","dateObj":"2025-12-23T21:00:00.000Z","usd":19438,"kar":347,"para":0},{"tarih":"25/12/25","dateObj":"2025-12-24T21:00:00.000Z","usd":19430,"kar":-8,"para":0},{"tarih":"26/12/25","dateObj":"2025-12-25T21:00:00.000Z","usd":19505,"kar":75,"para":0},{"tarih":"29/12/25","dateObj":"2025-12-28T21:00:00.000Z","usd":19963,"kar":458,"para":0},{"tarih":"30/12/25","dateObj":"2025-12-29T21:00:00.000Z","usd":19737,"kar":-226,"para":0},{"tarih":"31/12/25","dateObj":"2025-12-30T21:00:00.000Z","usd":19759,"kar":22,"para":0},{"tarih":"02/01/26","dateObj":"2026-01-01T21:00:00.000Z","usd":19764,"kar":5,"para":0},{"tarih":"05/01/26","dateObj":"2026-01-04T21:00:00.000Z","usd":19850,"kar":86,"para":0},{"tarih":"06/01/26","dateObj":"2026-01-05T21:00:00.000Z","usd":20316,"kar":466,"para":0},{"tarih":"07/01/26","dateObj":"2026-01-06T21:00:00.000Z","usd":20656,"kar":340,"para":0},{"tarih":"08/01/26","dateObj":"2026-01-07T21:00:00.000Z","usd":20341,"kar":-315,"para":0},{"tarih":"09/01/26","dateObj":"2026-01-08T21:00:00.000Z","usd":20300,"kar":-41,"para":0},{"tarih":"12/01/26","dateObj":"2026-01-11T21:00:00.000Z","usd":20606,"kar":306,"para":0},{"tarih":"13/01/26","dateObj":"2026-01-12T21:00:00.000Z","usd":20817,"kar":211,"para":0},{"tarih":"14/01/26","dateObj":"2026-01-13T21:00:00.000Z","usd":21133,"kar":316,"para":0},{"tarih":"15/01/26","dateObj":"2026-01-14T21:00:00.000Z","usd":20949,"kar":-184,"para":0},{"tarih":"16/01/26","dateObj":"2026-01-15T21:00:00.000Z","usd":21003,"kar":54,"para":0},{"tarih":"19/01/26","dateObj":"2026-01-18T21:00:00.000Z","usd":20754,"kar":-249,"para":0},{"tarih":"20/01/26","dateObj":"2026-01-19T21:00:00.000Z","usd":20566,"kar":-188,"para":0},{"tarih":"21/01/26","dateObj":"2026-01-20T21:00:00.000Z","usd":19799,"kar":-767,"para":0},{"tarih":"22/01/26","dateObj":"2026-01-21T21:00:00.000Z","usd":20189,"kar":390,"para":0},{"tarih":"23/01/26","dateObj":"2026-01-22T21:00:00.000Z","usd":20318,"kar":129,"para":0},{"tarih":"26/01/26","dateObj":"2026-01-25T21:00:00.000Z","usd":20227,"kar":-91,"para":0},{"tarih":"27/01/26","dateObj":"2026-01-26T21:00:00.000Z","usd":20366,"kar":139,"para":0},{"tarih":"28/01/26","dateObj":"2026-01-27T21:00:00.000Z","usd":20716,"kar":350,"para":0},{"tarih":"29/01/26","dateObj":"2026-01-28T21:00:00.000Z","usd":20742,"kar":26,"para":0},{"tarih":"30/01/26","dateObj":"2026-01-29T21:00:00.000Z","usd":20067,"kar":-675,"para":0},{"tarih":"02/02/26","dateObj":"2026-02-01T21:00:00.000Z","usd":18894,"kar":-1173,"para":0},{"tarih":"03/02/26","dateObj":"2026-02-02T21:00:00.000Z","usd":19091,"kar":197,"para":0},{"tarih":"04/02/26","dateObj":"2026-02-03T21:00:00.000Z","usd":18869,"kar":-222,"para":0},{"tarih":"05/02/26","dateObj":"2026-02-04T21:00:00.000Z","usd":18870,"kar":1,"para":0},{"tarih":"06/02/26","dateObj":"2026-02-05T21:00:00.000Z","usd":17909,"kar":-961,"para":0},{"tarih":"09/02/26","dateObj":"2026-02-08T21:00:00.000Z","usd":18556,"kar":647,"para":0},{"tarih":"10/02/26","dateObj":"2026-02-09T21:00:00.000Z","usd":18826,"kar":270,"para":0},{"tarih":"11/02/26","dateObj":"2026-02-10T21:00:00.000Z","usd":18609,"kar":-217,"para":0},{"tarih":"12/02/26","dateObj":"2026-02-11T21:00:00.000Z","usd":18788,"kar":179,"para":0},{"tarih":"13/02/26","dateObj":"2026-02-12T21:00:00.000Z","usd":17909,"kar":-879,"para":0},{"tarih":"16/02/26","dateObj":"2026-02-15T21:00:00.000Z","usd":18231,"kar":322,"para":0},{"tarih":"17/02/26","dateObj":"2026-02-16T21:00:00.000Z","usd":18231,"kar":0,"para":0},{"tarih":"18/02/26","dateObj":"2026-02-17T21:00:00.000Z","usd":17824,"kar":-407,"para":0},{"tarih":"19/02/26","dateObj":"2026-02-18T21:00:00.000Z","usd":18256,"kar":432,"para":0},{"tarih":"20/02/26","dateObj":"2026-02-19T21:00:00.000Z","usd":18200,"kar":-56,"para":0},{"tarih":"23/02/26","dateObj":"2026-02-22T21:00:00.000Z","usd":18650,"kar":450,"para":0},{"tarih":"24/02/26","dateObj":"2026-02-23T21:00:00.000Z","usd":18682,"kar":32,"para":0},{"tarih":"25/02/26","dateObj":"2026-02-24T21:00:00.000Z","usd":18757,"kar":75,"para":0},{"tarih":"26/02/26","dateObj":"2026-02-25T21:00:00.000Z","usd":19074,"kar":317,"para":0},{"tarih":"27/02/26","dateObj":"2026-02-26T21:00:00.000Z","usd":18884,"kar":-190,"para":0},{"tarih":"02/03/26","dateObj":"2026-03-01T21:00:00.000Z","usd":18973,"kar":89,"para":0},{"tarih":"03/03/26","dateObj":"2026-03-02T21:00:00.000Z","usd":19157,"kar":184,"para":0},{"tarih":"04/03/26","dateObj":"2026-03-03T21:00:00.000Z","usd":18295,"kar":-862,"para":0},{"tarih":"05/03/26","dateObj":"2026-03-04T21:00:00.000Z","usd":18703,"kar":408,"para":0},{"tarih":"06/03/26","dateObj":"2026-03-05T21:00:00.000Z","usd":18579,"kar":-124,"para":0},{"tarih":"09/03/26","dateObj":"2026-03-08T21:00:00.000Z","usd":19112,"kar":-477,"para":1010},{"tarih":"10/03/26","dateObj":"2026-03-09T21:00:00.000Z","usd":19633,"kar":521,"para":0},{"tarih":"11/03/26","dateObj":"2026-03-10T21:00:00.000Z","usd":19774,"kar":141,"para":0},{"tarih":"16/03/26","dateObj":"2026-03-15T21:00:00.000Z","usd":18726,"kar":-1048,"para":0},{"tarih":"17/03/26","dateObj":"2026-03-16T21:00:00.000Z","usd":19071,"kar":345,"para":0},{"tarih":"18/03/26","dateObj":"2026-03-17T21:00:00.000Z","usd":19166,"kar":95,"para":0},{"tarih":"19/03/26","dateObj":"2026-03-18T21:00:00.000Z","usd":18520,"kar":-646,"para":0},{"tarih":"20/03/26","dateObj":"2026-03-19T21:00:00.000Z","usd":18255,"kar":-265,"para":0},{"tarih":"23/03/26","dateObj":"2026-03-22T21:00:00.000Z","usd":17513,"kar":-742,"para":0},{"tarih":"24/03/26","dateObj":"2026-03-23T21:00:00.000Z","usd":17815,"kar":302,"para":0},{"tarih":"25/03/26","dateObj":"2026-03-24T21:00:00.000Z","usd":17637,"kar":-178,"para":0},{"tarih":"26/03/26","dateObj":"2026-03-25T21:00:00.000Z","usd":17971,"kar":334,"para":0},{"tarih":"27/03/26","dateObj":"2026-03-26T21:00:00.000Z","usd":17971,"kar":0,"para":0},{"tarih":"30/03/26","dateObj":"2026-03-29T21:00:00.000Z","usd":16430,"kar":-1541,"para":0},{"tarih":"31/03/26","dateObj":"2026-03-30T21:00:00.000Z","usd":16061,"kar":-369,"para":0},{"tarih":"01/04/26","dateObj":"2026-03-31T21:00:00.000Z","usd":17197,"kar":1136,"para":0},{"tarih":"02/04/26","dateObj":"2026-04-01T21:00:00.000Z","usd":17608,"kar":411,"para":0},{"tarih":"03/04/26","dateObj":"2026-04-02T21:00:00.000Z","usd":17552,"kar":-56,"para":0},{"tarih":"06/04/26","dateObj":"2026-04-05T21:00:00.000Z","usd":17552,"kar":0,"para":0},{"tarih":"07/04/26","dateObj":"2026-04-06T21:00:00.000Z","usd":17815,"kar":263,"para":0},{"tarih":"08/04/26","dateObj":"2026-04-07T21:00:00.000Z","usd":17890,"kar":75,"para":0},{"tarih":"09/04/26","dateObj":"2026-04-08T21:00:00.000Z","usd":18901,"kar":1011,"para":0},{"tarih":"10/04/26","dateObj":"2026-04-09T21:00:00.000Z","usd":19220,"kar":319,"para":1000},{"tarih":"13/04/26","dateObj":"2026-04-12T21:00:00.000Z","usd":20404,"kar":184,"para":0},{"tarih":"14/04/26","dateObj":"2026-04-13T21:00:00.000Z","usd":20794,"kar":390,"para":0},{"tarih":"15/04/26","dateObj":"2026-04-14T21:00:00.000Z","usd":21595,"kar":801,"para":0},{"tarih":"16/04/26","dateObj":"2026-04-15T21:00:00.000Z","usd":22095,"kar":500,"para":0},{"tarih":"17/04/26","dateObj":"2026-04-16T21:00:00.000Z","usd":22267,"kar":172,"para":0},{"tarih":"20/04/26","dateObj":"2026-04-19T21:00:00.000Z","usd":22994,"kar":727,"para":0},{"tarih":"21/04/26","dateObj":"2026-04-20T21:00:00.000Z","usd":22845,"kar":-149,"para":0},{"tarih":"22/04/26","dateObj":"2026-04-21T21:00:00.000Z","usd":22444,"kar":-401,"para":0},{"tarih":"23/04/26","dateObj":"2026-04-22T21:00:00.000Z","usd":23359,"kar":915,"para":0},{"tarih":"24/04/26","dateObj":"2026-04-23T21:00:00.000Z","usd":23044,"kar":-315,"para":0},{"tarih":"27/04/26","dateObj":"2026-04-26T21:00:00.000Z","usd":23934,"kar":890,"para":0},{"tarih":"28/04/26","dateObj":"2026-04-27T21:00:00.000Z","usd":24011,"kar":77,"para":0},{"tarih":"29/04/26","dateObj":"2026-04-28T21:00:00.000Z","usd":23408,"kar":-603,"para":0},{"tarih":"30/04/26","dateObj":"2026-04-29T21:00:00.000Z","usd":23518,"kar":110,"para":0},{"tarih":"01/05/26","dateObj":"2026-04-30T21:00:00.000Z","usd":23758,"kar":240,"para":0}];
-  let charts = {};
-  const G={color:'rgba(255,255,255,0.05)'}, T={color:'#ffffff',font:{size:9}};
-
   function showTab(n,el){
     document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     document.getElementById('tab-'+n).classList.add('active');
     el.classList.add('active');
   }
-
-  function init(){
-    const opt = { maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:T,grid:G},y:{ticks:T,grid:G}} };
-    charts.spark = new Chart(document.getElementById('sparkChart'),{type:'line',data:{labels:[],datasets:[{borderColor:'#fbbf24',fill:true,backgroundColor:'rgba(251,191,36,0.1)',tension:0.3,pointRadius:0}]},options:opt});
-    charts.kar = new Chart(document.getElementById('karChart'),{type:'bar',data:{labels:[],datasets:[{backgroundColor:c=>c.raw>=0?'#34d399':'#f87171',borderRadius:4}]},options:opt});
-    updateRange('D');
+  window.onload = function(){
+    const ctx = document.getElementById('sparkChart').getContext('2d');
+    new Chart(ctx,{type:'line',data:{labels:raw.map(r=>r.tarih),datasets:[{borderColor:'#fbbf24',data:raw.map(r=>r.usd),tension:0.3,pointRadius:0}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#fff',size:8},grid:{display:false}},y:{ticks:{color:'#fff',size:8}}}}});
   }
-
-  function updateRange(range, el) {
-    if (el) {
-      document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
-      el.classList.add('active');
-    }
-    const groups = {};
-    raw.forEach(item => {
-      const p = item.tarih.split('/');
-      const key = range==='D' ? item.tarih : range==='M' ? p[1]+'/'+p[2] : range==='Q' ? 'Q'+Math.ceil(p[1]/3)+' '+p[2] : p[2];
-      if(!groups[key]) groups[key] = { label:key, usd:0, kar:0 };
-      groups[key].usd = item.usd;
-      groups[key].kar += item.kar;
-    });
-    const filtered = Object.values(groups);
-    const labs = filtered.map(d=>d.label);
-    charts.spark.data.labels = labs;
-    charts.spark.data.datasets[0].data = filtered.map(d=>d.usd);
-    charts.spark.update();
-    charts.kar.data.labels = labs;
-    charts.kar.data.datasets[0].data = filtered.map(d=>d.kar);
-    charts.kar.update();
-  }
-  window.onload = init;
 </script>
 </body>
 </html>

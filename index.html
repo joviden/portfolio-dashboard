@@ -24,7 +24,6 @@ body{background:#0d0f1a;color:#ffffff;font-family:'DM Sans',sans-serif;padding:1
 .tab { flex: 1; padding: 9px; font-size: 12px; font-weight: 700; cursor: pointer; border-radius: 12px; color: #cbd5e1; background: transparent; border: none; transition: 0.2s; text-align: center; }
 .tab.active { background: #fbbf24; color: #0d0f1a; }
 
-/* COMPACT PERFORMANCE BAR */
 .perf-bar { overflow-x: auto; white-space: nowrap; background: #13162a; padding: 12px; border-radius: 14px; border: 1px solid #252a40; margin-bottom: 15px; display: flex; align-items: center; -webkit-overflow-scrolling: touch; }
 .perf-bar::-webkit-scrollbar { display: none; }
 .p-it { display: inline-flex; font-size: 11px; font-weight: 700; padding: 0 10px; }
@@ -54,180 +53,176 @@ td.sym{font-weight:800; color:#fbbf24; font-size:12px}
 <body>
 <div class="dash">
 <div class="ph">
- <div><div class="pt">Yatırım Günlüğü</div></div>
- <div class="ld">04.05.2026 14:57:16</div>
+  <div><div class="pt">Yatırım Günlüğü</div></div>
+  <div class="ld">04.05.2026 15:05:46</div>
 </div>
 
 <div class="hcards">
- <div class="hc">
- <div class="lb">Portföy</div>
- <div class="vl gold">
- <div>$24,060</div>
- <div style="margin-top: 4px;">₺1.087.539</div>
- </div>
- <div class="sb"></div>
- </div>
- <div class="hc">
- <div class="lb">Anapara</div>
- <div class="vl" style="color:#60a5fa">$18,541</div>
- <div class="sb">Yatırılan Tutar</div>
- </div>
- <div class="hc">
- <div class="lb">Tüm Zamanlar Kâr</div>
- <div class="vl green">
- <div>$5,519</div>
- <div style="margin-top: 4px;">%29.77</div>
- </div>
- <div class="sb"></div>
- </div>
- <div class="hc">
- <div class="lb">Beta</div>
- <div class="vl" style="color:#ffffff">2.59</div>
- <div class="sb">Ağırlıklı Ortalama</div>
- </div>
+  <div class="hc">
+  <div class="lb">Portföy</div>
+  <div class="vl gold">
+  <div>$24,060</div>
+  <div style="margin-top: 4px;">₺1.087.537</div>
+  </div>
+  <div class="sb"></div>
+  </div>
+  <div class="hc">
+  <div class="lb">Anapara</div>
+  <div class="vl" style="color:#60a5fa">$18,541</div>
+  <div class="sb">Yatırılan Tutar</div>
+  </div>
+  <div class="hc">
+  <div class="lb">Tüm Zamanlar Kâr</div>
+  <div class="vl green">
+  <div>$5,519</div>
+  <div style="margin-top: 4px;">%29.77</div>
+  </div>
+  <div class="sb"></div>
+  </div>
+  <div class="hc">
+  <div class="lb">Beta</div>
+  <div class="vl" style="color:#ffffff">2.59</div>
+  <div class="sb">Ağırlıklı Ortalama</div>
+  </div>
 </div>
 
 <div class="tabs">
- <button class="tab active" onclick="showTab('analiz',this)">Analiz</button>
- <button class="tab" onclick="showTab('yorum',this)">Yorum</button>
- <button class="tab" onclick="showTab('izleme',this)">İzleme</button>
- <button class="tab" onclick="showTab('performans',this)">Performans</button>
+  <button class="tab active" onclick="showTab('analiz',this)">Analiz</button>
+  <button class="tab" onclick="showTab('yorum',this)">Yorum</button>
+  <button class="tab" onclick="showTab('izleme',this)">İzleme</button>
+  <button class="tab" onclick="showTab('performans',this)">Performans</button>
 </div>
 
 <div id="tab-analiz" class="sec active">
- <div class="pn"><div class="pnt">Portföy</div><div class="tw2"><table><tr><th>Varlık</th><th>Cinsi</th><th>Değer $</th><th>Kar %</th><th>Oran</th><th>Beta</th></tr><tr>
- <td class="sym">QLD</td>
- <td class="nm lightText">Etf</td>
- <td>$10,697</td>
- <td class="green">+24.5%</td>
- <td class="yel">44.5%</td>
- <td>2.48</td>
- </tr><tr>
- <td class="sym">UGL</td>
- <td class="nm lightText">Etf</td>
- <td>$1,275</td>
- <td class="red">-7.1%</td>
- <td class="yel">5.3%</td>
- <td>1.68</td>
- </tr><tr>
- <td class="sym">USD</td>
- <td class="nm lightText">Etf</td>
- <td>$2,978</td>
- <td class="green">+49.0%</td>
- <td class="yel">12.4%</td>
- <td>3.76</td>
- </tr><tr>
- <td class="sym">URSP</td>
- <td class="nm lightText">Etf</td>
- <td>$3,299</td>
- <td class="green">+0.3%</td>
- <td class="yel">13.7%</td>
- <td>1.47</td>
- </tr><tr>
- <td class="sym">AGQ</td>
- <td class="nm lightText">Etf</td>
- <td>$2,005</td>
- <td class="red">-1.7%</td>
- <td class="yel">8.3%</td>
- <td>4.72</td>
- </tr><tr>
- <td class="sym">MSTR</td>
- <td class="nm lightText">Etf</td>
- <td>$2,064</td>
- <td class="green">+2.5%</td>
- <td class="yel">8.6%</td>
- <td>3.94</td>
- </tr></table></div></div>
- <div class="pn"><div class="pnt">Analiz</div><div class="tw2"><table><tr><th>Varlık</th><th>Temel Analiz</th><th>Teknik Analiz</th><th>Puan</th><th>Öneri</th></tr><tr>
- <td class="sym">QLD</td>
- <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
- <td class="gold bld">62</td>
- <td class="red bld">Kar Al</td>
- </tr><tr>
- <td class="sym">UGL</td>
- <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
- <td class="gold bld">52</td>
- <td class="yel bld">Tut</td>
- </tr><tr>
- <td class="sym">USD</td>
- <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
- <td class="gold bld">67</td>
- <td class="yel bld">Tut</td>
- </tr><tr>
- <td class="sym">URSP</td>
- <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
- <td class="gold bld">62</td>
- <td class="yel bld">Tut</td>
- </tr><tr>
- <td class="sym">AGQ</td>
- <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
- <td class="gold bld">42</td>
- <td class="red bld">Azalt</td>
- </tr><tr>
- <td class="sym">MSTR</td>
- <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
- <td class="gold bld">64</td>
- <td class="yel bld">Tut</td>
- </tr></table></div></div>
+  <div class="pn"><div class="pnt">Portföy</div><div class="tw2"><table><tr><th>Varlık</th><th>Cinsi</th><th>Değer $</th><th>Kar %</th><th>Oran</th><th>Beta</th></tr><tr>
+      <td class="sym">QLD</td>
+      <td class="nm lightText">Etf</td>
+      <td>$10,697</td>
+      <td class="green">+24.5%</td>
+      <td class="yel">44.5%</td>
+      <td>2.48</td>
+    </tr><tr>
+      <td class="sym">UGL</td>
+      <td class="nm lightText">Etf</td>
+      <td>$1,275</td>
+      <td class="red">-7.1%</td>
+      <td class="yel">5.3%</td>
+      <td>1.68</td>
+    </tr><tr>
+      <td class="sym">USD</td>
+      <td class="nm lightText">Etf</td>
+      <td>$2,978</td>
+      <td class="green">+49.0%</td>
+      <td class="yel">12.4%</td>
+      <td>3.76</td>
+    </tr><tr>
+      <td class="sym">URSP</td>
+      <td class="nm lightText">Etf</td>
+      <td>$3,299</td>
+      <td class="green">+0.3%</td>
+      <td class="yel">13.7%</td>
+      <td>1.47</td>
+    </tr><tr>
+      <td class="sym">AGQ</td>
+      <td class="nm lightText">Etf</td>
+      <td>$2,005</td>
+      <td class="red">-1.7%</td>
+      <td class="yel">8.3%</td>
+      <td>4.72</td>
+    </tr><tr>
+      <td class="sym">MSTR</td>
+      <td class="nm lightText">Etf</td>
+      <td>$2,064</td>
+      <td class="green">+2.5%</td>
+      <td class="yel">8.6%</td>
+      <td>3.94</td>
+    </tr></table></div></div>
+  <div class="pn"><div class="pnt">Analiz</div><div class="tw2"><table><tr><th>Varlık</th><th>Temel Analiz</th><th>Teknik Analiz</th><th>Puan</th><th>Öneri</th></tr><tr>
+      <td class="sym">QLD</td>
+      <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">62</td>
+      <td class="red bld">Kar Al</td>
+    </tr><tr>
+      <td class="sym">UGL</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
+      <td class="gold bld">52</td>
+      <td class="yel bld">Tut</td>
+    </tr><tr>
+      <td class="sym">USD</td>
+      <td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">67</td>
+      <td class="yel bld">Tut</td>
+    </tr><tr>
+      <td class="sym">URSP</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">62</td>
+      <td class="yel bld">Tut</td>
+    </tr><tr>
+      <td class="sym">AGQ</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
+      <td class="gold bld">42</td>
+      <td class="red bld">Azalt</td>
+    </tr><tr>
+      <td class="sym">MSTR</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">64</td>
+      <td class="yel bld">Tut</td>
+    </tr></table></div></div>
 </div>
 
 <div id="tab-yorum" class="sec">
- <div class="pn">
- <div class="pnt">Genel Yorum</div>
- <div class="yg">
- <div class="yb"><div class="yh" style="color:#60a5fa">📊 Durum</div><div class="yt">Toplam 24,237$ | Günlük +413$ | USD kâr %9.8 | TL kâr %13.3</div></div>
- <div class="yb"><div class="yh" style="color:#34d399">💼 Performans</div><div class="yt">En iyi → USD +%45.6 | En kötü → UGL -%14.4</div></div>
- <div class="yb"><div class="yh" style="color:#f87171">⚠️ Risk</div><div class="yt">QLD %44 portföy ağırlığı ile RSI aşırı alım bölgesinde (74.91), kısmi kâr alımı değerlendirilmeli. AGQ düşüş trendinde ve SuperTrend'in %9 altında, kayıplar derinleşebilir.</div></div>
- <div class="yb"><div class="yh" style="color:#34d399">✅ Fırsat</div><div class="yt">UWM ve EEM SuperTrend yükselişte ve RSI momentumu güçlü; nakit ile pozisyon başlanabilir. MSTR yükseliş trendini koruyor.</div></div>
- <div class="yb"><div class="yh" style="color:#fbbf24">🎯 Eylem</div><div class="yt">—</div></div>
- </div>
- </div>
+  <div class="pn">
+  <div class="pnt">Genel Yorum</div>
+  <div class="yg">
+  <div class="yb"><div class="yh" style="color:#60a5fa">📊 Durum</div><div class="yt">Toplam 24,237$ | Günlük +413$ | USD kâr %9.8 | TL kâr %13.3</div></div>
+  <div class="yb"><div class="yh" style="color:#34d399">💼 Performans</div><div class="yt">En iyi → USD +%45.6 | En kötü → UGL -%14.4</div></div>
+  <div class="yb"><div class="yh" style="color:#f87171">⚠️ Risk</div><div class="yt">QLD %44 portföy ağırlığı ile RSI aşırı alım bölgesinde (74.91), kısmi kâr alımı değerlendirilmeli. AGQ düşüş trendinde ve SuperTrend'in %9 altında, kayıplar derinleşebilir.</div></div>
+  <div class="yb"><div class="yh" style="color:#34d399">✅ Fırsat</div><div class="yt">UWM ve EEM SuperTrend yükselişte ve RSI momentumu güçlü; nakit ile pozisyon başlanabilir. MSTR yükseliş trendini koruyor.</div></div>
+  <div class="yb"><div class="yh" style="color:#fbbf24">🎯 Eylem</div><div class="yt">—</div></div>
+  </div>
+  </div>
 </div>
 
 <div id="tab-izleme" class="sec">
- <div class="pn"><div class="pnt">İlgilendiğim Varlıklar</div><div class="tw2"><table><tr><th>Varlık</th><th>İsim</th><th>Fiyat</th><th>Temel Analiz</th><th>Teknik Analiz</th><th>Puan</th><th>Öneri</th></tr><tr>
- <td class="sym">UWM</td>
- <td class="nm lightText">ProShares Ultra Russell2000</td>
- <td>$58.71</td>
- <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
- <td class="gold bld">58</td>
- <td class="green bld">Al</td>
- </tr><tr>
- <td class="sym">XBI</td>
- <td class="nm lightText">State Street SPDR S&P Biotech ETF</td>
- <td>$130.60</td>
- <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Yükseliş Trendi/Boğa, Kırılımın Eşiğinde)</td>
- <td class="gold bld">47</td>
- <td class="yel bld">Bekle</td>
- </tr><tr>
- <td class="sym">EEM</td>
- <td class="nm lightText">iShares MSCI Emerging Markets ETF</td>
- <td>$64.61</td>
- <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
- <td class="gold bld">61</td>
- <td class="green bld">Al</td>
- </tr><tr>
- <td class="sym">SOFI</td>
- <td class="nm lightText">SoFi Technologies Inc</td>
- <td>$16.15</td>
- <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
- <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
- <td class="gold bld">40</td>
- <td class="red bld">Uzak Dur</td>
- </tr></table></div></div>
+  <div class="pn"><div class="pnt">İlgilendiğim Varlıklar</div><div class="tw2"><table><tr><th>Varlık</th><th>Fiyat</th><th>Temel Analiz</th><th>Teknik Analiz</th><th>Puan</th><th>Öneri</th></tr><tr>
+      <td class="sym">UWM</td>
+      <td>$58.71</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">58</td>
+      <td class="green bld">Al</td>
+    </tr><tr>
+      <td class="sym">XBI</td>
+      <td>$130.60</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa, Kırılımın Eşiğinde)</td>
+      <td class="gold bld">47</td>
+      <td class="yel bld">Bekle</td>
+    </tr><tr>
+      <td class="sym">EEM</td>
+      <td>$64.61</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Yükseliş Trendi/Boğa)</td>
+      <td class="gold bld">61</td>
+      <td class="green bld">Al</td>
+    </tr><tr>
+      <td class="sym">SOFI</td>
+      <td>$16.15</td>
+      <td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td>
+      <td class="sm lightText">(Düşüş Trendi/Ayı)</td>
+      <td class="gold bld">40</td>
+      <td class="red bld">Uzak Dur</td>
+    </tr></table></div></div>
 </div>
 
 <div id="tab-performans" class="sec">
- <div class="perf-bar">
+  <div class="perf-bar">
   <div class="p-it"><span class="p-lb">Haftalık:</span><span class="green">+0.2%</span></div>
   <span class="p-sp">|</span>
   <div class="p-it"><span class="p-lb">Aylık:</span><span class="green">+31.4%</span></div>
@@ -237,16 +232,16 @@ td.sym{font-weight:800; color:#fbbf24; font-size:12px}
   <div class="p-it"><span class="p-lb">Yıllık:</span><span class="green">+66.0%</span></div>
   <span class="p-sp">|</span>
   <div class="p-it"><span class="p-lb">YTD:</span><span class="green">+11.6%</span></div>
- </div>
- <div class="filter-bar">
- <button class="f-btn active" onclick="updateRange('D',this)">Günlük</button>
- <button class="f-btn" onclick="updateRange('M',this)">Aylık</button>
- <button class="f-btn" onclick="updateRange('Q',this)">Çeyrek</button>
- <button class="f-btn" onclick="updateRange('Y',this)">Yıllık</button>
- </div>
- <div class="pn"><div class="pnt">Portföy Değeri (USD)</div><div style="height:220px"><canvas id="sparkChart"></canvas></div></div>
- <div class="pn"><div class="pnt">Tarihsel Kar/Zarar (USD)</div><div style="height:180px"><canvas id="karChart"></canvas></div></div>
- <div class="pn"><div class="pnt">Para Ekleme Geçmişi (USD)</div><div style="height:180px"><canvas id="paraChart"></canvas></div></div>
+  </div>
+  <div class="filter-bar">
+  <button class="f-btn active" onclick="updateRange('D',this)">Günlük</button>
+  <button class="f-btn" onclick="updateRange('M',this)">Aylık</button>
+  <button class="f-btn" onclick="updateRange('Q',this)">Çeyrek</button>
+  <button class="f-btn" onclick="updateRange('Y',this)">Yıllık</button>
+  </div>
+  <div class="pn"><div class="pnt">Portföy Değeri (USD)</div><div style="height:220px"><canvas id="sparkChart"></canvas></div></div>
+  <div class="pn"><div class="pnt">Tarihsel Kar/Zarar (USD)</div><div style="height:180px"><canvas id="karChart"></canvas></div></div>
+  <div class="pn"><div class="pnt">Para Ekleme Geçmişi (USD)</div><div style="height:180px"><canvas id="paraChart"></canvas></div></div>
 </div>
 </div>
 
@@ -256,59 +251,59 @@ let charts = {};
 const G={color:'rgba(255,255,255,0.05)'}, T={color:'#ffffff',font:{size:9}};
 
 function showTab(n,el){
- document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- document.getElementById('tab-'+n).classList.add('active');
- el.classList.add('active');
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+n).classList.add('active');
+  el.classList.add('active');
 }
 
 function init(){
- const opt = { maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:T,grid:G},y:{ticks:T,grid:G}} };
- charts.spark = new Chart(document.getElementById('sparkChart'),{type:'line',data:{labels:[],datasets:[{borderColor:'#fbbf24',fill:true,backgroundColor:'rgba(251,191,36,0.1)',tension:0.3,pointRadius:0}]},options:opt});
- charts.kar = new Chart(document.getElementById('karChart'),{type:'bar',data:{labels:[],datasets:[{backgroundColor:c=>c.raw>=0?'#34d399':'#f87171',borderRadius:4}]},options:opt});
- charts.para = new Chart(document.getElementById('paraChart'),{type:'bar',data:{labels:[],datasets:[{backgroundColor:'#60a5fa',borderRadius:4}]},options:opt});
- updateRange('D');
+  const opt = { maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:T,grid:G},y:{ticks:T,grid:G}} };
+  charts.spark = new Chart(document.getElementById('sparkChart'),{type:'line',data:{labels:[],datasets:[{borderColor:'#fbbf24',fill:true,backgroundColor:'rgba(251,191,36,0.1)',tension:0.3,pointRadius:0}]},options:opt});
+  charts.kar = new Chart(document.getElementById('karChart'),{type:'bar',data:{labels:[],datasets:[{backgroundColor:c=>c.raw>=0?'#34d399':'#f87171',borderRadius:4}]},options:opt});
+  charts.para = new Chart(document.getElementById('paraChart'),{type:'bar',data:{labels:[],datasets:[{backgroundColor:'#60a5fa',borderRadius:4}]},options:opt});
+  updateRange('D');
 }
 
 function updateRange(range, el) {
- if (el) {
- document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
- el.classList.add('active');
- }
- var dataToProcess = typeof raw !== 'undefined' ? raw : [];
- if (dataToProcess.length === 0) return;
- const groups = {};
- dataToProcess.forEach(item => {
- if (!item.tarih) return;
- var p = String(item.tarih).split(/[./]/);
- if (p.length < 3) return;
- var d = parseInt(p[0], 10);
- var m = parseInt(p[1], 10);
- var y = p[2].length === 2 ? '20' + p[2] : p[2];
- var key, label;
- var mPad = (m < 10 ? '0' + m : m);
- var dPad = (d < 10 ? '0' + d : d);
- if (range === 'D') { key = y + "" + mPad + "" + dPad; label = item.tarih; } 
-else if (range === 'M') { key = y + "" + mPad; label = mPad + '/' + y; } 
-else if (range === 'Q') { var q = Math.ceil(m / 3); key = y + "Q" + q; label = 'Q' + q + ' ' + y; } 
-else { key = y; label = y; }
- if (!groups[key]) { groups[key] = { label: label, usd: 0, kar: 0, para: 0 }; }
- groups[key].usd = item.usd;
- groups[key].kar += (Number(item.kar) || 0);
- groups[key].para += (Number(item.para) || 0);
- });
- var sortedKeys = Object.keys(groups).sort();
- var filtered = sortedKeys.map(function(k) { return groups[k]; });
- var labs = filtered.map(function(d) { return d.label; });
- charts.spark.data.labels = labs;
- charts.spark.data.datasets[0].data = filtered.map(function(d) { return d.usd; });
- charts.spark.update();
- charts.kar.data.labels = labs;
- charts.kar.data.datasets[0].data = filtered.map(function(d) { return d.kar; });
- charts.kar.update();
- charts.para.data.labels = labs;
- charts.para.data.datasets[0].data = filtered.map(function(d) { return d.para; });
- charts.para.update();
+  if (el) {
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  }
+  var dataToProcess = typeof raw !== 'undefined' ? raw : [];
+  if (dataToProcess.length === 0) return;
+  const groups = {};
+  dataToProcess.forEach(item => {
+  if (!item.tarih) return;
+  var p = String(item.tarih).split(/[./]/);
+  if (p.length < 3) return;
+  var d = parseInt(p[0], 10);
+  var m = parseInt(p[1], 10);
+  var y = p[2].length === 2 ? '20' + p[2] : p[2];
+  var key, label;
+  var mPad = (m < 10 ? '0' + m : m);
+  var dPad = (d < 10 ? '0' + d : d);
+  if (range === 'D') { key = y + "" + mPad + "" + dPad; label = item.tarih; } 
+  else if (range === 'M') { key = y + "" + mPad; label = mPad + '/' + y; } 
+  else if (range === 'Q') { var q = Math.ceil(m / 3); key = y + "Q" + q; label = 'Q' + q + ' ' + y; } 
+  else { key = y; label = y; }
+  if (!groups[key]) { groups[key] = { label: label, usd: 0, kar: 0, para: 0 }; }
+  groups[key].usd = item.usd;
+  groups[key].kar += (Number(item.kar) || 0);
+  groups[key].para += (Number(item.para) || 0);
+  });
+  var sortedKeys = Object.keys(groups).sort();
+  var filtered = sortedKeys.map(function(k) { return groups[k]; });
+  var labs = filtered.map(function(d) { return d.label; });
+  charts.spark.data.labels = labs;
+  charts.spark.data.datasets[0].data = filtered.map(function(d) { return d.usd; });
+  charts.spark.update();
+  charts.kar.data.labels = labs;
+  charts.kar.data.datasets[0].data = filtered.map(function(d) { return d.kar; });
+  charts.kar.update();
+  charts.para.data.labels = labs;
+  charts.para.data.datasets[0].data = filtered.map(function(d) { return d.para; });
+  charts.para.update();
 }
 window.onload = init;
 </script>

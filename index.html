@@ -47,14 +47,14 @@ td.sym{font-weight:800; color:#fbbf24; font-size:12px}
 <div class="dash">
 <div class="ph">
  <div><div class="pt">Yatırım Günlüğü</div></div>
- <div class="ld">04.05.2026 15:17:54</div>
+ <div class="ld">04.05.2026 15:22:31</div>
 </div>
 <div class="hcards">
  <div class="hc">
  <div class="lb">Portföy</div>
  <div class="vl gold">
  <div>$24,060</div>
- <div style="margin-top: 4px;">₺1.087.539</div>
+ <div style="margin-top: 4px;">₺1.087.533</div>
  </div>
  </div>
  <div class="hc">
@@ -260,25 +260,26 @@ function updateRange(range, el) {
  if (!item.tarih) return;
  var p = String(item.tarih).split(/[./]/);
  if (p.length < 3) return;
+ var d = parseInt(p[0], 10);
  var m = parseInt(p[1], 10);
  var y = p[2].length === 2 ? '20' + p[2] : p[2];
  var mPad = (m < 10 ? '0' + m : m);
+ var dPad = (d < 10 ? '0' + d : d);
  var key, label;
  
- if (range === 'D') { key = y + mPad + p[0]; label = item.tarih; } 
+ if (range === 'D') { key = y + mPad + dPad; label = item.tarih; } 
  else if (range === 'M') { key = y + mPad; label = mPad + '/' + y; } 
  else if (range === 'Q') { var q = Math.ceil(m / 3); key = y + "Q" + q; label = 'Q' + q + ' ' + y; } 
  else { key = y; label = y; }
  
- // Mevcut dönemin kümülatif olmayan farkını hesaplamak için bir önceki veriyi bul
  let prev = index > 0 ? dataToProcess[index-1] : { usd: item.usd, para: item.para };
  let currentPeriodKar = (item.usd - item.para) - (prev.usd - prev.para);
  let currentPeriodPara = item.para - prev.para;
 
  if (!groups[key]) { groups[key] = { label: label, usd: 0, kar: 0, para: 0 }; }
- groups[key].usd = item.usd; // Çizgi grafiği kümülatif (toplam değer) kalmalı
- groups[key].kar += currentPeriodKar; // Dönemsel net kar değişimi
- groups[key].para += currentPeriodPara; // Dönemsel net para girişi
+ groups[key].usd = item.usd; 
+ groups[key].kar += currentPeriodKar; 
+ groups[key].para += currentPeriodPara; 
  });
 
  var sortedKeys = Object.keys(groups).sort();

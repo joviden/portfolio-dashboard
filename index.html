@@ -14,12 +14,19 @@ body{background:#0d0f1a;color:#ffffff;font-family:'DM Sans',sans-serif;padding:1
 .pt{font-size:14px;font-weight:800;color:#fbbf24;font-family:'Inter',sans-serif}
 .ld{font-size:10px;color:#34d399;font-weight:600}
 .hcards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-.hc { background: linear-gradient(135deg, #161929, #1c2038); border: 1px solid #252a40; border-radius: 18px; padding: 20px 16px; text-align: center; }
-.hc .lb { font-size: 11px; font-weight: 800; color: #ffffff; text-transform: uppercase; margin-bottom: 8px; opacity: 0.8; } 
+.hc { background: linear-gradient(135deg, #161929, #1c2038); border: 1px solid #252a40; border-radius: 18px; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.hc .lb { font-size: 12px; font-weight: 800; color: #ffffff; text-transform: uppercase; margin-bottom: 8px; opacity: 0.9; letter-spacing: 0.5px; } 
 .hc .vl { font-size: 16px; font-weight: 800; font-family: 'Inter', sans-serif; }
 .tabs { display: flex; gap: 5px; background: #13162a; border-radius: 16px; padding: 5px; border: 1px solid #252a40; margin-bottom: 12px; }
 .tab { flex: 1; padding: 9px; font-size: 12px; font-weight: 700; cursor: pointer; border-radius: 12px; color: #cbd5e1; background: transparent; border: none; transition: 0.2s; text-align: center; }
 .tab.active { background: #fbbf24; color: #0d0f1a; }
+.perf-bar { overflow-x: auto; white-space: nowrap; background: #13162a; padding: 12px; border-radius: 14px; border: 1px solid #252a40; margin-bottom: 15px; display: flex; align-items: center; -webkit-overflow-scrolling: touch; }
+.p-it { display: inline-flex; font-size: 11px; font-weight: 700; padding: 0 10px; }
+.p-lb { color: #94a3b8; margin-right: 5px; text-transform: uppercase; }
+.p-sp { color: #252a40; }
+.filter-bar { display: flex; gap: 4px; background: #13162a; border-radius: 10px; padding: 3px; border: 1px solid #252a40; margin-bottom: 10px; width: fit-content; margin-left: auto; }
+.f-btn { padding: 5px 12px; font-size: 10px; font-weight: 700; cursor: pointer; border-radius: 8px; color: #94a3b8; background: transparent; border: none; transition: 0.2s; }
+.f-btn.active { background: #60a5fa; color: #0d0f1a; }
 .sec{display:none}.sec.active{display:block}
 .pn{background:#13162a; border:1px solid #252a40; border-radius:18px; padding:14px; margin-bottom:10px}
 .pnt{font-size:10px; font-weight:700; color:#ffffff; text-transform:uppercase; margin-bottom:10px; border-bottom:1px solid #1f2440; padding-bottom:8px}
@@ -30,29 +37,41 @@ td{padding:7px 6px; border-bottom:1px solid #191e30; color:#ffffff}
 td.sym{font-weight:800; color:#fbbf24; font-size:12px}
 .lightText{color:#f1f5f9!important; font-size:10px;}
 .green{color:#34d399!important}.red{color:#f87171!important}.yel{color:#fbbf24!important}.gold{color:#fbbf24!important}.bld{font-weight:700}
-.chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-@media (max-width: 768px) { .chart-grid { grid-template-columns: 1fr; } }
 .yg{display:flex; flex-direction:column; gap:10px}
 .yb{background:#0f1221; border:1px solid #1f2440; border-radius:14px; padding:12px 14px; width:100%}
 .yh{font-size:10px; font-weight:800; text-transform:uppercase; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #1f2440}
 .yt{font-size:11px; color:#ffffff; line-height:1.6} 
-.perf-bar { overflow-x: auto; white-space: nowrap; background: #13162a; padding: 12px; border-radius: 14px; border: 1px solid #252a40; margin-bottom: 15px; display: flex; align-items: center; }
-.p-it { display: inline-flex; font-size: 11px; font-weight: 700; padding: 0 10px; }
-.p-lb { color: #94a3b8; margin-right: 5px; text-transform: uppercase; }
-.p-sp { color: #252a40; }
-.filter-bar { display: flex; gap: 4px; background: #13162a; border-radius: 10px; padding: 3px; border: 1px solid #252a40; margin-bottom: 10px; width: fit-content; margin-left: auto; }
-.f-btn { padding: 5px 12px; font-size: 10px; font-weight: 700; cursor: pointer; border-radius: 8px; color: #94a3b8; background: transparent; border: none; transition: 0.2s; }
-.f-btn.active { background: #60a5fa; color: #0d0f1a; }
 </style>
 </head>
 <body>
 <div class="dash">
-<div class="ph"><div class="pt">Yatırım Günlüğü</div><div class="ld">04.05.2026 23:05:14</div></div>
+<div class="ph">
+ <div><div class="pt">Yatırım Günlüğü</div></div>
+ <div class="ld">04.05.2026 23:09:59</div>
+</div>
 <div class="hcards">
- <div class="hc"><div class="lb">Portföy</div><div class="vl gold">$23,866<br><span style="font-size:12px;opacity:0.7">₺1,078,670</span></div></div>
- <div class="hc"><div class="lb">Anapara</div><div class="vl" style="color:#60a5fa">$18,541</div></div>
- <div class="hc"><div class="lb">Net Kâr</div><div class="vl green">$5,325<br><span style="font-size:12px">%28.72</span></div></div>
- <div class="hc"><div class="lb">Beta</div><div class="vl">2.59</div></div>
+ <div class="hc">
+ <div class="lb">Portföy</div>
+ <div class="vl gold">
+ <div>$23,866</div>
+ <div style="margin-top: 4px;">₺1.078.670</div>
+ </div>
+ </div>
+ <div class="hc">
+ <div class="lb">Anapara</div>
+ <div class="vl" style="color:#60a5fa">$18,541</div>
+ </div>
+ <div class="hc">
+ <div class="lb">Tüm Zamanlar Kâr</div>
+ <div class="vl green">
+ <div>$5,325</div>
+ <div style="margin-top: 4px;">%28.72</div>
+ </div>
+ </div>
+ <div class="hc">
+ <div class="lb">Beta</div>
+ <div class="vl" style="color:#ffffff">2.59</div>
+ </div>
 </div>
 <div class="tabs">
  <button class="tab active" onclick="showTab('analiz',this)">Analiz</button>
@@ -60,18 +79,17 @@ td.sym{font-weight:800; color:#fbbf24; font-size:12px}
  <button class="tab" onclick="showTab('izleme',this)">İzleme</button>
  <button class="tab" onclick="showTab('performans',this)">Performans</button>
 </div>
-
 <div id="tab-analiz" class="sec active">
  <div class="pn"><div class="pnt">Portföy</div><div class="tw2"><table><tr><th>Varlık</th><th>Cinsi</th><th>Değer $</th><th>Kar %</th><th>Oran</th><th>Beta</th></tr><tr><td class="sym">QLD</td><td class="nm lightText">Etf</td><td>$10,658</td><td class="green">+24.0%</td><td class="yel">44.7%</td><td>2.48</td></tr><tr><td class="sym">UGL</td><td class="nm lightText">Etf</td><td>$1,229</td><td class="red">-10.5%</td><td class="yel">5.1%</td><td>1.68</td></tr><tr><td class="sym">USD</td><td class="nm lightText">Etf</td><td>$2,947</td><td class="green">+47.4%</td><td class="yel">12.3%</td><td>3.76</td></tr><tr><td class="sym">URSP</td><td class="nm lightText">Etf</td><td>$3,259</td><td class="red">-0.9%</td><td class="yel">13.7%</td><td>1.47</td></tr><tr><td class="sym">AGQ</td><td class="nm lightText">Etf</td><td>$1,881</td><td class="red">-7.8%</td><td class="yel">7.9%</td><td>4.72</td></tr><tr><td class="sym">MSTR</td><td class="nm lightText">Etf</td><td>$2,150</td><td class="green">+6.8%</td><td class="yel">9.0%</td><td>3.94</td></tr></table></div></div>
  <div class="pn"><div class="pnt">Analiz</div><div class="tw2"><table><tr><th>Varlık</th><th>Temel Analiz</th><th>Teknik Analiz</th><th>Puan</th><th>Öneri</th></tr><tr><td class="sym">QLD</td><td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">62</td><td class="red bld">Kar Al</td></tr><tr><td class="sym">UGL</td><td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Düşüş Trendi/Ayı)</td><td class="gold bld">52</td><td class="yel bld">Tut</td></tr><tr><td class="sym">USD</td><td class="sm lightText">(Aşırı Alım/Pahalı, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">67</td><td class="yel bld">Tut</td></tr><tr><td class="sym">URSP</td><td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">62</td><td class="yel bld">Tut</td></tr><tr><td class="sym">AGQ</td><td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Düşüş Trendi/Ayı)</td><td class="gold bld">42</td><td class="red bld">Azalt</td></tr><tr><td class="sym">MSTR</td><td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">64</td><td class="yel bld">Tut</td></tr><tr><td class="sym">Cash</td><td class="sm lightText">—</td><td class="sm lightText">—</td><td class="gold bld">-</td><td class="green bld">-</td></tr></table></div></div>
- <div class="chart-grid">
-  <div class="pn"><div class="pnt">Varlık Dağılımı (%)</div><div style="height:250px"><canvas id="pieChart"></canvas></div></div>
-  <div class="pn"><div class="pnt">Varlık Değerleri ($)</div><div style="height:250px"><canvas id="barVarlikChart"></canvas></div></div>
- </div>
 </div>
 
 <div id="tab-yorum" class="sec">
- <div class="pn"><div class="pnt">Genel Yorum</div>
+ <div class="pn">
+  <div class="pnt" style="display: flex; justify-content: space-between; align-items: center;">
+    <span>Genel Yorum</span>
+    <span style="text-transform: none; color: #94a3b8; font-size: 9px;">Güncelleme: 01.05.2026 18:00</span>
+  </div>
   <div class="yg">
     <div class="yb"><div class="yh" style="color:#60a5fa">📊 Durum</div><div class="yt">Toplam 24,237$ | Günlük +413$ | USD kâr %9.8 | TL kâr %13.3</div></div>
     <div class="yb"><div class="yh" style="color:#34d399">💼 Performans</div><div class="yt">En iyi → USD +%45.6 | En kötü → UGL -%14.4</div></div>
@@ -85,93 +103,80 @@ td.sym{font-weight:800; color:#fbbf24; font-size:12px}
 <div id="tab-izleme" class="sec">
  <div class="pn"><div class="pnt">İlgilendiğim Varlıklar</div><div class="tw2"><table><tr><th>Varlık</th><th>Fiyat</th><th>Temel Analiz</th><th>Teknik Analiz</th><th>Puan</th><th>Öneri</th></tr><tr><td class="sym">UWM</td><td>$58.71</td><td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">58</td><td class="green bld">Al</td></tr><tr><td class="sym">XBI</td><td>$130.60</td><td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa, Kırılımın Eşiğinde)</td><td class="gold bld">47</td><td class="yel bld">Bekle</td></tr><tr><td class="sym">EEM</td><td>$64.61</td><td class="sm lightText">(Nötr/Normal, Momentum Boğa, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Yükseliş Trendi/Boğa)</td><td class="gold bld">61</td><td class="green bld">Al</td></tr><tr><td class="sym">SOFI</td><td>$16.15</td><td class="sm lightText">(Nötr/Normal, Momentum Ayı, Uyumsuzluk tespit edilmedi)</td><td class="sm lightText">(Düşüş Trendi/Ayı)</td><td class="gold bld">40</td><td class="red bld">Uzak Dur</td></tr></table></div></div>
 </div>
-
 <div id="tab-performans" class="sec">
  <div class="perf-bar">
-  <div class="p-it"><span class="p-lb">H:</span><span class="red">-0.6%</span></div>
-  <div class="p-it"><span class="p-lb">A:</span><span class="green">30.3%</span></div>
-  <div class="p-it"><span class="p-lb">6A:</span><span class="green">20.7%</span></div>
-  <div class="p-it"><span class="p-lb">Y:</span><span class="green">63.7%</span></div>
-  <div class="p-it"><span class="p-lb">YTD:</span><span class="green">10.6%</span></div>
+ <div class="p-it"><span class="p-lb">Haftalık:</span><span class="red">-0.6%</span></div>
+ <span class="p-sp">|</span>
+ <div class="p-it"><span class="p-lb">Aylık:</span><span class="green">+30.3%</span></div>
+ <span class="p-sp">|</span>
+ <div class="p-it"><span class="p-lb">6 Aylık:</span><span class="green">+20.7%</span></div>
+ <span class="p-sp">|</span>
+ <div class="p-it"><span class="p-lb">Yıllık:</span><span class="green">+63.7%</span></div>
+ <span class="p-sp">|</span>
+ <div class="p-it"><span class="p-lb">YTD:</span><span class="green">+10.6%</span></div>
  </div>
  <div class="filter-bar">
-  <button class="f-btn active" onclick="updateRange('D',this)">Günlük</button>
-  <button class="f-btn" onclick="updateRange('M',this)">Aylık</button>
-  <button class="f-btn" onclick="updateRange('Y',this)">Yıllık</button>
+ <button class="f-btn active" onclick="updateRange('D',this)">Günlük</button>
+ <button class="f-btn" onclick="updateRange('M',this)">Aylık</button>
+ <button class="f-btn" onclick="updateRange('Q',this)">Çeyrek</button>
+ <button class="f-btn" onclick="updateRange('Y',this)">Yıllık</button>
  </div>
  <div class="pn"><div class="pnt">Portföy Değeri (USD)</div><div style="height:220px"><canvas id="sparkChart"></canvas></div></div>
- <div class="pn"><div class="pnt">Kâr/Zarar (USD)</div><div style="height:180px"><canvas id="karChart"></canvas></div></div>
+ <div class="pn"><div class="pnt">Dönemsel Kar/Zarar Değişimi (USD)</div><div style="height:180px"><canvas id="karChart"></canvas></div></div>
+ <div class="pn"><div class="pnt">Dönemsel Para Ekleme (USD)</div><div style="height:180px"><canvas id="paraChart"></canvas></div></div>
 </div>
 </div>
 <script>
-const dataV = [{"kod":"QLD","oran":44.65781199042087,"usd":10657.85},{"kod":"URSP","oran":13.656121200409663,"usd":3259.1138},{"kod":"USD","oran":12.34691992290339,"usd":2946.6652},{"kod":"MSTR","oran":9.008401062193757,"usd":2149.908},{"kod":"AGQ","oran":7.879645360359905,"usd":1880.5238},{"kod":"UGL","oran":5.1476981546816445,"usd":1228.5285}];
 const raw = [{"tarih":"11.10.2025","usd":8365,"para":8365},{"tarih":"12.10.2025","usd":8365,"para":8365},{"tarih":"13.10.2025","usd":8365,"para":8365},{"tarih":"14.10.2025","usd":8365,"para":8365},{"tarih":"15.10.2025","usd":8365,"para":8365},{"tarih":"16.10.2025","usd":8365,"para":8365},{"tarih":"17.10.2025","usd":8371,"para":8365},{"tarih":"20.10.2025","usd":8475,"para":8365},{"tarih":"21.10.2025","usd":8686,"para":8365},{"tarih":"22.10.2025","usd":8682,"para":8365},{"tarih":"23.10.2025","usd":9226,"para":8365},{"tarih":"24.10.2025","usd":9384,"para":8365},{"tarih":"27.10.2025","usd":9576,"para":9047},{"tarih":"28.10.2025","usd":10575,"para":9047},{"tarih":"29.10.2025","usd":10491,"para":9047},{"tarih":"30.10.2025","usd":10685,"para":9047},{"tarih":"03.11.2025","usd":10626,"para":9047},{"tarih":"04.11.2025","usd":10554,"para":9047},{"tarih":"05.11.2025","usd":10294,"para":12573},{"tarih":"06.11.2025","usd":14829,"para":12573},{"tarih":"07.11.2025","usd":14552,"para":13558},{"tarih":"10.11.2025","usd":14925,"para":13558},{"tarih":"11.11.2025","usd":15448,"para":13558},{"tarih":"12.11.2025","usd":15369,"para":13558},{"tarih":"13.11.2025","usd":15598,"para":13558},{"tarih":"14.11.2025","usd":14956,"para":13558},{"tarih":"17.11.2025","usd":14738,"para":13558},{"tarih":"18.11.2025","usd":14329,"para":13558},{"tarih":"19.11.2025","usd":14266,"para":13558},{"tarih":"20.11.2025","usd":14360,"para":13558},{"tarih":"21.11.2025","usd":13474,"para":13558},{"tarih":"24.11.2025","usd":13770,"para":13558},{"tarih":"25.11.2025","usd":14292,"para":13558},{"tarih":"26.11.2025","usd":14409,"para":13558},{"tarih":"27.11.2025","usd":14761,"para":13558},{"tarih":"28.11.2025","usd":14762,"para":13558},{"tarih":"02.12.2025","usd":14980,"para":13558},{"tarih":"03.12.2025","usd":15080,"para":13558},{"tarih":"04.12.2025","usd":15255,"para":13558},{"tarih":"05.12.2025","usd":15184,"para":13558},{"tarih":"08.12.2025","usd":15945,"para":14326},{"tarih":"09.12.2025","usd":15860,"para":14326},{"tarih":"10.12.2025","usd":16151,"para":14326},{"tarih":"11.12.2025","usd":17880,"para":16066},{"tarih":"12.12.2025","usd":18096,"para":16066},{"tarih":"15.12.2025","usd":17952,"para":16531},{"tarih":"16.12.2025","usd":17943,"para":16531},{"tarih":"17.12.2025","usd":17854,"para":16531},{"tarih":"18.12.2025","usd":17598,"para":16531},{"tarih":"19.12.2025","usd":17958,"para":16531},{"tarih":"22.12.2025","usd":18194,"para":16531},{"tarih":"23.12.2025","usd":19091,"para":16531},{"tarih":"24.12.2025","usd":19438,"para":16531},{"tarih":"25.12.2025","usd":19430,"para":16531},{"tarih":"26.12.2025","usd":19505,"para":16531},{"tarih":"29.12.2025","usd":19963,"para":16531},{"tarih":"30.12.2025","usd":19737,"para":16531},{"tarih":"31.12.2025","usd":19759,"para":16531},{"tarih":"02.01.2026","usd":19764,"para":16531},{"tarih":"05.01.2026","usd":19850,"para":16531},{"tarih":"06.01.2026","usd":20316,"para":16531},{"tarih":"07.01.2026","usd":20656,"para":16531},{"tarih":"08.01.2026","usd":20341,"para":16531},{"tarih":"09.01.2026","usd":20300,"para":16531},{"tarih":"12.01.2026","usd":20606,"para":16531},{"tarih":"13.01.2026","usd":20817,"para":16531},{"tarih":"14.01.2026","usd":21133,"para":16531},{"tarih":"15.01.2026","usd":20949,"para":16531},{"tarih":"16.01.2026","usd":21003,"para":16531},{"tarih":"19.01.2026","usd":20754,"para":16531},{"tarih":"20.01.2026","usd":20566,"para":16531},{"tarih":"21.01.2026","usd":19799,"para":16531},{"tarih":"22.01.2026","usd":20189,"para":16531},{"tarih":"23.01.2026","usd":20318,"para":16531},{"tarih":"26.01.2026","usd":20227,"para":16531},{"tarih":"27.01.2026","usd":20366,"para":16531},{"tarih":"28.01.2026","usd":20716,"para":16531},{"tarih":"29.01.2026","usd":20742,"para":16531},{"tarih":"30.01.2026","usd":20067,"para":16531},{"tarih":"02.02.2026","usd":18894,"para":16531},{"tarih":"03.02.2026","usd":19091,"para":16531},{"tarih":"04.02.2026","usd":18869,"para":16531},{"tarih":"05.02.2026","usd":18870,"para":16531},{"tarih":"06.02.2026","usd":17909,"para":16531},{"tarih":"09.02.2026","usd":18556,"para":16531},{"tarih":"10.02.2026","usd":18826,"para":16531},{"tarih":"11.02.2026","usd":18609,"para":16531},{"tarih":"12.02.2026","usd":18788,"para":16531},{"tarih":"13.02.2026","usd":17909,"para":16531},{"tarih":"16.02.2026","usd":18231,"para":16531},{"tarih":"17.02.2026","usd":18231,"para":16531},{"tarih":"18.02.2026","usd":17824,"para":16531},{"tarih":"19.02.2026","usd":18256,"para":16531},{"tarih":"20.02.2026","usd":18200,"para":16531},{"tarih":"23.02.2026","usd":18650,"para":16531},{"tarih":"24.02.2026","usd":18682,"para":16531},{"tarih":"25.02.2026","usd":18757,"para":16531},{"tarih":"26.02.2026","usd":19074,"para":16531},{"tarih":"27.02.2026","usd":18884,"para":16531},{"tarih":"02.03.2026","usd":18973,"para":16531},{"tarih":"03.03.2026","usd":19157,"para":16531},{"tarih":"04.03.2026","usd":18295,"para":16531},{"tarih":"05.03.2026","usd":18703,"para":16531},{"tarih":"06.03.2026","usd":18579,"para":16531},{"tarih":"09.03.2026","usd":19112,"para":17541},{"tarih":"10.03.2026","usd":19633,"para":17541},{"tarih":"11.03.2026","usd":19774,"para":17541},{"tarih":"16.03.2026","usd":18726,"para":17541},{"tarih":"17.03.2026","usd":19071,"para":17541},{"tarih":"18.03.2026","usd":19166,"para":17541},{"tarih":"19.03.2026","usd":18520,"para":17541},{"tarih":"20.03.2026","usd":18255,"para":17541},{"tarih":"23.03.2026","usd":17513,"para":17541},{"tarih":"24.03.2026","usd":17815,"para":17541},{"tarih":"25.03.2026","usd":17637,"para":17541},{"tarih":"26.03.2026","usd":17971,"para":17541},{"tarih":"27.03.2026","usd":17971,"para":17541},{"tarih":"30.03.2026","usd":16430,"para":17541},{"tarih":"31.03.2026","usd":16061,"para":17541},{"tarih":"01.04.2026","usd":17197,"para":17541},{"tarih":"02.04.2026","usd":17608,"para":17541},{"tarih":"03.04.2026","usd":17552,"para":17541},{"tarih":"06.04.2026","usd":17552,"para":17541},{"tarih":"07.04.2026","usd":17815,"para":17541},{"tarih":"08.04.2026","usd":17890,"para":17541},{"tarih":"09.04.2026","usd":18901,"para":17541},{"tarih":"10.04.2026","usd":19220,"para":18541},{"tarih":"13.04.2026","usd":20404,"para":18541},{"tarih":"14.04.2026","usd":20794,"para":18541},{"tarih":"15.04.2026","usd":21595,"para":18541},{"tarih":"16.04.2026","usd":22095,"para":18541},{"tarih":"17.04.2026","usd":22267,"para":18541},{"tarih":"20.04.2026","usd":22994,"para":18541},{"tarih":"21.04.2026","usd":22845,"para":18541},{"tarih":"22.04.2026","usd":22444,"para":18541},{"tarih":"23.04.2026","usd":23359,"para":18541},{"tarih":"24.04.2026","usd":23044,"para":18541},{"tarih":"27.04.2026","usd":23934,"para":18541},{"tarih":"28.04.2026","usd":24011,"para":18541},{"tarih":"29.04.2026","usd":23408,"para":18541},{"tarih":"30.04.2026","usd":23518,"para":18541},{"tarih":"04.05.2026","usd":24059,"para":18541}];
 let charts = {};
-const colors = ['#fbbf24','#60a5fa','#34d399','#f97316','#a855f7','#f87171','#818cf8','#2dd4bf'];
 const G={color:'rgba(255,255,255,0.05)'}, T={color:'#ffffff',font:{size:9}};
-
 function showTab(n,el){
  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
  document.getElementById('tab-'+n).classList.add('active');
  el.classList.add('active');
 }
-
 function init(){
- // 1. PASTA GRAFİK (Yüzdesel)
- new Chart(document.getElementById('pieChart'), {
-   type: 'doughnut',
-   data: { 
-     labels: dataV.map(v => v.kod + " %" + v.oran.toFixed(1)), 
-     datasets: [{ data: dataV.map(v => v.oran), backgroundColor: colors, borderWidth: 0 }] 
-   },
-   options: { 
-     maintainAspectRatio:false, cutout:'65%', 
-     plugins: { legend: { position:'bottom', labels: { color:'#fff', font:{size:9}, boxWidth:8 } }, tooltip: { callbacks: { label: (ctx) => " Pay: %" + ctx.raw.toFixed(1) } } }
-   }
- });
-
- // 2. ÇUBUK GRAFİK (Değersel)
- new Chart(document.getElementById('barVarlikChart'), {
-   type: 'bar',
-   data: { 
-     labels: dataV.map(v => v.kod), 
-     datasets: [{ data: dataV.map(v => v.usd), backgroundColor: colors, borderRadius: 4 }] 
-   },
-   options: { 
-     maintainAspectRatio:false, plugins:{legend:{display:false}},
-     scales: { x:{ticks:T,grid:G}, y:{ticks:T,grid:G} }
-   }
- });
-
- // 3. PERFORMANS GRAFİKLERİ
- charts.spark = new Chart(document.getElementById('sparkChart'),{type:'line',data:{labels:[],datasets:[{borderColor:'#fbbf24',fill:true,backgroundColor:'rgba(251,191,36,0.1)',tension:0.3,pointRadius:0}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:T,grid:G},y:{ticks:T,grid:G}}}});
- charts.kar = new Chart(document.getElementById('karChart'),{type:'bar',data:{labels:[],datasets:[{backgroundColor:c=>c.raw>=0?'#34d399':'#f87171',borderRadius:4}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:T,grid:G},y:{ticks:T,grid:G}}}});
+ const opt = { maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:T,grid:G},y:{ticks:T,grid:G}} };
+ charts.spark = new Chart(document.getElementById('sparkChart'),{type:'line',data:{labels:[],datasets:[{borderColor:'#fbbf24',fill:true,backgroundColor:'rgba(251,191,36,0.1)',tension:0.3,pointRadius:0}]},options:opt});
+ charts.kar = new Chart(document.getElementById('karChart'),{type:'bar',data:{labels:[],datasets:[{backgroundColor:c=>c.raw>=0?'#34d399':'#f87171',borderRadius:4}]},options:opt});
+ charts.para = new Chart(document.getElementById('paraChart'),{type:'bar',data:{labels:[],datasets:[{backgroundColor:'#60a5fa',borderRadius:4}]},options:opt});
  updateRange('D');
 }
-
 function updateRange(range, el) {
- if (el) { document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active')); el.classList.add('active'); }
- if (!raw || raw.length === 0) return;
+ if (el) {
+ document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+ el.classList.add('active');
+ }
+ var dataToProcess = typeof raw !== 'undefined' ? raw : [];
+ if (dataToProcess.length === 0) return;
  const groups = {};
- raw.forEach((item, index) => {
-   const p = item.tarih.split('.');
-   let key = range==='D' ? p[2]+p[1]+p[0] : range==='M' ? p[2]+p[1] : p[2];
-   let label = range==='D' ? item.tarih : range==='M' ? p[1]+'/'+p[2] : p[2];
-   let prev = index > 0 ? raw[index-1] : item;
-   if (!groups[key]) groups[key] = { label: label, usd: 0, kar: 0 };
-   groups[key].usd = item.usd;
-   groups[key].kar += (item.usd - item.para) - (prev.usd - prev.para);
+ dataToProcess.forEach((item, index) => {
+ if (!item.tarih) return;
+ var p = String(item.tarih).split('.');
+ var key, label;
+ if (range === 'D') { key = p[2]+p[1]+p[0]; label = item.tarih; } 
+ else if (range === 'M') { key = p[2]+p[1]; label = p[1]+'/'+p[2]; } 
+ else if (range === 'Q') { var q = Math.ceil(parseInt(p[1])/3); key = p[2]+"Q"+q; label = 'Q'+q+' '+p[2]; } 
+ else { key = p[2]; label = p[2]; }
+ let prev = index > 0 ? dataToProcess[index-1] : item;
+ if (!groups[key]) { groups[key] = { label: label, usd: 0, kar: 0, para: 0 }; }
+ groups[key].usd = item.usd; 
+ groups[key].kar += (item.usd - item.para) - (prev.usd - prev.para); 
+ groups[key].para += item.para - prev.para; 
  });
- const filtered = Object.keys(groups).sort().map(k => groups[k]);
+ var sortedKeys = Object.keys(groups).sort();
+ var filtered = sortedKeys.map(k => groups[k]);
  charts.spark.data.labels = filtered.map(d => d.label);
  charts.spark.data.datasets[0].data = filtered.map(d => d.usd);
  charts.spark.update();
  charts.kar.data.labels = filtered.map(d => d.label);
  charts.kar.data.datasets[0].data = filtered.map(d => d.kar);
  charts.kar.update();
+ charts.para.data.labels = filtered.map(d => d.label);
+ charts.para.data.datasets[0].data = filtered.map(d => d.para);
+ charts.para.update();
 }
-
 window.onload = init;
 </script>
 </body></html>
